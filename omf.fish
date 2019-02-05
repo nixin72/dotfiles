@@ -19,8 +19,10 @@ function acp
     echo "Commit message: $com"
     echo "Branch name: $branch"
 
-    npm version patch --no-git-tag-version -f
-    
+    if test -e ./package.json
+        npm version patch --no-git-tag-version -f
+    end
+
     git add .
     git commit -m "$com"
     git push origin $branch
@@ -30,12 +32,14 @@ end
 function acpp
     set com $argv[1]
     set branch $argv[2]
-    
+
     echo "Commit message: $com"
     echo "Branch name: $branch"
-    
-    npm version patch --no-git-tag-version -f
-    
+
+    if test -e ./package.json
+        npm version patch --no-git-tag-version -f
+    end
+
     git add .
     git commit -m "$com"
     git pull origin $branch

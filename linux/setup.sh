@@ -30,3 +30,5 @@ fish -c "chmod +x ./oh-my.fish; ./oh-my.fish --noninteractive -y"
 
 #install fish themes
 fish -c "omf install agnoster"
+
+rm -rf ~/Documents/ ~/Downloads/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/

@@ -36,8 +36,8 @@
     "editor.formatOnSave": true,
     "editor.autoClosingQuotes": "always",
     "editor.autoClosingBrackets": "always",
-    "editor.fontFamily": "Droid Sans Mono Dotted for Powerline, Consolas, 'Courier New', monospace",
-    "editor.fontSize": 13,
+    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.smoothScrolling": true,
     "editor.cursorWidth": 1,
@@ -120,4 +120,6 @@
     "java.import.gradle.enabled": false,
     "java.import.maven.enabled": false,
     "markdown.extension.print.imgToBase64": true,
+    "disableLigatures.mode": "Line",
+    "window.titleBarStyle": "native",
 }

@@ -4,7 +4,7 @@
 # sudo pacman -Sy firefox --noconfirm
 # sudo pacman -Sy code --noconfirm
 # sudo pacman -Sy fish --noconfirm
-# sudo pacman -Sy python python-pip --noconfirm
+# sudo pacman -Sy python-pywal python-pip --noconfirm
 # sudo pacman -Sy libc++ --noconfirm
 # sudo pacman -Sy nodejs npm --noconfirm
 # sudo pacman -Sy sbcl --noconfirm
@@ -30,3 +30,6 @@ git config --global user.name = "Philip"
 # fish -c "omf install agnoster; omf install spacefish"
 
 # rm -rf ~/Documents/ ~/Downloads/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
+
+cp ~/configs/background.png ~/usr/share/backgrounds/loz.png
+wal -i ~/usr/share/backgrounds/loz.png

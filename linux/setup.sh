@@ -14,7 +14,7 @@ git config --global user.email = "phdumaresq@gmail.com"
 git config --global user.name = "Philip"
 
 # install powerline fonts
-sudo pacman -Sy powerline powerline-fonts
+# sudo pacman -Sy powerline powerline-fonts
 
 #intall discord
 # wget https://aur.archlinux.org/cgit/aur.git/snapshot/discord.tar.gz

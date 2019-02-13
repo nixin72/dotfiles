@@ -1,6 +1,6 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
+##############################################################################
+###################    Core i3 settings and keybindings    ####################
+###############################################################################
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 
@@ -27,7 +27,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminology 
+bindsym $mod+Return exec terminology -e "fish" 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -48,64 +48,63 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
 
-################################################################################################
-
+###############################################################################
+#########    Removed all applications bound to MOD+X for startup     ##########
+###############################################################################
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+i exec calamares_polkit
-bindsym $mod+Ctrl+a exec terminal -e 'setup'
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
+# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+# bindsym $mod+i exec calamares_polkit
+# bindsym $mod+Ctrl+a exec terminal -e 'setup'
+# bindsym $mod+F2 exec palemoon
+# bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+F1 exec xdg-open /usr/share/doc/manjaro/i3_help_live.pdf
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+# bindsym $mod+Shift+F3 exec gksu pcmanfm
+# bindsym $mod+F5 exec terminology -e 'mocp'
+# bindsym $mod+t exec --no-startup-id pkill compton
+# bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+# bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+# bindsym Print exec --no-startup-id i3-scrot
+# bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+# bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+# bindsym $mod+F1 exec xdg-open /usr/share/doc/manjaro/i3_help_live.pdf
+# bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # focus_follows_mouse no
 
-# change focus
+###############################################################################
+####################       Keys for navigating windows     ####################
+###############################################################################
+# change focus - vim
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
+# change focus - arrow
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+# move focused window - vim
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# move focused window - arrow
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-
 # split orientation
-bindsym $mod+x split h;exec notify-send 'tile horizontally'
-bindsym $mod+y split v;exec notify-send 'tile vertically'
+bindsym $mod+x split h;exec notify-send 'tile across x-axis'
+bindsym $mod+y split v;exec notify-send 'tile across y-axis'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -113,11 +112,11 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -128,27 +127,29 @@ bindsym $mod+Shift+s sticky toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+### REMOVED SCRATCHPAD CONTROLS
+##
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
 
-#navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
 
+###############################################################################
+###################         Workspace configuations        ####################
+###############################################################################
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
 
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
+set $ws1 Term
+set $ws2 Code
+set $ws3 FiFo
+set $ws4 Disc
+set $ws5 Spot
 set $ws6 6
 set $ws7 7
 set $ws8 8
@@ -182,6 +183,16 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -248,24 +259,35 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# Resize window (you can also use the mouse for that)
+
+###############################################################################
+###################         Controls for resize mode       ####################
+###############################################################################
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        # Remapped the bindings to grow in the direction you click 
+	# Allow both Vim keybindings for direction and arrow keys
+        bindsym h           resize grow   left  5 px or 5 ppt
+        bindsym j           resize grow   down  5 px or 5 ppt
+        bindsym k           resize grow   up    5 px or 5 ppt
+        bindsym l           resize grow   right 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left        resize grow   left  5 px or 5 ppt
+        bindsym Down        resize grow   down  5 px or 5 ppt
+        bindsym Up          resize grow   up    5 px or 5 ppt
+        bindsym Right       resize grow   right 5 px or 5 ppt
+
+	# Mapped new bindings to shrink the panel in the given direction
+	# Allow both Vim keybindings for direction and arrow keys
+	bindsym Shift+h     resize shrink right 5 px or 5 ppt
+	bindsym Shift+j     resize shrink up    5 px or 5 ppt
+	bindsym Shift+k     resize shrink down  5 px or 5 ppt
+	bindsym Shift+l     resize shrink left  5 px or 5 ppt
+
+	bindsym Shift+Left  resize shrink right 5 px or 5 ppt
+        bindsym Shift+Down  resize shrink up    5 px or 5 ppt
+        bindsym Shift+Up    resize shrink down  5 px or 5 ppt
+        bindsym Shift+Right resize shrink left  5 px or 5 ppt
 
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
@@ -283,6 +305,7 @@ exec --no-startup-id clipit
 exec --no-startup-id desktop-items
 exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
+exec --no-startup-id compton --config ~/.config/compton.conf &
 exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec_always --no-startup-id sbxkb
@@ -290,6 +313,9 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id setcursor
 
+###############################################################################
+### Need to leave these in, although they get replaced by wal
+###############################################################################
 # Color palette used for the terminal ( ~/.extend.Xresources file )
 # Colors are gathered based on the documentation:
 # https://i3wm.org/docs/userguide.html#xresources
@@ -321,6 +347,9 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
+###############################################################################
+###################            Settings for i3 bar         ####################
+###############################################################################
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar
@@ -363,13 +392,13 @@ bindsym $mod+m bar mode toggle
 
   client.background       #2B2C2B
 
-#############################
-### settings for i3-gaps: ###
-#############################
+###############################################################################
+####################          settings for i3-gaps:        ####################
+###############################################################################
 
 # Set inner/outer gaps
-gaps inner 14
-gaps outer -2
+gaps inner 14 
+gaps outer -2 
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

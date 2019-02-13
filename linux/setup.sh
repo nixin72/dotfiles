@@ -80,7 +80,7 @@ sudo cp ~/configs/background.png /usr/share/backgrounds/loz.png
 sudo wal -i /usr/share/backgrounds/loz.png
 
 # Replace default i3 config with my own
-cp ./config.i3 ~/.i3/config -n
+yes | cp ./config.i3 ~/.i3/config 
 
 # Clean up some of the default directories
 rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
@@ -106,7 +106,10 @@ chsh -s /usr/bin/fish
 echo "INFO: Mod key has been changed to alt"
 echo "INFO: Manjaro help has been changed to mod+F1"
 echo "INFO: i3 direction keys have been changed to vim bindings"
+echo "INFO: Setting panels to tabbed has been changed to mod+t"
+echo "INFO: Floating a window has been set to mod+Shift+f"
 echo "INFO: i3 tiling has changed from h/v to x/y axis"
+echo "INFO: Completely changed keybindings for resizing panels. Consult i3 config"
 echo "INFO: Default shell changed to fish"
 echo "INFO: Default i3 terminal changed to terminology"
 echo "INFO: Screen resolution has been to optimal size"

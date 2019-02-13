@@ -14,6 +14,7 @@ sudo pacman -Sy neofetch --noconfirm
 # sudo pacman -Sy sbcl --noconfirm
 # sudo pacman -Sy ruby --noconfirm
 sudo pacman -Sy powerline powerline-fonts --noconfirm
+sudo pacman -Sy polybar --noconfirm
 
 # Install discord
 # wget https://aur.archlinux.org/cgit/aur.git/snapshot/discord.tar.gz
@@ -48,6 +49,9 @@ sudo nitrogen --set-scaled ~/configs/linux/backgrounds/onwall.png
 
 # Replace default i3 config with my own
 sudo cp ~/configs/linux/config.i3 ~/.i3/config
+
+# Copy Fish config file 
+sudo cp ~/configs/linux/omf.fish ~/.config/fish/conf.d/omf.fish
 
 # Clean up some of the default directories
 sudo rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/

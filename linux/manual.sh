@@ -1,9 +1,9 @@
 # Setting the date/time:
-date +%Y%m%d -s "20190214"
-date +%T -s "00:00:00"
+sudo date +%Y%m%d -s "20190213"
+sudo date +%T -s "14:34:30"
 
 # Setting the screen resolution:
-xrandr -s 1920x1080
+# xrandr -s 1920x1080
 
 # Setting the default shell:
 chsh -s /usr/bin/fish

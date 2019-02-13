@@ -31,46 +31,42 @@ fish -c "omf install spacefish; omf install agnoster";
 sudo pacman -Rcns subversion --noconfirm
 sudo pacman -Rcns gimp --noconfirm
 sudo pacman -Rcns palemoon --noconfirm
-sudo pacman -Rcns zsh --noconfirm
-sudo pacman -Rcns vlc --noconfirm
-sudo pacman -Rcns aalib --noconfirm
-sudo pacman -Rcns acpi --noconfirm
-sudo pacman -Rcns acpid --noconfirm
-sudo pacman -Rcns amd-ucode --noconfirm
-sudo pacman -Rcns arandr --noconfirm
-sudo pacman -Rcns apr --noconfirm
-sudo pacman -Rcns artwork-i3 --noconfirm
-sudo pacman -Rcns atool --noconfirm
-sudo pacman -Rcns accountsservice --noconfirm
-sudo pacman -Rcn  adapta-maia-theme --noconfirm
-sudo pacman -Rcns b43-fwcutter --noconfirm
-sudo pacman -Rcn  babl --noconfirm
-sudo pacman -Rcns bison --noconfirm
-sudo pacman -Rcns blueman --noconfirm
-sudo pacman -Rcns c-ares --noconfirm
-sudo pacman -Rcns calamares --noconfirm
-sudo pacman -Rcns celt --noconfirm
-sudo pacman -Rcns clonezilla --noconfirm
-sudo pacman -Rcns chromaprint --noconfirm
-sudo pacman -Rcns deluge --noconfirm
-sudo pacman -Rcns dhclient --noconfirm
-sudo pacman -Rcns dunst --noconfirm
-sudo pacman -Rcns dosfstools --noconfirm
-sudo pacman -Rcns dmraid --noconfirm
-sudo pacman -Rcns downgrade --noconfirm
-sudo pacman -Rcns dmidecode --noconfirm
-sudo pacman -Rcns desktop-file-utils --noconfirm
-
-
-
-
-sudo pacman -Rcns dmenu-manjaro --noconfirm
+# sudo pacman -Rcns zsh --noconfirm
+# sudo pacman -Rcns vlc --noconfirm
+# sudo pacman -Rcns aalib --noconfirm
+# sudo pacman -Rcns acpi --noconfirm
+# sudo pacman -Rcns acpid --noconfirm
+# sudo pacman -Rcns amd-ucode --noconfirm
+# sudo pacman -Rcns arandr --noconfirm
+# sudo pacman -Rcns apr --noconfirm
+# sudo pacman -Rcns artwork-i3 --noconfirm
+# sudo pacman -Rcns atool --noconfirm
+# sudo pacman -Rcns accountsservice --noconfirm
+# sudo pacman -Rcn  adapta-maia-theme --noconfirm
+# sudo pacman -Rcns b43-fwcutter --noconfirm
+# sudo pacman -Rcn  babl --noconfirm
+# sudo pacman -Rcns bison --noconfirm
+# sudo pacman -Rcns blueman --noconfirm
+# sudo pacman -Rcns c-ares --noconfirm
+# sudo pacman -Rcns calamares --noconfirm
+# sudo pacman -Rcns celt --noconfirm
+# sudo pacman -Rcns clonezilla --noconfirm
+# sudo pacman -Rcns chromaprint --noconfirm
+# sudo pacman -Rcns deluge --noconfirm
+# sudo pacman -Rcns dhclient --noconfirm
+# sudo pacman -Rcns dunst --noconfirm
+# sudo pacman -Rcns dosfstools --noconfirm
+# sudo pacman -Rcns dmraid --noconfirm
+# sudo pacman -Rcns downgrade --noconfirm
+# sudo pacman -Rcns dmidecode --noconfirm
+# sudo pacman -Rcns desktop-file-utils --noconfirm
+# sudo pacman -Rcns dmenu-manjaro --noconfirm
 
 
 ################################################################################
 ####################      REINSTALL LOST DEPENDENCIES       ####################
 ################################################################################
-sudo pacman -Sy xorg-xrand --noconfirm
+# sudo pacman -Sy xorg-xrand --noconfirm
 
 
 
@@ -83,8 +79,8 @@ sudo pacman -Sy xorg-xrand --noconfirm
 sudo cp ~/configs/background.png /usr/share/backgrounds/loz.png
 sudo wal -i /usr/share/backgrounds/loz.png
 
-# Change default shell to fish
-chsh -s /usr/bin/fish
+# Replace default i3 config with my own
+cp ./config.i3 ~/.i3/config -n
 
 # Clean up some of the default directories
 rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
@@ -100,6 +96,9 @@ git config --global user.name = "Philip"
 cp ./FiraCode-Retina.otf ~/.local/share/fonts/FiraCode-Retina.otf
 cp ./FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
 
+# Change default shell to fish
+chsh -s /usr/bin/fish
+
 ################################################################################
 ####################                SUMMARY                 ####################
 ################################################################################
@@ -111,6 +110,8 @@ echo "INFO: i3 tiling has changed from h/v to x/y axis"
 echo "INFO: Default shell changed to fish"
 echo "INFO: Default i3 terminal changed to terminology"
 echo "INFO: Screen resolution has been to optimal size"
-echo "\n"
+echo ""
 echo "NOTE: MAKE SURE TO CHANGE DATE AND TIME SETTINGS"
+echo "    $ sudo date +%Y-%m-%d -s \"YYYY-mm-dd\""
+echo "    $ sudo date +%T -s \"hr:min:sec\""
 

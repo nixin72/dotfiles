@@ -36,6 +36,12 @@ sudo pacman -Rcns vlc --noconfirm
 sudo pacman -Rcns aalib --noconfirm
 sudo pacman -Rcns acpi --noconfirm
 sudo pacman -Rcns acpid --noconfirm
+sudo pacman -Rcns amd-ucode --noconfirm
+sudo pacman -Rcns arandr --noconfirm
+sudo pacman -Rcns apr --noconfirm
+sudo pacman -Rcns artwork-i3 --noconfirm
+sudo pacman -Rcns atool --noconfirm
+sudo pacman -Rcns accountsservice --noconfirm
 
 ################################################################################
 ####################              CONFIGURATION             ####################

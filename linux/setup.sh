@@ -42,6 +42,28 @@ sudo pacman -Rcns apr --noconfirm
 sudo pacman -Rcns artwork-i3 --noconfirm
 sudo pacman -Rcns atool --noconfirm
 sudo pacman -Rcns accountsservice --noconfirm
+sudo pacman -Rcn  adapta-maia-theme --noconfirm
+sudo pacman -Rcns b43-fwcutter --noconfirm
+sudo pacman -Rcn  babl --noconfirm
+sudo pacman -Rcns bison --noconfirm
+sudo pacman -Rcns blueman --noconfirm
+sudo pacman -Rcns c-ares --noconfirm
+sudo pacman -Rcns calamares --noconfirm
+sudo pacman -Rcns celt --noconfirm
+sudo pacman -Rcns clonezilla --noconfirm
+sudo pacman -Rcns chromaprint --noconfirm
+sudo pacman -Rcns deluge --noconfirm
+sudo pacman -Rcns dhclient --noconfirm
+sudo pacman -Rcns dunst --noconfirm
+
+
+################################################################################
+####################      REINSTALL LOST DEPENDENCIES       ####################
+################################################################################
+sudo pacman -Sy xorg-xrand --noconfirm
+
+
+
 
 ################################################################################
 ####################              CONFIGURATION             ####################

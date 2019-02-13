@@ -59,7 +59,7 @@ sudo pacman -Rcns dosfstools --noconfirm
 sudo pacman -Rcns dmraid --noconfirm
 sudo pacman -Rcns downgrade --noconfirm
 sudo pacman -Rcns dmidecode --noconfirm
-
+sudo pacman -Rcns desktop-file-utils --noconfirm
 
 
 

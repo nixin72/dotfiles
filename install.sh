@@ -18,12 +18,12 @@ if [[ $* == -*i* ]]; then
   sudo pacman -Sy yay --noconfirm
   sudo pacman -Sy xorg-xfd --noconfirm
   sudo pacman -Sy unzip --noconfirm
-
+  
   # Install discordi
-  # tar -xvf ~/configs/installers/discord.tar.gz
-  # cd ~/configs/installers/discord
-  # makepkg -sri --noconfirm
-  # cd ~ 
+  tar -xvf ~/configs/installers/discord.tar.gz
+  cd ~/configs/installers/discord
+  makepkg -sri --noconfirm
+  cd ~ 
 
   # Install SpaceVim
   chmod +x ~/configs/installers/spacevim.sh
@@ -68,7 +68,8 @@ if [[ $* == -*r* ]]; then
   sudo wal -i /usr/share/backgrounds/onwall.png
   sudo nitrogen --set-scaled /usr/share/backgrounds/onwall.png
 
-  # Replace default configs 
+  # Replace default configs
+  mkdir ~/.config/polybar
   sudo cp ~/configs/sources/i3.conf ~/.i3/config 
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
@@ -95,7 +96,9 @@ if [[ $* == -*r* ]]; then
   conky --config /usr/share/conky/conky_grey & 
   compton --config ~/.config/compton.conf & 
   
-  # Reinitialize polybar 
+  # Reinitialize polybar
+  sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
+
   killall -q polybar 
   while pgrep -x polybar >/dev/null; do sleep 1; done
   polybar top & 

@@ -9,7 +9,7 @@ set $mod Mod1
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 0
-default_floating_border normal
+default_floating_border none
 
 # Hide borders
 hide_edge_borders none
@@ -69,7 +69,7 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help_live.pdf
+bindsym $mod+F1 exec xdg-open /usr/share/doc/manjaro/i3_help_live.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # focus_follows_mouse no

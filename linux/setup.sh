@@ -55,6 +55,16 @@ sudo pacman -Rcns chromaprint --noconfirm
 sudo pacman -Rcns deluge --noconfirm
 sudo pacman -Rcns dhclient --noconfirm
 sudo pacman -Rcns dunst --noconfirm
+sudo pacman -Rcns dosfstools --noconfirm
+sudo pacman -Rcns dmraid --noconfirm
+sudo pacman -Rcns downgrade --noconfirm
+sudo pacman -Rcns dmidecode --noconfirm
+
+
+
+
+
+sudo pacman -Rcns dmenu-manjaro --noconfirm
 
 
 ################################################################################

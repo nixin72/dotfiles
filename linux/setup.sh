@@ -3,23 +3,23 @@
 ####################               INSTALLATION             ####################
 ################################################################################
 
-sudo pacman -Sy firefox --noconfirm
+#  sudo pacman -Sy firefox --noconfirm
 sudo pacman -Sy fish --noconfirm
 sudo pacman -Sy python-pywal --noconfirm
 sudo pacman -Sy python-pip --noconfirm
 sudo pacman -Sy libc++ --noconfirm
 sudo pacman -Sy terminology --noconfirm
 sudo pacman -Sy neofetch --noconfirm
-sudo pacman -Sy nodejs npm --noconfirm
-sudo pacman -Sy sbcl --noconfirm
-sudo pacman -Sy ruby --noconfirm
+# sudo pacman -Sy nodejs npm --noconfirm
+# sudo pacman -Sy sbcl --noconfirm
+# sudo pacman -Sy ruby --noconfirm
 sudo pacman -Sy powerline powerline-fonts --noconfirm
 
 # Install discord
-wget https://aur.archlinux.org/cgit/aur.git/snapshot/discord.tar.gz
-tar -xvf discord*.tar.gz
-cd discord
-makepkg -sri --noconfirm
+# wget https://aur.archlinux.org/cgit/aur.git/snapshot/discord.tar.gz
+# tar -xvf discord*.tar.gz
+# cd discord
+# makepkg -sri --noconfirm
 
 # Install SpaceVim
 curl -sLf https://spacevim.org/install.sh | bash
@@ -42,28 +42,31 @@ sudo pacman -Rcns vlc --noconfirm
 ################################################################################
 
 # Copy my background over to the right place and set it and my colour scheme
-sudo cp ~/configs/background.png /usr/share/backgrounds/loz.png
-sudo wal -i /usr/share/backgrounds/loz.png
+sudo cp -r ~/configs/linux/backgrounds/* /usr/share/backgrounds/
+sudo wal -i /usr/share/backgrounds/onwall.png
+sudo nitrogen --set-scaled ~/configs/linux/backgrounds/onwall.png
 
 # Replace default i3 config with my own
-yes | cp ./config.i3 ~/.i3/config
+sudo cp ~/configs/linux/config.i3 ~/.i3/config
 
 # Clean up some of the default directories
-rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
+sudo rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
 
 # Change resolution
-xrandr -s 1680x1050
+sudo xrandr -s 1680x1050
 
 # Set my git configuration
 git config --global user.email = "phdumaresq@gmail.com"
 git config --global user.name = "Philip"
 
 # Make sure FiraCode is set as a font
-cp ./FiraCode-Retina.otf ~/.local/share/fonts/FiraCode-Retina.otf
-cp ./FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
+sudo cp ~/configs/linux/FiraCode-Retina.otf ~/.local/share/fonts/FiraCode-Retina.otf
+sudo cp ~/configs/linux/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
+sudo cp ~/configs/linux/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
 
 # Change default shell to fish
-chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish
+
 
 ################################################################################
 ####################                SUMMARY                 ####################
@@ -84,4 +87,3 @@ echo "NOTE: MAKE SURE TO CHANGE DATE AND TIME SETTINGS"
 echo "    $ sudo date +%Y-%m-%d -s \"YYYY-mm-dd\""
 echo "    $ sudo date +%T -s \"hr:min:sec\""
 
-sudo cp ./FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf

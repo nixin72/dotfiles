@@ -67,6 +67,11 @@ sudo cp ~/configs/linux/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCod
 # Change default shell to fish
 sudo chsh -s /usr/bin/fish
 
+# Reinitialize conky and compton
+pkill conky
+pkill compton 
+conky --config /usr/share/conky/conky_grey
+compton --config ~/.config/compton.conf & 
 
 ################################################################################
 ####################                SUMMARY                 ####################

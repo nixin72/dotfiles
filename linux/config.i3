@@ -21,13 +21,13 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
+font xft:FireCode-Retina 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminology -e "fish" 
+bindsym $mod+Return exec terminology -e "fish" #--font="FiraCode-Retina.otf" 
 
 # kill focused window
 bindsym $mod+Shift+q kill

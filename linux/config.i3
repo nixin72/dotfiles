@@ -27,7 +27,7 @@ font xft:FireCode-Retina 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminology -e "fish" #--font="FiraCode-Retina.otf" 
+bindsym $mod+Return exec terminology --theme="Spiderman.edj" -e "fish" 
 
 # kill focused window
 bindsym $mod+Shift+q kill

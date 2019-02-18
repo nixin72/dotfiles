@@ -29,6 +29,14 @@ curl -sLf https://spacevim.org/install.sh | bash
 fish -c "chmod +x ~/configs/oh-my.fish; ~/configs/oh-my.fish --noninteractive -y"
 fish -c "omf install spacefish; omf install agnoster";
 
+# Install zsh themes and packages
+# git clone https://github.com/eendroroy/alien.git
+# cd alien 
+# git submodule update --init --recursive 
+# sudo pacman -Sy zsh-autosuggestions
+
+
+
 ################################################################################
 ####################                 REMOVAL                ####################
 ################################################################################
@@ -48,10 +56,10 @@ sudo wal -i /usr/share/backgrounds/onwall.png
 sudo nitrogen --set-scaled ~/configs/linux/backgrounds/onwall.png
 
 # Replace default i3 config with my own
-sudo cp ~/configs/linux/config.i3 ~/.i3/config
+sudo cp ~/configs/linux/sources/i3.conf ~/.i3/config
 
 # Copy Fish config file 
-sudo cp ~/configs/linux/omf.fish ~/.config/fish/conf.d/omf.fish
+sudo cp ~/configs/linux/sources/omf.fish ~/.config/fish/conf.d/omf.fish
 
 # Clean up some of the default directories
 sudo rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
@@ -64,9 +72,9 @@ git config --global user.email = "phdumaresq@gmail.com"
 git config --global user.name = "Philip"
 
 # Make sure FiraCode is set as a font
-sudo cp ~/configs/linux/FiraCode-Retina.otf ~/.local/share/fonts/FiraCode-Retina.otf
-sudo cp ~/configs/linux/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
-sudo cp ~/configs/linux/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
+sudo cp ~/configs/linux/sources/FiraCode-Retina.otf ~/.local/share/fonts/FiraCode-Retina.otf
+sudo cp ~/configs/linux/sources/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
+sudo cp ~/configs/linux/sources/FiraCode-Retina.otf /usr/share/terminology/fonts/FiraCode-Retina.otf
 
 # Change default shell to fish
 sudo chsh -s /usr/bin/fish
@@ -81,6 +89,10 @@ compton --config ~/.config/compton.conf &
 ####################                SUMMARY                 ####################
 ################################################################################
 
+echo ""
+echo "################################################################################"
+echo "####################                SUMMARY                 ####################"
+echo "################################################################################"
 echo "INFO: Mod key has been changed to alt"
 echo "INFO: Manjaro help has been changed to mod+F1"
 echo "INFO: i3 direction keys have been changed to vim bindings"

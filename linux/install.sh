@@ -3,7 +3,7 @@
 ####################               INSTALLATION             ####################
 ################################################################################
 
-#  sudo pacman -Sy firefox --noconfirm
+# sudo pacman -Sy firefox --noconfirm
 sudo pacman -Sy fish --noconfirm
 sudo pacman -Sy python-pywal --noconfirm
 sudo pacman -Sy python-pip --noconfirm
@@ -16,18 +16,21 @@ sudo pacman -Sy neofetch --noconfirm
 sudo pacman -Sy powerline powerline-fonts --noconfirm
 sudo pacman -Sy polybar --noconfirm
 
-# Install discord
-# wget https://aur.archlinux.org/cgit/aur.git/snapshot/discord.tar.gz
-# tar -xvf discord*.tar.gz
-# cd discord
+# Install discordi
+# tar -xvf ~/configs/linux/installers/discord.tar.gz
+# cd ~/configs/linux/installers/discord
 # makepkg -sri --noconfirm
+# cd ~ 
 
 # Install SpaceVim
-curl -sLf https://spacevim.org/install.sh | bash
+chmod +x ~/configs/linux/installers/spacevim.sh
+~/configs/linux/installers/spacevim.sh
 
 # Install omf and themes - install script already in the git repo
-fish -c "chmod +x ~/configs/oh-my.fish; ~/configs/oh-my.fish --noninteractive -y"
-fish -c "omf install spacefish; omf install agnoster";
+chmod +x ~/configs/linux/installers/oh-my.fish
+fish -c "~/configs/linux/installers/oh-my.fish --noninteractive -y"
+fish -c "omf install spacefish"
+fish -c "omf install agnoster";
 
 # Install zsh themes and packages
 # git clone https://github.com/eendroroy/alien.git

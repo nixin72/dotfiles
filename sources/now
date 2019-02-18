@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Weather:"
+curl wttr.in/?0pq
+
+echo "Calendar:"
+
+
+echo "School:"

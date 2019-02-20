@@ -3,7 +3,7 @@
 ####################               INSTALLATION             ####################
 ################################################################################
 if [[ $* == -*i* ]]; then 
-  # sudo pacman -Sy firefox --noconfirm
+  sudo pacman -Sy firefox --noconfirm
   sudo pacman -Sy fish --noconfirm
   sudo pacman -Sy python-pywal --noconfirm
   sudo pacman -Sy python-pip --noconfirm
@@ -21,7 +21,8 @@ if [[ $* == -*i* ]]; then
   
   # Install discordi
   tar -xvf ~/configs/installers/discord.tar.gz
-  cd ~/configs/installers/discord
+  cd ~/discord
+  echo "This wil take a while - building Discord from source"
   makepkg -sri --noconfirm
   cd ~ 
 
@@ -50,7 +51,7 @@ fi
 if [[ $* == -*d* ]]; then
   sudo pacman -Rcns subversion --noconfirm
   sudo pacman -Rcns gimp --noconfirm
-  sudo pacman -Rcns palemoon --noconfirm
+  sudo pacman -Rcns palemoon palemoon-bin --noconfirm
   sudo pacman -Rcns zsh --noconfirm
   sudo pacman -Rcns vlc --noconfirm
 fi 
@@ -74,6 +75,7 @@ if [[ $* == -*r* ]]; then
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
   sudo cp ~/configs/sources/compton.conf ~/.config/compton.conf
+  sudo cp ~/configs/sources/spacevimrc.conf ~/.SpaceVim/vimrc
 
   # Clean up some of the default directories
   sudo rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/

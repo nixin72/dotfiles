@@ -20,11 +20,14 @@ if [[ $* == -*i* ]]; then
   sudo pacman -Sy unzip --noconfirm
   
   # Install discordi
-  tar -xvf ~/configs/installers/discord.tar.gz
-  cd ~/discord
-  echo "This wil take a while - building Discord from source"
-  makepkg -sri --noconfirm
-  cd ~ 
+  # tar -xvf ~/configs/installers/discord.tar.gz
+  # cd ~/discord
+  # echo "This wil take a while - building Discord from source"
+  # makepkg -sri --noconfirm
+  # cd ~ 
+  #
+  # OR
+  # sudo yay -S discord
 
   # Install SpaceVim
   chmod +x ~/configs/installers/spacevim.sh
@@ -95,8 +98,8 @@ if [[ $* == -*r* ]]; then
   # Reinitialize conky and compton
   pkill conky
   pkill compton 
-  conky --config /usr/share/conky/conky_grey & 
-  compton --config ~/.config/compton.conf & 
+  nohup conky --config /usr/share/conky/conky_grey &
+  nohup compton --config ~/.config/compton.conf &
   
   # Reinitialize polybar
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config

@@ -29,22 +29,11 @@ if [[ $* == -*i* ]]; then
   # OR
   # sudo yay -S discord
 
-  # Install SpaceVim
-  chmod +x ~/configs/installers/spacevim.sh
-  ~/configs/installers/spacevim.sh
-
   # Install omf and themes - install script already in the git repo
   chmod +x ~/configs/installers/oh-my.fish
   fish -c "~/configs/installers/oh-my.fish --noninteractive -y"
   fish -c "omf install spacefish"
   fish -c "omf install agnoster";
-
-  # Install zsh themes and packages
-  # git clone https://github.com/eendroroy/alien.git
-  # cd alien 
-  # git submodule update --init --recursive 
-  # sudo pacman -Sy zsh-autosuggestions
-
 fi 
 
 ################################################################################
@@ -74,26 +63,25 @@ if [[ $* == -*r* ]]; then
 
   # Replace default configs
   mkdir ~/.config/polybar
-  sudo cp ~/configs/sources/i3.conf ~/.i3/config 
+#  sudo cp ~/configs/sources/i3.conf ~/.i3/config 
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
   sudo cp ~/configs/sources/compton.conf ~/.config/compton.conf
-  sudo cp ~/configs/sources/spacevimrc.conf ~/.SpaceVim/vimrc
-
-  # Clean up some of the default directories
-  sudo rm -rf ~/Documents/ ~/Music/ ~/Pictures/ ~/Public/ ~/Templates/ ~/Videos/
 
   # Set my git configuration
   git config --global user.email = "phdumaresq@gmail.com"
   git config --global user.name = "Philip"
 
   # Make sure FiraCode is set as a font
+  mkdir ~/.fonts/
+  sudo cp ~/configs/assets/fonts/* ~/.fonts
+  sudo cp ~/configs/assets/fonts/* /usr/share/fonts
   sudo cp ~/configs/assets/fonts/* ~/.local/share/fonts/
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/ 
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
 
   # Change default shell to fish
-  sudo chsh -s /usr/bin/fish
+# sudo chsh -s /usr/bin/fish
 
   # Reinitialize conky and compton
   pkill conky
@@ -102,8 +90,6 @@ if [[ $* == -*r* ]]; then
   nohup compton --config ~/.config/compton.conf &
   
   # Reinitialize polybar
-  sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
-
   killall -q polybar 
   while pgrep -x polybar >/dev/null; do sleep 1; done
   polybar top & 

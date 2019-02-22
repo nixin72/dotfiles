@@ -2,7 +2,7 @@
 ###############################################################################
 ####################               INSTALLATION             ####################
 ################################################################################
-if [[ $* == -*i* ]]; then 
+if [[ $* == -*c* ]] || [[ $* == -*a* ]]; then 
   sudo pacman -Sy firefox --noconfirm
   sudo pacman -Sy fish --noconfirm
   sudo pacman -Sy python-pywal --noconfirm
@@ -37,22 +37,23 @@ if [[ $* == -*i* ]]; then
 fi 
 
 ################################################################################
-####################                 REMOVAL                ####################
+####################                RETRIEVE                ####################
 ################################################################################
+# Retrieve all of the necessary files for configurations 
 
-if [[ $* == -*d* ]]; then
-  sudo pacman -Rcns subversion --noconfirm
-  sudo pacman -Rcns gimp --noconfirm
-  sudo pacman -Rcns palemoon palemoon-bin --noconfirm
-  sudo pacman -Rcns zsh --noconfirm
-  sudo pacman -Rcns vlc --noconfirm
-fi 
+if [[ $* == -*r* ]] || [[ $* == -*a* ]]; then
+  # Find and download all the images
+  while read -r line ; do
+    echo ${$line: }
+  done < <(sed -n 's/    - //p' assets/images/links.txt)
+fi
 
 ################################################################################
-####################              CONFIGURATION             ####################
+####################                 UPDATE                 ####################
 ################################################################################
+# Update all of the default configurations with what I want 
 
-if [[ $* == -*r* ]]; then
+if [[ $* == -*u* ]]; then
   # Change resolution
   sudo xrandr -s 1680x1050
 
@@ -63,14 +64,13 @@ if [[ $* == -*r* ]]; then
 
   # Replace default configs
   mkdir ~/.config/polybar
-#  sudo cp ~/configs/sources/i3.conf ~/.i3/config 
+  # sudo cp ~/configs/sources/i3.conf ~/.i3/config 
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
-  sudo cp ~/configs/sources/compton.conf ~/.config/compton.conf
-
+  sudo cp ~/configs/sources/compton.conf ~/.config/compton.config
   # Set my git configuration
-  git config --global user.email = "phdumaresq@gmail.com"
-  git config --global user.name = "Philip"
+  git config --global --add user.email "phdumaresq@gmail.com"
+  git config --global --add user.name "phdumaresq"
 
   # Make sure FiraCode is set as a font
   mkdir ~/.fonts/
@@ -81,7 +81,7 @@ if [[ $* == -*r* ]]; then
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
 
   # Change default shell to fish
-# sudo chsh -s /usr/bin/fish
+  sudo chsh -s /usr/bin/fish
 
   # Reinitialize conky and compton
   pkill conky
@@ -95,19 +95,28 @@ if [[ $* == -*r* ]]; then
   polybar top & 
 fi
 
-if [[ $* == -*p* ]] && [[ $* != -*r* ]]; then
-  sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
-  
-  killall -q polybar 
-  while pgrep -x polybar >/dev/null; do sleep 1; done
-  polybar top & 
+################################################################################
+####################                DELETION                ####################
+################################################################################
+# Clean up everything at the end 
+
+if [[ $* == -*d* ]] || [[ $* == -*a* ]]; then
+  sudo pacman -Rcns subversion --noconfirm
+  sudo pacman -Rcns gimp --noconfirm
+  sudo pacman -Rcns palemoon palemoon-bin --noconfirm
+  sudo pacman -Rcns zsh --noconfirm
+  sudo pacman -Rcns vlc --noconfirm
+
+  # Remove default existing Directories
+  sudo rm -rf ~/Desktop  ~/Documents ~/Downloads ~/Music
+  sudo rm -rf ~/Pictures ~/Public    ~/Templates ~/Videos
 fi 
+
 
 ################################################################################
 ####################                SUMMARY                 ####################
 ################################################################################
-
-if [[ $* == -*r* ]]; then
+if [[ $* == -*u* ]]; then
   echo ""
   echo "################################################################################"
   echo "####################                SUMMARY                 ####################"

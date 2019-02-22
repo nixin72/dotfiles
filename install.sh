@@ -1,23 +1,35 @@
 #!/bin/bash
+
+################################################################################
+####################            PRE INSTALL SETUP           ####################
+################################################################################
+mkdir -p ~/configs/assets/fonts
+mkdir -p ~/configs/assets/images 
+mkdir -p ~/configs/
+mkdir -p ~/.config/polybar
+mkdir -p ~/.fonts/
+mkdir ~/
+
 ###############################################################################
 ####################               INSTALLATION             ####################
 ################################################################################
-if [[ $* == -*c* ]] || [[ $* == -*a* ]]; then 
-  sudo pacman -Sy firefox --noconfirm
-  sudo pacman -Sy fish --noconfirm
-  sudo pacman -Sy python-pywal --noconfirm
-  sudo pacman -Sy python-pip --noconfirm
-  sudo pacman -Sy libc++ --noconfirm
-  sudo pacman -Sy terminology --noconfirm
-  sudo pacman -Sy neofetch --noconfirm
-  # sudo pacman -Sy nodejs npm --noconfirm
-  # sudo pacman -Sy sbcl --noconfirm
-  # sudo pacman -Sy ruby --noconfirm
-  sudo pacman -Sy powerline powerline-fonts --noconfirm
-  sudo pacman -Sy polybar --noconfirm
-  sudo pacman -Sy yay --noconfirm
-  sudo pacman -Sy xorg-xfd --noconfirm
-  sudo pacman -Sy unzip --noconfirm
+if [[ $* == -*c* ]] || [[ $* == -*a* ]]; then
+  touch ~/configs/log/install.log
+
+  sudo pacman -Sy firefox \ 
+	  fish  \
+	  libc++ \ 
+	  python-pip yay \ 
+	  powerline powerline-fonts \ 
+	  python-pywal \
+	  polybar \ 
+	  fish terminology \ 
+	  neofetch \
+	  xorg-xfv unzip --noconfirm &>> ~/configs/log/install.log
+
+  sudo pacman -Sy nodejs npm \ 
+	sbcl \
+	ruby --noconfirm &>> ~/configs/log/install.log
   
   # Install discordi
   # tar -xvf ~/configs/installers/discord.tar.gz
@@ -63,17 +75,16 @@ if [[ $* == -*u* ]]; then
   sudo nitrogen --set-scaled /usr/share/backgrounds/onwall.png
 
   # Replace default configs
-  mkdir ~/.config/polybar
   # sudo cp ~/configs/sources/i3.conf ~/.i3/config 
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
   sudo cp ~/configs/sources/compton.conf ~/.config/compton.config
+
   # Set my git configuration
   git config --global --add user.email "phdumaresq@gmail.com"
   git config --global --add user.name "phdumaresq"
 
   # Make sure FiraCode is set as a font
-  mkdir ~/.fonts/
   sudo cp ~/configs/assets/fonts/* ~/.fonts
   sudo cp ~/configs/assets/fonts/* /usr/share/fonts
   sudo cp ~/configs/assets/fonts/* ~/.local/share/fonts/
@@ -112,6 +123,10 @@ if [[ $* == -*d* ]] || [[ $* == -*a* ]]; then
   sudo rm -rf ~/Pictures ~/Public    ~/Templates ~/Videos
 fi 
 
+################################################################################
+####################              FINAL PROMPTS             ####################
+################################################################################
+
 
 ################################################################################
 ####################                SUMMARY                 ####################
@@ -137,3 +152,7 @@ if [[ $* == -*u* ]]; then
   echo "    $ sudo date +%Y-%m-%d -s \"YYYY-mm-dd\""
   echo "    $ sudo date +%T -s \"hr:min:sec\""
 fi
+
+
+
+

@@ -58,9 +58,9 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   done
 
   # Install omf and themes - install script already in the git repo
-  # chmod +x ~/configs/installers/oh-my.fish >> ~/configs/log/install.log
-  # fish -c "~/configs/installers/oh-my.fish --noninteractive -y" >> ~/configs/log/install.log
-  # fish -c "omf install spacefish agnoster" >> ~/configs/log/install.log
+  chmod +x ~/configs/installers/oh-my.fish >> ~/configs/log/install.log
+  fish -c "~/configs/installers/oh-my.fish --noninteractive -y" >> ~/configs/log/install.log
+  fish -c "omf install spacefish agnoster" >> ~/configs/log/install.log
 
 
   grep -P "Total Installed Size:" ~/configs/log/install.log
@@ -79,7 +79,7 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   sudo nitrogen --set-scaled /usr/share/backgrounds/onwall.png
 
   # Replace default configs
-  # sudo cp ~/configs/sources/i3.conf ~/.i3/config 
+  sudo cp ~/configs/sources/i3.conf ~/.i3/config 
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
   sudo cp ~/configs/sources/compton.conf ~/.config/compton.config

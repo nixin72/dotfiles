@@ -41,7 +41,7 @@ bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+F1 exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym $mod+Return exec urxvt -fn "xft:Fira Code:size=10" -e fish; split toggle 
+bindsym $mod+Return exec terminology --theme="Spiderman.edj" --visual-bell=true --cursor-blink=false --font="Fira" -e fish; split toggle 
 bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+z exec --no-startup-id morc_menu
 

@@ -11,13 +11,13 @@ fi
 ###############################################################################
 ####################           SETUP ENVIRONMENT           ####################
 ###############################################################################
-mkdir -p ~/.fonts
-mkdir -p /usr/share/fonts
-mkdir -p ~/.local/share/fonts/
-mkdir -p /usr/share/terminology/fonts/ 
-mkdir -p /usr/share/terminology/fonts/ 
-mkdir -p ~/configs/log
-mkdir -p ~/.config/polybar/
+sudo mkdir -p ~/.fonts
+sudo mkdir -p /usr/share/fonts
+sudo mkdir -p ~/.local/share/fonts/
+sudo mkdir -p /usr/share/terminology/fonts/ 
+sudo mkdir -p /usr/share/terminology/fonts/ 
+sudo mkdir -p ~/configs/log
+sudo mkdir -p ~/.config/polybar/
 
 ################################################################################
 ####################            INSTALL PACKAGES            ####################
@@ -58,13 +58,13 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   done
 
   yay=(
-    discord
+    # discord
     terminology-themes-git
   )
 
   for p in "${yay[@]}"; do
     echo "Installing" $p"..."
-    #sudo yay -Sy" $p "--noconfirm >> ~/confirm/log/install.log
+    yay -Sy $p --noconfirm >> ~/configs/log/install.log
 
     let "aurPackages++"
   done
@@ -87,8 +87,8 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
 
   # Copy my background over to the right place and set it and my colour scheme
   sudo cp -r ~/configs/assets/images/* /usr/share/backgrounds/
-  sudo wal -i /usr/share/backgrounds/onwall.png
-  sudo nitrogen --set-scaled /usr/share/backgrounds/onwall.png
+  sudo wal -i /usr/share/backgrounds/iconic.jpg
+  sudo nitrogen --set-scaled /usr/share/backgrounds/iconic.jpg
 
   # Replace default configs
   sudo cp ~/configs/sources/i3.conf.bak ~/.i3/config 
@@ -126,12 +126,22 @@ fi
 ####################           CLEARNUP AT THE END          ####################
 ################################################################################
 
+rmPackages=0
 if [[ $* == -*d* ]] || [[ $* == -*A* ]]; then
-  sudo pacman -Rcns subversion --noconfirm
-  sudo pacman -Rcns gimp --noconfirm
-  sudo pacman -Rcns palemoon palemoon-bin --noconfirm
-  sudo pacman -Rcns zsh --noconfirm
-  sudo pacman -Rcns vlc --noconfirm
+  rm=(
+    subversion
+    gimp
+    palemoon palemoon-bin
+    zsh
+    vlc
+  )
+  
+  for p in "${rm[@]}"; do
+    echo "Removing" $p"..."
+    sudo pacman -Rcns $p --noconfirm >> ~/configs/log/install.log
+
+    let "rmPackages++"
+  done
 
   # Remove default existing Directories
   sudo rm -rf ~/Desktop  ~/Documents ~/Downloads ~/Music
@@ -143,7 +153,7 @@ fi
 ################################################################################
 
 if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
-  # git pull 
+  git pull 
   sudo chsh -s /usr/bin/fish
 fi
 
@@ -184,5 +194,5 @@ fi
 
 if [[ $* == -*d* ]] || [[ $* == -*A* ]]; then
   echo ""
-  echo "Removed" $removed "packages"
+  echo "Removed" $rmPackages "packages"
 fi

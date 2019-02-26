@@ -8,6 +8,17 @@ if [[ $* == "" ]]; then
   echo -"A   Do everything"
 fi
 
+###############################################################################
+####################           SETUP ENVIRONMENT           ####################
+###############################################################################
+mkdir -p ~/.fonts
+mkdir -p /usr/share/fonts
+mkdir -p ~/.local/share/fonts/
+mkdir -p /usr/share/terminology/fonts/ 
+mkdir -p /usr/share/terminology/fonts/ 
+mkdir -p ~/configs/log
+mkdir -p ~/.config/polybar/
+
 ################################################################################
 ####################            INSTALL PACKAGES            ####################
 ################################################################################
@@ -48,6 +59,7 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
 
   yay=(
     discord
+    terminology-themes-git
   )
 
   for p in "${yay[@]}"; do
@@ -79,10 +91,12 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   sudo nitrogen --set-scaled /usr/share/backgrounds/onwall.png
 
   # Replace default configs
-  sudo cp ~/configs/sources/i3.conf ~/.i3/config 
+  sudo cp ~/configs/sources/i3.conf.bak ~/.i3/config 
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
-  sudo cp ~/configs/sources/compton.conf ~/.config/compton.config
+  sudo cp ~/configs/sources/compton.conf ~/.config/compton.conf
+  sudo cp ~/configs/sources/vimrc ~/.vimrc
+  sudo cp ~/configs/sources/Xresources ~/.Xresources
 
   # Set my git configuration
   git config --global --add user.email "phdumaresq@gmail.com"
@@ -99,8 +113,8 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   # Reinitialize conky and compton
   pkill conky
   pkill compton 
-  conky --config /usr/share/conky/conky_grey &>> ~/configs/log/conky.log
-  compton --config ~/.config/compton.conf &>> ~/configs/log/compton.log
+  nohup conky --config /usr/share/conky/conky_grey > ~/configs/log/conky.log 2>&1 &
+  nohup compton --config ~/.config/compton.conf > ~/configs/log/compton.log 2>&1 &
   
   # Reinitialize polybar
   killall -q polybar 

@@ -1,9 +1,0 @@
-conky: desktop window (c4) is root window
-conky: window type - override
-conky: drawing to created window (0x2200001)
-conky: drawing to double buffer
-conky: forked to background, pid is 2955
-
-[     8.223750 ] [    45.234656 ] conky: received SIGHUP or SIGUSR1. reloading the config file.
-XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
-      after 46375 requests (46375 known processed) with 0 events remaining.

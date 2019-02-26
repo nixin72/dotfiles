@@ -1,7 +1,6 @@
 conky: desktop window (3ac) is root window
 conky: window type - override
-conky: drawing to created window (0x1800001)
+conky: drawing to created window (0x1a00001)
 conky: drawing to double buffer
-conky: forked to background, pid is 8761
+conky: forked to background, pid is 6343
 
-sh: error while loading shared libraries: libreadline.so.8: cannot open shared object file: No such file or directory

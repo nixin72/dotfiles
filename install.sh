@@ -2,10 +2,10 @@
 
 if [[ $* == "" ]]; then
   echo "usage: "
-  echo "-i   Install packages"
-  echo "-c   Set configurations"
-  echo "-d   Cleanup at the end"
-  echo -"A   Do everything"
+  echo "    -i   Install packages"
+  echo "    -c   Set configurations"
+  echo "    -d   Cleanup at the end"
+  echo "    -A   Do everything"
 fi
 
 ###############################################################################
@@ -74,6 +74,8 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   fish -c "~/configs/installers/oh-my.fish --noninteractive -y" >> ~/configs/log/install.log
   fish -c "omf install spacefish agnoster" >> ~/configs/log/install.log
 
+  # Install Rust
+  cat ~/configs/installers/rustup.rs | sh
 
   grep -P "Total Installed Size:" ~/configs/log/install.log
 fi 
@@ -161,9 +163,11 @@ fi
 ####################                SUMMARY                 ####################
 ################################################################################
 
-echo "################################################################################"
-echo "####################                SUMMARY                 ####################"
-echo "################################################################################"
+if [[ $* != "" ]]; then
+  echo "################################################################################"
+  echo "####################                SUMMARY                 ####################"
+  echo "################################################################################"
+fi 
 
 if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   echo ""

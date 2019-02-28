@@ -42,9 +42,8 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
     xorg-xft
   )
   pacman+=(
-    #firefox
+    firefox
     #python-pip
-    #rust
     #ruby
     #sbcl
     #nodejs npm

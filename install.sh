@@ -16,8 +16,9 @@ sudo mkdir -p /usr/share/fonts
 sudo mkdir -p ~/.local/share/fonts/
 sudo mkdir -p /usr/share/terminology/fonts/ 
 sudo mkdir -p /usr/share/terminology/fonts/ 
-sudo mkdir -p ~/configs/log
+sudo mkdir -p ~/configs/log/
 sudo mkdir -p ~/.config/polybar/
+sudo mkdir -p ~/.i3
 
 ################################################################################
 ####################            INSTALL PACKAGES            ####################
@@ -40,6 +41,8 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
     yay 
     terminology
     xorg-xft
+    vim 
+    i3-gaps
   )
   pacman+=(
     firefox

@@ -40,13 +40,14 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
     unzip 
     yay 
     terminology
-    xorg-xft
+    xorg-xfd
     vim 
     i3-gaps
+    feh
   )
   pacman+=(
     firefox
-    #python-pip
+    python-pip
     #ruby
     #sbcl
     #nodejs npm
@@ -62,6 +63,7 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   yay=(
     # discord
     terminology-themes-git
+    siji-git
   )
 
   for p in "${yay[@]}"; do
@@ -75,6 +77,12 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   chmod +x ~/configs/installers/oh-my.fish >> ~/configs/log/install.log
   fish -c "~/configs/installers/oh-my.fish --noninteractive -y" >> ~/configs/log/install.log
   fish -c "omf install spacefish agnoster" >> ~/configs/log/install.log
+
+  # Install Siji font 
+  git clone https://github.com/stark/siji
+  ./siji/install.sh
+  echo "xset +fp ~/.local/share/fonts" >> ~/.xinitrc
+  echo "xset fp rehash" >> ~/.xinitrc
 
   # Install Rust
   cat ~/configs/installers/rustup.rs | sh
@@ -150,6 +158,7 @@ if [[ $* == -*d* ]] || [[ $* == -*A* ]]; then
   # Remove default existing Directories
   sudo rm -rf ~/Desktop  ~/Documents ~/Downloads ~/Music
   sudo rm -rf ~/Pictures ~/Public    ~/Templates ~/Videos
+  sudo rm -rf ~/siji     
 fi 
 
 ################################################################################

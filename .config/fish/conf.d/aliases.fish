@@ -1,0 +1,6 @@
+alias lr="tree --dirsfirst --sort='name'"
+alias pip="pip3"
+alias py="python3"
+alias e="emacs"
+alias el="emacs"
+alias edit="emacs"

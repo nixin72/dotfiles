@@ -1,7 +1,13 @@
 ;;; Author: Philip Dumaresq
 ;;; Description: My person emacs configurations
 ;;;
-;;; This is my personal emacs configs. I'm pretty new to emacs, so this is all new to me. 
+;;; This is my personal emacs configs. I'm pretty new to emacs, so this is all new to me.
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (package-refresh-contents))
 
 (load-file "~/.emacs.d/lib/functions.el")
 

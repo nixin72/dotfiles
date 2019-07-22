@@ -9,6 +9,16 @@ function rs
     source ~/.config/fish/conf.d/omf.fish
 end
 
+function cdl
+    cd $argv[1]
+    ls -la
+end
+
+function mdc
+    mkdir $argv[1]
+    cd $argv[1]
+end
+
 function swap-files
     # Swaps the name of two different files
     mv $argv[1] $argv[1]".tmp"

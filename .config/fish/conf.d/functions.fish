@@ -9,12 +9,16 @@ function rs
     source ~/.config/fish/conf.d/omf.fish
 end
 
-function cdl
+function lr
+    tree -a -I $IGNORE_PATHS
+end
+
+function cl
     cd $argv[1]
     ls -la
 end
 
-function mdc
+function mcd
     mkdir $argv[1]
     cd $argv[1]
 end

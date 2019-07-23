@@ -9,4 +9,7 @@ set -x PATH ~/.local/bin $PATH
 source ~/.config/fish/conf.d/functions.fish
 source ~/.config/fish/conf.d/aliases.fish
 
+set IGNORE_PATHS ".git|node_modules"
+
+
 echo "Hi Philip!"

@@ -9,6 +9,10 @@ function rs
     source ~/.config/fish/conf.d/omf.fish
 end
 
+function fed
+    set configs ['./configs/fish/conf.d/omf.fish']
+end
+
 function lr
     tree -a -I $IGNORE_PATHS
 end

@@ -5,7 +5,7 @@ end
 
 function rs
     # Re-sources the fish environment to bring in changes
-    cp -r ~/repos/dotfiles/.config/fish ~/.config/fish
+    cp -r ~/repos/dotfiles/.config/fish/* ~/.config/fish
     source ~/.config/fish/conf.d/omf.fish
 end
 
@@ -67,4 +67,18 @@ function acpp
     git commit -m "$com"
     git pull origin $branch
     git push origin $branch
+end
+
+function gp --description 'Run standard and git push if it passes.'
+    if standard
+        git push $argv
+    end
+end
+
+function glp
+    if git pull
+        if standard
+            git push $argv
+        end
+    end
 end

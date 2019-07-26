@@ -32,6 +32,16 @@ function edit_dotfile {
   $EDIT get_dotfile $1
 }
 
+function pia {
+    echo "Weather:"
+    curl wttr.in/?0pq
+
+    echo "Calendar:"
+
+
+    echo "School:"
+}
+
 if [[ "$@" == "" ]]; then
   echo help
 elif [[ $# -ne 1 ]]; then

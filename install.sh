@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#################
+set $HOME = pwd
+
 if [[ $* == "" ]]; then
   echo "usage: "
   echo "    -i   Install packages"
@@ -14,8 +17,8 @@ fi
 sudo mkdir -p ~/.fonts
 sudo mkdir -p /usr/share/fonts
 sudo mkdir -p ~/.local/share/fonts/
-sudo mkdir -p /usr/share/terminology/fonts/ 
-sudo mkdir -p /usr/share/terminology/fonts/ 
+sudo mkdir -p /usr/share/terminology/fonts/
+sudo mkdir -p /usr/share/terminology/fonts/
 sudo mkdir -p ~/configs/log/
 sudo mkdir -p ~/.config/polybar/
 sudo mkdir -p ~/.i3
@@ -31,17 +34,17 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   echo "" > ~/configs/log/install.log
 
   pacman=(
-    fish 
-    python-pywal 
+    fish
+    python-pywal
     powerline
-    powerline-fonts 
-    polybar 
-    neofetch 
-    unzip 
-    yay 
+    powerline-fonts
+    polybar
+    neofetch
+    unzip
+    yay
     terminology
     xorg-xfd
-    vim 
+    vim
     i3-gaps
     feh
   )
@@ -78,7 +81,7 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   fish -c "~/configs/installers/oh-my.fish --noninteractive -y" >> ~/configs/log/install.log
   fish -c "omf install spacefish agnoster" >> ~/configs/log/install.log
 
-  # Install Siji font 
+  # Install Siji font
   git clone https://github.com/stark/siji
   ./siji/install.sh
   echo "xset +fp ~/.local/share/fonts" >> ~/.xinitrc
@@ -88,7 +91,7 @@ if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   cat ~/configs/installers/rustup.rs | sh
 
   grep -P "Total Installed Size:" ~/configs/log/install.log
-fi 
+fi
 
 ################################################################################
 ####################           SET CONFIGURATIONS           ####################
@@ -103,7 +106,7 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   sudo nitrogen --set-scaled /usr/share/backgrounds/iconic.jpg
 
   # Replace default configs
-  sudo cp ~/configs/sources/i3.conf.bak ~/.i3/config 
+  sudo cp ~/configs/sources/i3.conf.bak ~/.i3/config
   sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
   sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
   sudo cp ~/configs/sources/compton.conf ~/.config/compton.conf
@@ -119,19 +122,19 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   sudo cp ~/configs/assets/fonts/* ~/.fonts
   sudo cp ~/configs/assets/fonts/* /usr/share/fonts
   sudo cp ~/configs/assets/fonts/* ~/.local/share/fonts/
-  sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/ 
+  sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
 
   # Reinitialize conky and compton
   pkill conky
-  pkill compton 
+  pkill compton
   nohup conky --config /usr/share/conky/conky_grey > ~/configs/log/conky.log 2>&1 &
   nohup compton --config ~/.config/compton.conf > ~/configs/log/compton.log 2>&1 &
-  
+
   # Reinitialize polybar
-  killall -q polybar 
+  killall -q polybar
   while pgrep -x polybar >/dev/null; do sleep 1; done
-  polybar top & 
+  polybar top &
 fi
 
 ################################################################################
@@ -147,7 +150,7 @@ if [[ $* == -*d* ]] || [[ $* == -*A* ]]; then
     zsh
     vlc
   )
-  
+
   for p in "${rm[@]}"; do
     echo "Removing" $p"..."
     sudo pacman -Rcns $p --noconfirm >> ~/configs/log/install.log
@@ -158,15 +161,15 @@ if [[ $* == -*d* ]] || [[ $* == -*A* ]]; then
   # Remove default existing Directories
   sudo rm -rf ~/Desktop  ~/Documents ~/Downloads ~/Music
   sudo rm -rf ~/Pictures ~/Public    ~/Templates ~/Videos
-  sudo rm -rf ~/siji     
-fi 
+  sudo rm -rf ~/siji
+fi
 
 ################################################################################
 ####################              FINAL PROMPTS             ####################
 ################################################################################
 
 if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
-  git pull 
+  git pull
   sudo chsh -s /usr/bin/fish
 fi
 
@@ -178,7 +181,7 @@ if [[ $* != "" ]]; then
   echo "################################################################################"
   echo "####################                SUMMARY                 ####################"
   echo "################################################################################"
-fi 
+fi
 
 if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   echo ""

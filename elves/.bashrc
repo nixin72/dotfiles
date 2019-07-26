@@ -27,6 +27,11 @@ function mcd () { mkdir $1; cd $1 }          # Make dir and cd into it
 function cl () { cd $1; ls -la }             # Change dir and list contents
 function gacp () { ga $1; gcm $2 }           # Add a file and commit it to git
 
+# Remove everything not matching the input
+function rme () {
+    find . ! -name $1 -type f -exec rm -rf {} +;
+}
+
 # Swap the name of two files
 function swap () {
     mv $1 $1".tmp"

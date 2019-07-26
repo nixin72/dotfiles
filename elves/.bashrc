@@ -39,3 +39,14 @@ function rs () {
     cp -r $ELVES/.bashrc ~/.bashrc
     source ~/.bashrc
 }
+
+# Attempts to determine what type of project the current directory is
+function project-get-type () {
+    if test -f package.json; then
+        return "node"
+    elif test -f cargo.toml; then
+        return "rust"
+    else
+        return false
+    fi
+}

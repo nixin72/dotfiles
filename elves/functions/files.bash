@@ -52,3 +52,7 @@ function file-dir-create-change () {
     mkdir $1;
     cd $1;
 }
+
+function file-dir-path-add () {
+    $PATH=$PATH$1
+}

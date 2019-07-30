@@ -1,2 +1,7 @@
 .DS_Store
 node_modules
+.emacs.d/elpa
+.emacs.d/elpa/archives/gnu/archive-contents
+auto-save-list
+.emacs.d/backups
+

@@ -4,4 +4,5 @@ node_modules
 .emacs.d/elpa/archives/gnu/archive-contents
 auto-save-list
 .emacs.d/backups
+my-secrets.el
 

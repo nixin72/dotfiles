@@ -3,28 +3,22 @@
 ;;;
 ;;; This is my personal emacs configs. I'm pretty new to emacs, so this is all new to me.
 
-(load-file "~/.emacs.d/lib/functions.el")
+(load-file "~/.emacs.d/functions.el")
 (start-package-manager)
 (load-paths)
 
-
-(require 'my-evil)
+(use-package window-number :ensure t)
 (require 'my-defaults)
+(require 'my-evil)
 (require 'my-general)
 (require 'my-sidebar)
 (require 'my-which-key)
 (require 'my-themes)
-
-(set-font "Fira Code")
-
+(require 'my-wakatime)
+(require 'my-ivy)
 
 
 ;; Disable menu bar at the top of the window
-(if window-system
-    (tool-bar-mode 0))
-
-(add-to-list 'load-path "~/.local/share/icons-in-terminal/") ;; If it's not already done
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

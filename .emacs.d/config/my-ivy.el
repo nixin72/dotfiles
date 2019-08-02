@@ -8,4 +8,5 @@
   (setq ivy-height 20)               ; set height of the ivy window
   (setq ivy-count-format "(%d/%d) "))
 
+(ivy-mode)
 (provide 'my-ivy)

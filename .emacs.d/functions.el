@@ -13,6 +13,7 @@
   (require 'use-package))
 
 (defun load-paths ()
+  (add-to-list 'load-path "~/.fzf")
   (add-to-list 'load-path "~/.local/share/icons-in-terminal/")
   (add-to-list 'load-path (concat user-emacs-directory "config"))
   (add-to-list 'load-path (concat user-emacs-directory "config" "/languages"))

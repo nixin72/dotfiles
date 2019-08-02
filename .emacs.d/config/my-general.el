@@ -44,6 +44,7 @@
 (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
 (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
 (evil-define-key 'normal neotree-mode-map (kbd "c") 'neotree-create-node)
+(evil-define-key 'normal neotree-mode-map (kbd "d") 'neotree-delete-node)
 (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
 (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)

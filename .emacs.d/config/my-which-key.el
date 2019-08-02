@@ -6,10 +6,12 @@
     (setq which-key-prefix-prefix "+"))
   :config
   (progn
-    (which-key-setup-side-window-right-bottom)
-    (setq which-key-sort-order 'which-key-key-order-alpha
-      which-key-side-window-max-width 0.33
-      which-key-idle-delay 0.05))
-  :diminish (which-key-mode))
+    (which-key-setup-side-window-bottom)
+    (setq which-key-sort-order 'which-key-key-order-alpha)
+    (setq which-key-side-window-max-width 0.33)
+    (setq which-key-idle-delay 0.5)
+  ))
+
+(which-key-mode)
 
 (provide 'my-which-key)

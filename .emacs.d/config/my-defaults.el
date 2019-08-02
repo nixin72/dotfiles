@@ -20,6 +20,6 @@
   :ensure t
   :config
   (progn
-    (smartparens-global-strict-mode t)))
+    (smartparens-global-mode t)))
 
 (provide 'my-defaults)

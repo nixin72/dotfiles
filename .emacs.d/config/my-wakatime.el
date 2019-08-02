@@ -8,4 +8,6 @@
     (setq wakatime-api-key my-wakatime-api-key)
     (setq wakatime-cli-path "/usr/local/bin/wakatime")))
 
+(global-wakatime-mode)
+
 (provide 'my-wakatime)

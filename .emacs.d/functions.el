@@ -16,7 +16,9 @@
   (add-to-list 'load-path "~/.fzf")
   (add-to-list 'load-path "~/.local/share/icons-in-terminal/")
   (add-to-list 'load-path (concat user-emacs-directory "config"))
-  (add-to-list 'load-path (concat user-emacs-directory "config" "/languages"))
+  (add-to-list 'load-path (concat user-emacs-directory "config" "/+langs"))
+  (add-to-list 'load-path (concat user-emacs-directory "config" "/+ui"))
+  (add-to-list 'load-path (concat user-emacs-directory "config" "/+integrations"))
   (add-to-list 'load-path (concat user-emacs-directory "packages")))
 
 (defun import-packages (&rest packages)

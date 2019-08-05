@@ -49,3 +49,6 @@ elif [[ $# -ne 1 ]]; then
 else
   "$@"
 fi
+
+ln -s $DOT/.gitignore_global ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global

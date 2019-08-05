@@ -7,7 +7,6 @@
 (start-package-manager)
 (load-paths)
 
-(use-package window-number :ensure t)
 (require 'my-defaults)
 (require 'my-evil)
 (require 'my-general)
@@ -16,6 +15,7 @@
 (require 'my-themes)
 (require 'my-wakatime)
 (require 'my-ivy)
+(require 'my-ts)
 
 ;; Disable menu bar at the top of the window
 
@@ -25,7 +25,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(fzf winum doom-themes evil use-package undo-tree js2-mode)))
+   '(tabbar evil-tabs fzf winum doom-themes evil use-package undo-tree js2-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

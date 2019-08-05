@@ -1,3 +1,5 @@
+(use-package window-number :ensure t)
+
 (use-package winum
   :ensure t)
 (use-package fzf :ensure t)

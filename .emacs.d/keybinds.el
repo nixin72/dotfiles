@@ -40,7 +40,7 @@
      ; Text
      "t a" 'mark-whole-buffer
      "t w c" 'count-words
-     "t c" 'comment-line
+     "/" 'comment-line
      "t e" 'eval-region
      ; Files
      "f f" 'fzf

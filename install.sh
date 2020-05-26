@@ -21,6 +21,7 @@ sudo mkdir -p /usr/share/terminology/fonts/
 sudo mkdir -p ~/configs/log/
 sudo mkdir -p ~/.config/polybar/
 sudo mkdir -p ~/.i3
+sudo mkdir -p ~/clones
 
 ################################################################################
 ####################            INSTALL PACKAGES            ####################
@@ -29,12 +30,17 @@ sudo mkdir -p ~/.i3
 if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
   ansible install.yaml
 
-  # Install omf and themes - install script already in the git repo
+  # Install omf and starship theme
   curl -L https://get.oh-my.fish | fish
-  fish -c "omf install agnoster"
+  curl -fsSL https://starship.rs/install.sh | bash
 
   # Install Rust
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  # Install icons in terminal
+  git clone https://github.com/sebastiencs/icons-in-terminal.git ~/clones
+  sudo chmod +x ~/clones/icons-in-terminal/install.sh 
+  ~/clones/icons-in-terminal/install.sh 
 fi
 
 ################################################################################
@@ -57,17 +63,18 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   sudo cp ~/configs/sources/vimrc ~/.vimrc
   sudo cp ~/configs/sources/Xresources ~/.Xresources
 
-  # Set my git configuration
-  git config --global --add user.email "phdumaresq@gmail.com"
-  git config --global --add user.name "phdumaresq"
-  git config --global --add credential.helper store
-
   # Make sure FiraCode is set as a font
   sudo cp ~/configs/assets/fonts/* ~/.fonts
   sudo cp ~/configs/assets/fonts/* /usr/share/fonts
   sudo cp ~/configs/assets/fonts/* ~/.local/share/fonts/
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
+
+  # Symlink files to here
+  sudo ln -s ~/.config/fish ./config/fish
+  sudo ln -s ~/.config/alacritty/ ./.config/alacritty/
+  sudo ln -s ~/.gitconfig ./.gitconfig 
+  sudo ln -s ~/.Xmodmap ./.Xmodmap 
 fi
 
 ################################################################################

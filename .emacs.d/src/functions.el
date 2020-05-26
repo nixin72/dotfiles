@@ -42,7 +42,6 @@
   (global-hl-line-mode 1)
   (winum-mode 1)
   (global-wakatime-mode 1)
-  (doom-modeline-mode 1)
   (rainbow-delimiters-mode t)
   (save-place-mode 1)
   (ido-mode t)
@@ -126,3 +125,5 @@
 	   (if res res
 	     (loop-over-lines (cdr lines) callback))))
 	(t (loop-over-lines (cdr lines) callback))))
+
+(provide 'functions)

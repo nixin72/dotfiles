@@ -15,9 +15,9 @@
      "SPC" 'execute-extended-command
      "'" #'(lambda (interactive) (iterm-focus :which-key "iterm"))
      ; Open shit
-     "o t" 'neotree-toggle
+     "o t" 'treemacs
      "o c" #'(lambda () (interactive) (find-file "~/.emacs.d/init.el"))
-     "o k" #'(lambda () (interactive) (find-file "~/.emacs.d/keybinds.el"))
+     "o k" #'(lambda () (interactive) (find-file "~/.emacs.d/src/keybinds.el"))
      "o s" 'term
      ; Org-mode
      "O t l" 'org-toggle-latex-fragment
@@ -55,7 +55,7 @@
      "s c d" 'slime-compile-defun
      "s c l" 'slime-compile-and-load-file
      ; Winum
-     "0" 'winum-select-window-0-or-10
+     "0" 'treemacs-select-window
      "1" 'winum-select-window-1
      "2" 'winum-select-window-2
      "3" 'winum-select-window-3
@@ -153,3 +153,4 @@
 
     ))
 
+(provide 'keybinds)

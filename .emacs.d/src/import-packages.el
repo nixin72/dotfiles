@@ -1,10 +1,3 @@
-(use-package neotree
-  :ensure t
-  :config
-  (progn
-    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-    ))
-
 (use-package winum
   :ensure t
   :config
@@ -130,11 +123,15 @@
          (typescript-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save)))
 
+(use-package company
+  :ensure t
+  :config
+  (progn
+    (global-company-mode t)))
+
 (use-package all-the-icons :ensure t)
-(use-package auctex :ensure t)
 (use-package auto-complete :ensure t)
 (use-package column-enforce-mode :ensure t)
-(use-package company :ensure t)
 (use-package dash :ensure t)
 (use-package fish-mode :ensure t)
 (use-package flycheck :ensure t)
@@ -149,3 +146,6 @@
 (use-package rainbow-delimiters :ensure t)
 (use-package sly :ensure t)
 (use-package tuareg :ensure t)
+(use-package vimrc-mode :ensure t)
+
+(provide 'import-packages)

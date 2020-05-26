@@ -1,5 +1,5 @@
 
-                  [[file:data/logo.svg]]
+                  [[file:logo.svg]]
 
 *Welcome to Emacs*                                /GNU Emacs version 26.3/
  

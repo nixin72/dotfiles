@@ -8,7 +8,7 @@
 
 
 
-                  [[file:data/logo.svg]]
+                  [[file:logo.svg]]
 
                              [[https://www.gnu.org][www.gnu.org]]
                         *GNU Emacs* version 26.3

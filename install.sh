@@ -7,7 +7,6 @@ if [[ $* == "" ]]; then
   echo "usage: "
   echo "    -i   Install packages"
   echo "    -c   Set configurations"
-  echo "    -d   Cleanup at the end"
   echo "    -A   Do everything"
 fi
 
@@ -27,70 +26,15 @@ sudo mkdir -p ~/.i3
 ####################            INSTALL PACKAGES            ####################
 ################################################################################
 
-stdPackages=0
-aurPackages=0
 if [[ $* == -*i* ]] || [[ $* == -*A* ]]; then
-  touch ~/configs/log/install.log
-  echo "" > ~/configs/log/install.log
-
-  pacman=(
-    fish
-    python-pywal
-    powerline
-    powerline-fonts
-    polybar
-    neofetch
-    unzip
-    yay
-    terminology
-    xorg-xfd
-    vim
-    i3-gaps
-    feh
-  )
-  pacman+=(
-    firefox
-    python-pip
-    #ruby
-    #sbcl
-    #nodejs npm
-  )
-
-  for p in "${pacman[@]}"; do
-    echo "Installing" $p"..."
-    sudo pacman -Sy $p --noconfirm >> ~/configs/log/install.log
-
-    let "stdPackages++"
-  done
-
-  yay=(
-    # discord
-    terminology-themes-git
-    siji-git
-  )
-
-  for p in "${yay[@]}"; do
-    echo "Installing" $p"..."
-    yay -Sy $p --noconfirm >> ~/configs/log/install.log
-
-    let "aurPackages++"
-  done
+  ansible install.yaml
 
   # Install omf and themes - install script already in the git repo
-  chmod +x ~/configs/installers/oh-my.fish >> ~/configs/log/install.log
-  fish -c "~/configs/installers/oh-my.fish --noninteractive -y" >> ~/configs/log/install.log
-  fish -c "omf install spacefish agnoster" >> ~/configs/log/install.log
-
-  # Install Siji font
-  git clone https://github.com/stark/siji
-  ./siji/install.sh
-  echo "xset +fp ~/.local/share/fonts" >> ~/.xinitrc
-  echo "xset fp rehash" >> ~/.xinitrc
+  curl -L https://get.oh-my.fish | fish
+  fish -c "omf install agnoster"
 
   # Install Rust
-  cat ~/configs/installers/rustup.rs | sh
-
-  grep -P "Total Installed Size:" ~/configs/log/install.log
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
 ################################################################################
@@ -124,44 +68,6 @@ if [[ $* == -*c* ]] || [[ $* == -*A* ]]; then
   sudo cp ~/configs/assets/fonts/* ~/.local/share/fonts/
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
   sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
-
-  # Reinitialize conky and compton
-  pkill conky
-  pkill compton
-  nohup conky --config /usr/share/conky/conky_grey > ~/configs/log/conky.log 2>&1 &
-  nohup compton --config ~/.config/compton.conf > ~/configs/log/compton.log 2>&1 &
-
-  # Reinitialize polybar
-  killall -q polybar
-  while pgrep -x polybar >/dev/null; do sleep 1; done
-  polybar top &
-fi
-
-################################################################################
-####################           CLEARNUP AT THE END          ####################
-################################################################################
-
-rmPackages=0
-if [[ $* == -*d* ]] || [[ $* == -*A* ]]; then
-  rm=(
-    subversion
-    gimp
-    palemoon palemoon-bin
-    zsh
-    vlc
-  )
-
-  for p in "${rm[@]}"; do
-    echo "Removing" $p"..."
-    sudo pacman -Rcns $p --noconfirm >> ~/configs/log/install.log
-
-    let "rmPackages++"
-  done
-
-  # Remove default existing Directories
-  sudo rm -rf ~/Desktop  ~/Documents ~/Downloads ~/Music
-  sudo rm -rf ~/Pictures ~/Public    ~/Templates ~/Videos
-  sudo rm -rf ~/siji
 fi
 
 ################################################################################

@@ -13,6 +13,6 @@ alias gch="git checkout"
 alias gcm="git checkout master"
 alias gcn="git checkout -b"
 alias gtfo="git fetch origin"
-alias lm="ls -lAhv --group-directories-first --auto"
-alias ls="ls -lAhv --group-directories-first --auto"
+alias lm="ls -lAhv --group-directories-first --color=auto"
+alias ls="ls -lAhv --group-directories-first --color=auto"
 

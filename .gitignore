@@ -1,7 +1,13 @@
-.emacs.d/elpa
-.emacs.d/elpa/archives/gnu/archive-contents
-auto-save-list
+# .emacs.d stuff
+.emacs.d/.cache
+.emacs.d/.saves
+.emacs.d/auto-save-list
 .emacs.d/backups
-my-secrets.el
-.cache
+.emacs.d/elpa
+.emacs.d/*.dat
+.emacs.d/places
+
+# Fish stuff
+fish_prompt.fish
+fish_variables
 

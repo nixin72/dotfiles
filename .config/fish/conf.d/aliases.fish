@@ -13,4 +13,6 @@ alias gch="git checkout"
 alias gcm="git checkout master"
 alias gcn="git checkout -b"
 alias gtfo="git fetch origin"
-alias cloc="git ls-files | xargs wc -l"	
+alias lm="ls -lAhv --group-directories-first --auto"
+alias ls="ls -lAhv --group-directories-first --auto"
+

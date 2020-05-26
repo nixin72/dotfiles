@@ -1,84 +1,47 @@
-function backup
-    # Copies the file into a new file with ".bak" appended to the name
-    cp $argv[1] $argv[1]".bak"
+# Copies the file into a new file with ".bak" appended to the name
+function bak
+    for $arg in $argv
+        cp $arg $arg".bak"
+    end
 end
 
-function rs
-    # Re-sources the fish environment to bring in changes
+# Re-sources the fish environment to bring in changes
+function resource-fish
     cp -r ~/repos/dotfiles/.config/fish/* ~/.config/fish
     source ~/.config/fish/conf.d/omf.fish
 end
+alias rs="resource-fish"
 
-function fed
-    set configs ['./configs/fish/conf.d/omf.fish']
-end
-
-function lr
+# list-tree
+function list-tree
     tree -a -I $IGNORE_PATHS
 end
+alias lr="list-tree"
 
-function cl
+# cd into a directory and list the contents
+function cd-and-list
     cd $argv[1]
     ls -la
 end
+alias cl="cd-and-list"
 
-function mcd
+# Make a directory and cd into it
+function mkdir-and-cd
     mkdir $argv[1]
     cd $argv[1]
 end
+alias mkcd="mkdir-and-cd"
 
+# Swaps the name of two different files
 function swap-files
-    # Swaps the name of two different files
     mv $argv[1] $argv[1]".tmp"
     mv $argv[2] $argv[1]
     mv $argv[1]".tmp" $argv[2]
 end
+alias sf="swap-files"
 
-# Adds all files to git, commits the changes, pushes to a branch.
-function acp
-    set com $argv[1]
-    set branch $argv[2]
-
-    echo "Commit message: $com"
-    echo "Branch name: $branch"
-
-    if test -e ./package.json
-        npm version patch --no-git-tag-version -f
-    end
-
-    git add .
-    git commit -m "$com"
-    git push origin $branch
+# Remove all files 
+function remove-all-except
+    find . ! -name $argv[1] -type f -exec rm -rf {} +
 end
-
-# Adds all files to git, commits the changes, pulls from a branch and pushes back to it.
-function acpp
-    set com $argv[1]
-    set branch $argv[2]
-
-    echo "Commit message: $com"
-    echo "Branch name: $branch"
-
-    if test -e ./package.json
-        npm version patch --no-git-tag-version -f
-    end
-
-    git add .
-    git commit -m "$com"
-    git pull origin $branch
-    git push origin $branch
-end
-
-function gp --description 'Run standard and git push if it passes.'
-    if standard
-        git push $argv
-    end
-end
-
-function glp
-    if git pull
-        if standard
-            git push $argv
-        end
-    end
-end
+alias rme="remove-all-except"

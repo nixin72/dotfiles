@@ -41,7 +41,7 @@
 	<h1 id="home-title">Welcome, Philip</h1>
 	<p id="home-subtitle">Where to today?</p>
 	<form id="home-search" action="https://duckduckgo.com/">
-	  <input type="textbox" name="q" placeholder="Search" />
+	  <input id="search-bar" type="textbox" name="q" placeholder="Search" />
 	  <input type="hidden" name="t" value="h_" />
 	  <input type="hidden" name="ia" value="web" />
 	</form>
@@ -143,5 +143,8 @@
 
     <script src="https://chandlerc.github.io/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js"
 	integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
+    <script>
+     $("#search-bar").focus();
+    </script>
   </body>
 </html>

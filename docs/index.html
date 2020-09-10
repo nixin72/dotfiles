@@ -28,7 +28,7 @@
     <title>Home</title>
     <link rel="stylesheet"
 	  href="https://nixin72.github.io/dotfiles/css/css.css"
-	  type="text/css"> 
+	  type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&amp;display=swap"
 	  rel="stylesheet">
     <link rel="stylesheet"
@@ -40,9 +40,11 @@
       <div id="home-center">
 	<h1 id="home-title">Welcome, Philip</h1>
 	<p id="home-subtitle">Where to today?</p>
-	<div id="home-search">
-	  <input type="textbox" name="query" placeholder="Search" />
-	</div>
+	<form id="home-search" action="https://duckduckgo.com/">
+	  <input type="textbox" name="q" placeholder="Search" />
+	  <input type="hidden" name="t" value="h_" />
+	  <input type="hidden" name="ia" value="web" />
+	</form>
 	<nav id="home-nav" class="site-nav">
 	  <!-- <div class="work"> -->
 	  <!--   <h4>Work</h4> -->

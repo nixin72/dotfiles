@@ -88,7 +88,7 @@
 				"moodle", "myconcordia", "netflix", "gmail",
 				"drive", "maps", "proton"
 			];
-			document.querySeletor("#home-search").onsubmit = e => {
+			document.querySelector("#home-search").onsubmit = e => {
 				e.preventDefault();
 				let search = document.querySelector("#search-bar").value;
 				let url = `https://duckduckgo.com/?=${search}`

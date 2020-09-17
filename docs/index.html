@@ -83,15 +83,10 @@
     <script>
 			document.querySelector("#search-bar").focus();
 
-			const website = [
-				"github", "reddit", "facebook", "wakatime",
-				"moodle", "myconcordia", "netflix", "gmail",
-				"drive", "maps", "proton"
-			];
 			document.querySelector("#home-search").onsubmit = e => {
 				e.preventDefault();
 				let search = document.querySelector("#search-bar").value;
-				let url = `https://duckduckgo.com/?=${search}`
+				let url = `https://duckduckgo.com/?q=${search}`
 				switch (search) {
 					case "github": url = "https://github.com"; break;
 					case "reddit": url = "https://old.reddit.com"; break;

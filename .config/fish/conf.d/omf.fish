@@ -16,6 +16,7 @@ source /home/nixin72/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 # Icons in terminal
 source ~/.local/share/icons-in-terminal/icons.fish
+source ~/.nvm
 
 set IGNORE_PATHS ".git|node_modules"
 

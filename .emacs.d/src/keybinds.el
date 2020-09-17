@@ -1,3 +1,13 @@
+(use-package evil
+  :ensure t
+  :config
+  (progn
+    (evil-mode 1)))
+
+(defun kill-current-buffer ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+
 (use-package general
   :ensure t
   :config
@@ -8,7 +18,13 @@
      "M-j" 'evil-next-line
      "M-k" 'evil-previous-line
      "M-l" 'evil-forward-char)
-    (general-define-key
+   (general-define-key
+     :states '(normal visual insert emacs)
+     :prefix ","
+     :keymaps '(emacs-lisp-mode-map)
+     "e b" 'eval-buffer
+     "e r" 'eval-region)
+   (general-define-key
      :states '(normal visual insert emacs)
      :prefix "SPC"
      :non-normal-prefix "M-SPC"
@@ -21,30 +37,38 @@
      "o s" 'term
      ; Org-mode
      "O t l" 'org-toggle-latex-fragment
-
+     ; Emacs
+     "e c d" 'compile-defun
+     "e d s" 'describe-symbol
      ; Buffers
-     "b c" 'buffer-create
-     "b e" 'eval-buffer
-     "b p" 'previous-buffer
-     "b n" 'next-buffer
-     "b k" 'kill-buffer
+     "b 1" 'centaur-tabs-select-beg-tab
+     "b 0" 'centaur-tabs-select-end-tab
+     "b a" 'list-buffers
+     "b d" 'kill-current-buffer
+     "b p" 'centaur-tabs-backward
+     "b n" 'centaur-tabs-forward
+     "b N" 'buffer-create
      "b s" 'save-buffer
      "b u" 'undo-tree-undo
      "b r" 'undo-tree-redo
+     "b w" 'kill-buffer-and-window
      ; Windows
      "w k" 'delete-window
      "w =" 'text-scale-increase
      "w -" 'text-scale-decrease
      "w v" 'split-window-horizontally
      "w h" 'split-window-vertically
+     "w ." 'split-window-horizontally
+     "w /" 'split-window-vertically
      ; Text
      "t a" 'mark-whole-buffer
      "t w c" 'count-words
      "/" 'comment-line
      "t e" 'eval-region
+     "t f" 'find-function-at-point
      ; Files
      "f f" 'fzf
-     "f t" 'treemacs
+     "f t" 'treemacs-select-window
      "f c" 'kill-buffer
      ; Package management
      "p i" 'package-install
@@ -54,6 +78,12 @@
      "s s" 'slime
      "s c d" 'slime-compile-defun
      "s c l" 'slime-compile-and-load-file
+     "s d f" 'slime-describe-function
+     "s d s" 'slime-describe-symbol
+     "s i" 'slime-interrupt
+     ; Window navigation
+     "l" 'centaur-tabs-forward
+     "h" 'centaur-tabs-backward
      ; Winum
      "0" 'treemacs-select-window
      "1" 'winum-select-window-1
@@ -89,22 +119,27 @@
      )
     ))
 
+; This is because in my .Xmodmap I remap the Capslock key to this symbol: nabla
 (global-set-key (kbd "∇") 'company-complete)
+(global-set-key (kbd "M-x") 'execute-extended-command)
 
 (use-package treemacs
   :ensure t
   :config
   (progn
-					; General Treemacs
-    (evil-define-key 'normal treemacs-mode-map (kbd "TAB") 'neotree-quick-look)
-    (evil-define-key 'normal treemacs-mode-map (kbd "q") 'treemacs-quit)
-    (evil-define-key 'normal treemacs-mode-map (kbd "RET") 'treemacs-RET-action)
+    (setq treemacs-width 30)
+					; Navigation 
     (evil-define-key 'normal treemacs-mode-map (kbd "j") 'treemacs-next-line)
     (evil-define-key 'normal treemacs-mode-map (kbd "k") 'treemacs-previous-line)
-    (evil-define-key 'normal treemacs-mode-map (kbd "t r") 'treemacs-refresh)
+    (evil-define-key 'normal treemacs-mode-map (kbd "C-j") 'treemacs-next-neighbour)
+    (evil-define-key 'normal treemacs-mode-map (kbd "C-k") 'treemacs-previous-neighbour)
+    (evil-define-key 'normal treemacs-mode-map (kbd "C-h") 'treemacs-goto-parent-node)
+    (evil-define-key 'normal treemacs-mode-map (kbd "u") 'treemacs-root-up)
+    (evil-define-key 'normal treemacs-mode-map (kbd "d") 'treemacs-root-down)
+    (evil-define-key 'normal treemacs-mode-map (kbd "R") 'treemacs-change-root)
     
 					; Opening nodes
-    (evil-define-key 'normal treemacs-mode-map (kbd "o o") 'treemacs-visit-node-no-split)
+    (evil-define-key 'normal treemacs-mode-map (kbd "o f") 'treemacs-visit-node-no-split)
     (evil-define-key 'normal treemacs-mode-map (kbd "o v") 'treemacs-visit-node-horizontal-split)
     (evil-define-key 'normal treemacs-mode-map (kbd "o h") 'treemacs-visit-node-vertical-split)
     (evil-define-key 'normal treemacs-mode-map (kbd "o a o") 'treemacs-visit-node-ace)
@@ -112,6 +147,7 @@
     (evil-define-key 'normal treemacs-mode-map (kbd "o a h") 'treemacs-visit-node-ace-vertical-split)
     (evil-define-key 'normal treemacs-mode-map (kbd "o e") 'treemacs-visit-node-in-external-application)
     (evil-define-key 'normal treemacs-mode-map (kbd "o a h") 'treemacs-visit-node-ace-vertical-split)
+    (evil-define-key 'normal treemacs-mode-map (kbd "o o") 'treemacs-visit-node-in-most-recently-used-window)
 
 					; Files stuffs
     (evil-define-key 'normal treemacs-mode-map (kbd "f f") 'treemacs-create-file)
@@ -131,14 +167,15 @@
 
 					; Project stuffs
     (evil-define-key 'normal treemacs-mode-map (kbd "p a") 'treemacs-add-project-to-workspace)
-    (evil-define-key 'normal treemacs-mode-map (kbd "p d") 'treemacs-remove-project-from-workspace)
     (evil-define-key 'normal treemacs-mode-map (kbd "p r") 'treemacs-rename-project)
+    (evil-define-key 'normal treemacs-mode-map (kbd "p x") 'treemacs-remove-project-from-workspace)
+    (evil-define-key 'normal treemacs-mode-map (kbd "p c") 'treemacs-collapse-project)
 
 					; Workspaces
     (evil-define-key 'normal treemacs-mode-map (kbd "w e") 'treemacs-edit-workspaces)
     (evil-define-key 'normal treemacs-mode-map (kbd "w c") 'treemacs-create-workspace)
-    (evil-define-key 'normal treemacs-mode-map (kbd "w r") 'treemacs-remove-workspace)
-    (evil-define-key 'normal treemacs-mode-map (kbd "w R") 'treemacs-rename-workspace)
+    (evil-define-key 'normal treemacs-mode-map (kbd "w x") 'treemacs-remove-workspace)
+    (evil-define-key 'normal treemacs-mode-map (kbd "w r") 'treemacs-rename-workspace)
     (evil-define-key 'normal treemacs-mode-map (kbd "w s") 'treemacs-switch-workspace)
     (evil-define-key 'normal treemacs-mode-map (kbd "w f") 'treemacs-set-fallback-workspace)
 
@@ -150,7 +187,37 @@
     (evil-define-key 'normal treemacs-mode-map (kbd "s") 'treemacs-resort)
     (evil-define-key 'normal treemacs-mode-map (kbd "b") 'treemacs-add-bookmark)
     (evil-define-key 'normal treemacs-mode-map (kbd "?") 'treemacs-helpful-hydra)
+    (evil-define-key 'normal treemacs-mode-map (kbd "q") 'treemacs-quit)
+    (evil-define-key 'normal treemacs-mode-map (kbd "RET") 'treemacs-RET-action)
 
     ))
+
+(evil-define-key 'emacs slime-mode-map (kbd "j") 'evil-next-line)
+(evil-define-key 'emacs slime-mode-map (kbd "k") 'evil-previous-line)
+(evil-define-key 'emacs slime-mode-map (kbd "h") 'evil-backward-char)
+(evil-define-key 'emacs slime-mode-map (kbd "l") 'evil-forward-char)
+(evil-define-key 'emacs slime-mode-map (kbd "v") 'evil-visual-char)
+(evil-define-key 'emacs slime-mode-map (kbd "V") 'evil-visual-line)
+(evil-define-key 'emacs slime-mode-map (kbd "y") 'evil-yank)
+
+(evil-define-key 'normal compilation-mode-map (kbd "j") 'evil-next-line)
+(evil-define-key 'normal compilation-mode-map (kbd "k") 'evil-previous-line)
+(evil-define-key 'normal compilation-mode-map (kbd "h") 'evil-backward-char)
+(evil-define-key 'normal compilation-mode-map (kbd "l") 'evil-forward-char)
+(evil-define-key 'normal compilation-mode-map (kbd "v") 'evil-visual-char)
+(evil-define-key 'normal compilation-mode-map (kbd "V") 'evil-visual-line)
+(evil-define-key 'normal compilation-mode-map (kbd "y") 'evil-yank)
+(evil-define-key 'normal compilation-mode-map (kbd "SPC b k") 'kill-buffer)
+
+(global-set-key (kbd "M-h") 'evil-window-left)
+(global-set-key (kbd "M-l") 'evil-window-right)
+(global-set-key (kbd "M-j") 'evil-window-down)
+(global-set-key (kbd "M-k") 'evil-window-up)
+
+(global-set-key (kbd "M-[") 'centaur-tabs-backward)
+(global-set-key (kbd "M-]") 'centaur-tabs-forward)
+
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
 
 (provide 'keybinds)

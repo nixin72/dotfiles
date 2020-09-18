@@ -8,7 +8,6 @@
 .emacs.d/places
 .emacs.d/.dap-breakpoints
 .emacs.d/logview-cache.extmap
-.emacs.d/src/sane-defaults.el
 .emacs.d/transient/
 
 # Fish stuff

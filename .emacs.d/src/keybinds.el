@@ -8,6 +8,12 @@
   (interactive)
   (kill-buffer (current-buffer)))
 
+(defun open-split-terminal ()
+  (interactive)
+  (split-window-right)
+  (evil-window-right 1)
+  (ansi-term "zsh"))
+
 (use-package general
   :ensure t
   :config
@@ -23,14 +29,16 @@
      :prefix ","
      :keymaps '(emacs-lisp-mode-map)
      "e b" 'eval-buffer
-     "e r" 'eval-region)
+     "e r" 'eval-region
+     "c d" 'compile-defun
+     )
    (general-define-key
      :states '(normal visual insert emacs)
      :prefix "SPC"
      :non-normal-prefix "M-SPC"
      "SPC" 'execute-extended-command
-     "'" #'(lambda (interactive) (iterm-focus :which-key "iterm"))
-     ; Open shit
+     "'" 'open-split-terminal
+     ;; Open shit
      "o t" 'treemacs
      "o c" #'(lambda () (interactive) (find-file "~/.emacs.d/init.el"))
      "o k" #'(lambda () (interactive) (find-file "~/.emacs.d/src/keybinds.el"))

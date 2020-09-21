@@ -18,20 +18,39 @@
   :ensure t
   :config
   (progn
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; Insert-mode bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
    (general-define-key
      :states '(insert)
      "M-h" 'evil-backward-char
      "M-j" 'evil-next-line
      "M-k" 'evil-previous-line
      "M-l" 'evil-forward-char)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; Major-mode bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
    (general-define-key
-     :states '(normal visual insert emacs)
+     :states '(normal visual emacs)
      :prefix ","
-     :keymaps '(emacs-lisp-mode-map)
+     :keymaps 'emacs-lisp-mode-map
      "e b" 'eval-buffer
      "e r" 'eval-region
      "c d" 'compile-defun
      )
+   (general-define-key
+     :states '(normal visual emacs)
+     :prefix ","
+     :keymaps 'cider-mode-map
+     "'" 'cider-jack-in
+     "\"" 'cider-jack-in-cljs
+     "`" 'cider-jack-in-clj&cljs
+     )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; General bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
    (general-define-key
      :states '(normal visual insert emacs)
      :prefix "SPC"
@@ -131,6 +150,9 @@
 (global-set-key (kbd "∇") 'company-complete)
 (global-set-key (kbd "M-x") 'execute-extended-command)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; Treemacs bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package treemacs
   :ensure t
   :config
@@ -200,6 +222,9 @@
 
     ))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; Bindings to navigate out of other buffers ;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (evil-define-key 'emacs slime-mode-map (kbd "j") 'evil-next-line)
 (evil-define-key 'emacs slime-mode-map (kbd "k") 'evil-previous-line)
 (evil-define-key 'emacs slime-mode-map (kbd "h") 'evil-backward-char)
@@ -217,6 +242,9 @@
 (evil-define-key 'normal compilation-mode-map (kbd "y") 'evil-yank)
 (evil-define-key 'normal compilation-mode-map (kbd "SPC b k") 'kill-buffer)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; Some global bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "M-h") 'evil-window-left)
 (global-set-key (kbd "M-l") 'evil-window-right)
 (global-set-key (kbd "M-j") 'evil-window-down)

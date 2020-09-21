@@ -21,12 +21,24 @@
     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
     ))
 
+(use-package rainbow-delimiters
+   :ensure t
+   :config
+   (progn
+     (rainbow-delimiters-mode t)
+     ))
+
+(use-package highlight-parentheses
+  :ensure t
+  :config
+  (progn
+    (highlight-parentheses-mode t)))
+
+(use-package smooth-scroll :ensure t)
 (use-package all-the-icons :ensure t)
 (use-package dash :ensure t)
 (use-package column-enforce-mode :ensure t)
 (use-package flycheck :ensure t)
-(use-package rainbow-delimiters :ensure t)
-(use-package smooth-scroll :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Programming packages

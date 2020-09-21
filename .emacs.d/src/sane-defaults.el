@@ -29,6 +29,7 @@
 (ido-mode t)
 (global-whitespace-mode t)
 (smooth-scroll-mode t)
+(show-paren-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Set some stuff
@@ -100,5 +101,6 @@
                    (delete-window)))))))
 
 (add-hook 'term-exec-hook 'kill-term-on-exit)
+(add-hook 'org-mode-hook 'org-display-inline-images)
 
 (provide 'sane-defaults)

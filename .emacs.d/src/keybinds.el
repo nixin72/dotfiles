@@ -14,6 +14,20 @@
   (evil-window-right 1)
   (ansi-term "zsh"))
 
+(defvar presentation-mode? nil)
+(defun toggle-presentation-mode ()
+  (interactive)
+  (treemacs)
+  (cond
+   (presentation-mode?
+    (setq presentation-mode? nil)
+    (centaur-tabs-mode 0)
+    (font-size 15))
+   (t
+    (setq presentation-mode? t)
+    (centaur-tabs-mode 1)
+    (font-size 12))))
+
 (use-package general
   :ensure t
   :config
@@ -93,6 +107,10 @@
      "/" 'comment-line
      "t e" 'eval-region
      "t f" 'find-function-at-point
+     ; Toggles
+     "T f" 'toggle-frame-fullscreen
+     "T r" 'rainbow-delimiters-mode
+     "T p" 'toggle-presentation-mode
      ; Files
      "f f" 'fzf
      "f t" 'treemacs-select-window

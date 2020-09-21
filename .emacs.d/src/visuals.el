@@ -11,6 +11,9 @@
   (doom-modeline-mode 1)
   (doom-themes-org-config))
 
-(set-frame-font "Fira Code 12" nil t)
+(defun font-size (size)
+  (set-frame-font (format "Fira code %d" size) nil t))
+
+(font-size 12)
 
 (provide 'visuals)

@@ -7,8 +7,10 @@
 .emacs.d/*.dat
 .emacs.d/places
 .emacs.d/.dap-breakpoints
+.emacs.d/ghpkg
 .emacs.d/logview-cache.extmap
 .emacs.d/transient/
+.emacs.d/session.*
 
 # Fish stuff
 fish_prompt.fish

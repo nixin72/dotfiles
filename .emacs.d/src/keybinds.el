@@ -76,12 +76,12 @@
      "o c" #'(lambda () (interactive) (find-file "~/.emacs.d/init.el"))
      "o k" #'(lambda () (interactive) (find-file "~/.emacs.d/src/keybinds.el"))
      "o s" 'term
-     ; Org-mode
+     ;; Org-mode
      "O t l" 'org-toggle-latex-fragment
-     ; Emacs
+     ;; Emacs
      "e c d" 'compile-defun
      "e d s" 'describe-symbol
-     ; Buffers
+     ;; Buffers
      "b 1" 'centaur-tabs-select-beg-tab
      "b 0" 'centaur-tabs-select-end-tab
      "b a" 'list-buffers
@@ -93,7 +93,16 @@
      "b u" 'undo-tree-undo
      "b r" 'undo-tree-redo
      "b w" 'kill-buffer-and-window
-     ; Windows
+     ;; Magit
+     "g a" 'magit-stage-file
+     "g b" 'magit-blame
+     "g c" 'magit-commit
+     "g d" 'magit-diff
+     "g m" 'magit-merge
+     "g p" 'magit-push
+     "g s" 'magit-status
+     "g C" 'magit-commit
+     ;; Windows
      "w k" 'delete-window
      "w =" 'text-scale-increase
      "w -" 'text-scale-decrease
@@ -101,25 +110,25 @@
      "w h" 'split-window-vertically
      "w ." 'split-window-horizontally
      "w /" 'split-window-vertically
-     ; Text
+     ;; Text
      "t a" 'mark-whole-buffer
      "t w c" 'count-words
      "/" 'comment-line
      "t e" 'eval-region
      "t f" 'find-function-at-point
-     ; Toggles
+     ;; Toggles
      "T f" 'toggle-frame-fullscreen
      "T r" 'rainbow-delimiters-mode
      "T p" 'toggle-presentation-mode
-     ; Files
+     ;; Files
      "f f" 'fzf
      "f t" 'treemacs-select-window
      "f c" 'kill-buffer
-     ; Package management
+     ;; Package management
      "p i" 'package-install
      "p r" 'package-refresh-contents
      "p R" 'package-reinstall
-     ; Slime
+     ;; Slime
      "s s" 'slime
      "s c d" 'slime-compile-defun
      "s c l" 'slime-compile-and-load-file

@@ -54,4 +54,4 @@
 (add-hook 'racket-mode-hook 'lisp-programming-modes)
 (add-hook 'scheme-mode-hook 'lisp-programming-modes)
 
-(provide 'my-lisps-config)
+(provide 'lisps)

@@ -13,10 +13,10 @@
   (load bootstrap-file nil 'nomessage))
 
 (add-to-list 'load-path "~/.emacs.d/src/")
-(add-to-list 'load-path "~/.emacs.d/src/languages/")
+(add-to-list 'load-path "~/.emacs.d/src/languages")
 (require 'functions)
 (require 'import-packages)
 (require 'keybinds)
 (require 'visuals)
 (require 'sane-defaults)
-(provide 'my-lisps-config)
+(require 'lisps)

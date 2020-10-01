@@ -1,6 +1,6 @@
 ;; Clojure
-(use-package clojure-mode :ensure t)
-(use-package cider :ensure t)
+(straight-use-package 'clojure-mode)
+(straight-use-package 'cider)
 (general-define-key
   :states '(normal visual emacs)
   :prefix ","
@@ -10,7 +10,7 @@
   "`" 'cider-jack-in-clj&cljs)
 
 ;; Racket-mode
-(use-package racket-mode :ensure t)
+(straight-use-package 'racket-mode)
 (general-define-key
   :states '(normal visual emacs)
   :prefix ","
@@ -20,10 +20,10 @@
   "d" 'racket-doc
   "e r" 'racket-send-region
   "e e" 'racket-send-last-sexp)
-;(use-package geiser :ensure t)
+;(straight-use-package ' geiser :ensure t)
 
 ;; Common Lisp
-(use-package slime :ensure t)
+(straight-use-package 'slime)
 (general-define-key
   :states '(normal visual emacs)
   :prefix ","

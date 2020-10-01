@@ -50,13 +50,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-EMACS=$HOME/.emacs.d
-
 alias ls=$HOME/.gem/ruby/2.7.0/bin/colorls
 alias demacs=emacs --daemon
 alias temacs=emacsclient -t
-alias wemacs=emacsclient -c -F '((width . 1000) (height . 500) (font . "Fira Code-12"))' $EMACS/Splash.org
-alias emacs=wemacs
+alias wemacs=emacsclient -c -F '((width . 1000) (height . 500) (font . "Fira Code-12"))'
 
 # User configuration
 

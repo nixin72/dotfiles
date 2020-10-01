@@ -11,6 +11,7 @@
 .emacs.d/logview-cache.extmap
 .emacs.d/transient/
 .emacs.d/session.*
+.emacs.d/straight
 
 # Fish stuff
 fish_prompt.fish

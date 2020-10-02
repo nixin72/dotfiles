@@ -2,36 +2,39 @@
 ;;;;;;;;;; Editing packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (straight-use-package 'smartparens
-  :config
-  (progn
-    (smartparens-global-mode t)))
+ :config
+ (progn
+   (smartparens-global-mode t)))
 
 (straight-use-package 'parinfer
-  :config
-  (progn
-    (add-hook 'racket-mode-hook 'parinfer-mode)))
+ :config
+ (progn
+   (add-hook 'racket-mode-hook 'parinfer-mode)))
 
 (straight-use-package 'highlight-indent-guides
-  :config
-  (progn
-    (setq highlight-indent-guides-method 'bitmap)
-    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-   ))
+ :config
+ (progn
+   (setq highlight-indent-guides-method 'bitmap)
+   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  ))
 
 (straight-use-package 'rainbow-delimiters
-   :config
-   (progn
-     (rainbow-delimiters-mode t)
-    ))
+ :config
+ (progn
+   (rainbow-delimiters-mode t)
+   ))
 
 (straight-use-package 'highlight-parentheses
-  :config
-  (progn
-    (highlight-parentheses-mode t)))
+ :config
+ (progn
+   (highlight-parentheses-mode t)))
 
 (straight-use-package
- '(block-nav :type git :host github :repo "nixin72/block-nav.el"))
-(require 'block-nav)
+ '(block-nav :type git :host github :repo "nixin72/block-nav.el")
+ :config
+ (progn
+   (setf block-nav-move-skip-shallower t
+        block-nav-center-after-scroll t)))
 
 (straight-use-package 'expand-region)
 (straight-use-package 'smooth-scroll)
@@ -118,18 +121,23 @@
 (progn
   (global-company-mode t))
 
-(straight-use-package 'centaur-tabs)
-(progn
-  (centaur-tabs-mode t)
-  (centaur-tabs-headline-match)
-  (centaur-tabs-change-fonts "arial" 100)
-  (setq centaur-tabs-style "rounded"
-        centaur-tabs-set-icons t
-        centaur-tabs-gray-out-icons 'buffer
-        centaur-tabs-set-bar 'left
-        x-underline-at-descent-line t
-        centaur-tabs-set-modified-marker t
-        centaur-tabs-height 35))
+(straight-use-package
+ '(centaur-tabs :type git :host github :repo "ema2159/centaur-tabs"
+                :fork (:host github
+                             :repo "MoritzMaxeiner/centaur-tabs"
+                             :branch "daemon"))
+ :config
+ (progn
+   (centaur-tabs-mode t)
+   (centaur-tabs-headline-match)
+   (centaur-tabs-change-fonts "arial" 100)
+   (setq centaur-tabs-style "rounded"
+         centaur-tabs-set-icons t
+         centaur-tabs-gray-out-icons 'buffer
+         centaur-tabs-set-bar 'left
+         x-underline-at-descent-line t
+         centaur-tabs-set-modified-marker t
+         centaur-tabs-height 35)))
 
 (straight-use-package 'auto-complete)
 (straight-use-package 'frame-local)

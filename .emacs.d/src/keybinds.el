@@ -264,6 +264,7 @@
 (define-key evil-motion-state-map "J" 'block-nav-next-block)
 (define-key evil-motion-state-map "K" 'block-nav-previous-block)
 (define-key evil-motion-state-map "L" 'block-nav-next-indentation-level)
+(define-key evil-normal-state-map "0" 'back-to-indentation)
 
 (global-set-key (kbd "M-[") 'centaur-tabs-backward)
 (global-set-key (kbd "M-]") 'centaur-tabs-forward)

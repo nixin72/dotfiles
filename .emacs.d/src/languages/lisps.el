@@ -39,7 +39,8 @@
   :keymaps 'emacs-lisp-mode-map
   "e b" 'eval-buffer
   "e r" 'eval-region
-  "c d" 'compile-defun)
+  "c d" 'compile-defun
+  "d" 'describe-symbol)
 
 ;; All lisps
 (defun lisp-programming-modes ()

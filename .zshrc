@@ -66,7 +66,7 @@ alias wemacs=emacsclient -c -F '((width . 1000) (height . 500) (font . "Fira Cod
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='emacs'
+  export EDITOR='emacsclient -t'
 fi
 
 # Compilation flags

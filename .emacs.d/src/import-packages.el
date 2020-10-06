@@ -147,6 +147,7 @@
 (straight-use-package 'projectile)
 (straight-use-package 'pdf-tools)
 (straight-use-package 'winum)
+(straight-use-package 'magit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Plugins packages

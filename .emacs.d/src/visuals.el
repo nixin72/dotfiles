@@ -1,4 +1,21 @@
-(use-package doom-modeline)
+(straight-use-package
+ 'mini-modeline
+ :config
+ (progn
+   (mini-modeline-mode t)
+   (setq mini-modeline-r-format
+         '("%e" (:eval (number-to-string (winum-get-number)))
+                " "
+                evil-mode-line-tag
+                " "
+                mode-line-modified
+                mode-line-buffer-identification
+                " "
+                mode-line-position
+                (:eval (symbol-name major-mode))
+                "   "
+                (:eval (magit-get-current-branch)))
+         mini-modeline-l-format nil)))
 
 (use-package doom-themes
   :config

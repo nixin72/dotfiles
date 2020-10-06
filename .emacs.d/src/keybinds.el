@@ -176,7 +176,7 @@
   (evil-define-key 'normal treemacs-mode-map (kbd "u") 'treemacs-root-up)
   (evil-define-key 'normal treemacs-mode-map (kbd "d") 'treemacs-root-down)
   (evil-define-key 'normal treemacs-mode-map (kbd "R") 'treemacs-change-root)
-    
+  
   ;; Opening nodes
   (evil-define-key 'normal treemacs-mode-map (kbd "o f") 'treemacs-visit-node-no-split)
   (evil-define-key 'normal treemacs-mode-map (kbd "o v") 'treemacs-visit-node-horizontal-split)
@@ -196,7 +196,7 @@
   (evil-define-key 'normal treemacs-mode-map (kbd "f m") 'treemacs-move-file)
   (evil-define-key 'normal treemacs-mode-map (kbd "f y") 'treemacs-copy-file)
 
-					; Toggles
+                                        ; Toggles
   (evil-define-key 'normal treemacs-mode-map (kbd "t f") 'treemacs-follow-mode)
   (evil-define-key 'normal treemacs-mode-map (kbd "t w") 'treemacs-filewatch-mode)
   (evil-define-key 'normal treemacs-mode-map (kbd "t g") 'treemacs-git-mode)
@@ -204,13 +204,13 @@
   (evil-define-key 'normal treemacs-mode-map (kbd "t h") 'treemacs-toggle-show-dotfiles)
   (evil-define-key 'normal treemacs-mode-map (kbd "t r") 'treemacs-toggle-fixed-width)
 
-					; Project stuffs
+                                        ; Project stuffs
   (evil-define-key 'normal treemacs-mode-map (kbd "p a") 'treemacs-add-project-to-workspace)
   (evil-define-key 'normal treemacs-mode-map (kbd "p r") 'treemacs-rename-project)
   (evil-define-key 'normal treemacs-mode-map (kbd "p x") 'treemacs-remove-project-from-workspace)
   (evil-define-key 'normal treemacs-mode-map (kbd "p c") 'treemacs-collapse-project)
 
-					; Workspaces
+                                        ; Workspaces
   (evil-define-key 'normal treemacs-mode-map (kbd "w e") 'treemacs-edit-workspaces)
   (evil-define-key 'normal treemacs-mode-map (kbd "w c") 'treemacs-create-workspace)
   (evil-define-key 'normal treemacs-mode-map (kbd "w x") 'treemacs-remove-workspace)
@@ -218,7 +218,7 @@
   (evil-define-key 'normal treemacs-mode-map (kbd "w s") 'treemacs-switch-workspace)
   (evil-define-key 'normal treemacs-mode-map (kbd "w f") 'treemacs-set-fallback-workspace)
 
-					; Misc
+                                        ; Misc
   (evil-define-key 'normal treemacs-mode-map (kbd "r") 'treemacs-refresh)
   (evil-define-key 'normal treemacs-mode-map (kbd "W") 'treemacs-set-width)
   (evil-define-key 'normal treemacs-mode-map (kbd "c") 'treemacs-copy-path-at-point)
@@ -252,30 +252,32 @@
 (evil-define-key 'normal compilation-mode-map (kbd "SPC b k") 'kill-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;; Redefining evil-mode keys ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-key evil-normal-state-map "0" 'back-to-indentation)
+(define-key evil-normal-state-map "H" 'block-nav-previous-indentation-level)
+(define-key evil-normal-state-map "J" 'block-nav-next-block)
+(define-key evil-normal-state-map "K" 'block-nav-previous-block)
+(define-key evil-normal-state-map "L" 'block-nav-next-indentation-level)
+(define-key evil-normal-state-map "f" 'ace-jump-char-mode)
+(define-key evil-normal-state-map "F" 'ace-jump-mode)
+(define-key evil-normal-state-map "U" 'undo-tree-redo)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;; Some global bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Removed these because they don't work with i3 anyways :'(
+;; Removed these because they don't work with i3 :'(
+;; Moving between windows
 ;(global-set-key (kbd "M-h") 'evil-window-left)
 ;(global-set-key (kbd "M-l") 'evil-window-right)
 ;(global-set-key (kbd "M-j") 'evil-window-down)
 ;(global-set-key (kbd "M-k") 'evil-window-up)
-(define-key evil-normal-state-map "H" nil)
-(define-key evil-normal-state-map "J" nil)
-(define-key evil-normal-state-map "K" nil)
-(define-key evil-normal-state-map "L" nil)
-;; (define-key evil-motion-state-map "H" 'block-nav-previous-indentation-level)
-;; (define-key evil-motion-state-map "J" 'block-nav-next-block)
-;; (define-key evil-motion-state-map "K" 'block-nav-previous-block)
-;; (define-key evil-motion-state-map "L" 'block-nav-next-indentation-level)
-(define-key evil-normal-state-map "0" 'back-to-indentation)
-(define-key evil-motion-state-map "H" 'block-nav-previous-indentation-level)
-(define-key evil-motion-state-map "J" 'block-nav-next-block)
-(define-key evil-motion-state-map "K" 'block-nav-previous-block)
-(define-key evil-motion-state-map "L" 'block-nav-next-indentation-level)
 
+;; Changing buffers
 (global-set-key (kbd "M-[") 'centaur-tabs-backward)
 (global-set-key (kbd "M-]") 'centaur-tabs-forward)
 
+;; Change font size
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 

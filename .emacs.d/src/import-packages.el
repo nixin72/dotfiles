@@ -43,6 +43,7 @@
 (straight-use-package 'dash)
 (straight-use-package 'column-enforce-mode)
 (straight-use-package 'flycheck)
+(straight-use-package 'ace-jump-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Programming packages

@@ -101,9 +101,10 @@
    "T r" 'rainbow-delimiters-mode
    "T p" 'toggle-presentation-mode
    ;; Files
-   "f f" 'fzf
+   "f f" 'project-find-file
    "f t" 'treemacs-select-window
    "f c" 'kill-buffer
+   ;;
    ;; Package management
    "p i" 'package-install
    "p r" 'package-refresh-contents
@@ -115,10 +116,12 @@
    "s d f" 'slime-describe-function
    "s d s" 'slime-describe-symbol
    "s i" 'slime-interrupt
-   ;; Window navigation
+   ;; Single-key bindings
    "l" 'centaur-tabs-forward
    "h" 'centaur-tabs-backward
    "v" 'er/expand-region
+   "F" 'ace-jump-mode
+   "r" 'View-back-to-mark
    ;; Winum
    "0" 'treemacs-select-window
    "1" 'winum-select-window-1
@@ -136,23 +139,23 @@
    :non-normal-prefix "M-SPC"
    :keymaps '(lisp-mode common-lisp-mode scheme-mode racket-mode)
    "t p" 'parinfer-mode
-   "t r" 'rainbow-delimiters-mode
-   )
+   "t r" 'rainbow-delimiters-mode)
+  
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    :keymaps 'common-lisp-mode
-   "b e" 'slime-eval-buffer
-   )
+   "b e" 'slime-eval-buffer)
+  
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
    :non-normal-prefix "M-SPC"
    :keymaps 'emacs-lisp-mode
-   "b e" 'eval-buffer
-   )
-  )
+   "b e" 'eval-buffer))
+   
+  
 
 ; This is because in my .Xmodmap I remap the Capslock key to this symbol: nabla
 (global-set-key (kbd "∇") 'company-complete)
@@ -260,11 +263,15 @@
 (define-key evil-normal-state-map "J" nil)
 (define-key evil-normal-state-map "K" nil)
 (define-key evil-normal-state-map "L" nil)
+;; (define-key evil-motion-state-map "H" 'block-nav-previous-indentation-level)
+;; (define-key evil-motion-state-map "J" 'block-nav-next-block)
+;; (define-key evil-motion-state-map "K" 'block-nav-previous-block)
+;; (define-key evil-motion-state-map "L" 'block-nav-next-indentation-level)
+(define-key evil-normal-state-map "0" 'back-to-indentation)
 (define-key evil-motion-state-map "H" 'block-nav-previous-indentation-level)
 (define-key evil-motion-state-map "J" 'block-nav-next-block)
 (define-key evil-motion-state-map "K" 'block-nav-previous-block)
 (define-key evil-motion-state-map "L" 'block-nav-next-indentation-level)
-(define-key evil-normal-state-map "0" 'back-to-indentation)
 
 (global-set-key (kbd "M-[") 'centaur-tabs-backward)
 (global-set-key (kbd "M-]") 'centaur-tabs-forward)

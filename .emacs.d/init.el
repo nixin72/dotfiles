@@ -20,3 +20,4 @@
 (require 'visuals)
 (require 'sane-defaults)
 (require 'lisps)
+(require 'my-org)

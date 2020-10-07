@@ -1,17 +1,20 @@
 ;; Clojure
 (straight-use-package 'clojure-mode)
-(straight-use-package 'cider)
-(general-define-key
+(straight-use-package
+ 'cider
+ :config
+ (general-define-key
   :states '(normal visual emacs)
   :prefix ","
   :keymaps 'cider-mode-map
   "'" 'cider-jack-in
   "\"" 'cider-jack-in-cljs
-  "`" 'cider-jack-in-clj&cljs)
+  "`" 'cider-jack-in-clj&cljs))
 
 ;; Racket-mode
-(straight-use-package 'racket-mode)
-(general-define-key
+(straight-use-package
+ 'racket-mode
+ (general-define-key
   :states '(normal visual emacs)
   :prefix ","
   :keymaps 'racket-mode-map
@@ -19,18 +22,24 @@
   "'" 'racket-repl
   "d" 'racket-doc
   "e r" 'racket-send-region
-  "e e" 'racket-send-last-sexp)
+  "e e" 'racket-send-last-sexp))
 ;(straight-use-package ' geiser :ensure t)
 
 ;; Common Lisp
-(straight-use-package 'slime)
-(general-define-key
+(straight-use-package
+ 'slime
+ :config
+ (general-define-key
   :states '(normal visual emacs)
   :prefix ","
   :keymaps 'common-lisp-mode-map
+  "'" 'slime
   "e b" 'slime-eval-buffer
   "e r" 'slime-eval-region
-  "c d" 'slime-compile-defun)
+  "c d" 'slime-compile-defun
+  "c l" 'slime-compile-and-load-file
+  "d" 'slide-describe-symbol
+  "i" 'slime-interrupt))
 
 ;; Emacs Lisp
 (general-define-key

@@ -97,9 +97,11 @@
    "t e" 'eval-region
    "t f" 'find-function-at-point
    ;; Toggles
-   "T f" 'toggle-frame-fullscreen
+   "T F" 'toggle-frame-fullscreen
    "T r" 'rainbow-delimiters-mode
    "T p" 'toggle-presentation-mode
+   "T l" 'global-display-line-numbers-mode
+   "T f" 'evil-toggle-fold
    ;; Files
    "f f" 'project-find-file
    "f t" 'treemacs-select-window
@@ -109,18 +111,11 @@
    "p i" 'package-install
    "p r" 'package-refresh-contents
    "p R" 'package-reinstall
-   ;; Slime
-   "s s" 'slime
-   "s c d" 'slime-compile-defun
-   "s c l" 'slime-compile-and-load-file
-   "s d f" 'slime-describe-function
-   "s d s" 'slime-describe-symbol
-   "s i" 'slime-interrupt
    ;; Single-key bindings
    "l" 'centaur-tabs-forward
    "h" 'centaur-tabs-backward
    "v" 'er/expand-region
-   "F" 'ace-jump-mode
+   "F" 'evil-toggle-fold
    "r" 'View-back-to-mark
    ;; Winum
    "0" 'treemacs-select-window

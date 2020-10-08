@@ -4,10 +4,15 @@
  'org-mode-hook
  (lambda ()
    (org-bullets-mode 1)
-   (setq buffer-face-mode-face '(:family "Noto Sans" :height 100))
-   (buffer-face-mode)))
+   (visual-line-mode 1)
+   (setq fill-column 100)
+   (variable-pitch-mode)))
           
+;; Some nice defaults
+;; Solution came from:
+;; https://lepisma.xyz/2017/10/28/ricing-org-mode#other-tweaks
 (setq org-startup-indented t
+      org-startup-with-inline-images t
       org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
       org-ellipsis "  " ;; folding symbol
       org-pretty-entities t
@@ -18,6 +23,25 @@
       org-fontify-done-headline t
       org-fontify-quote-and-verse-blocks t)
 
+(let* ((headline `(:font "NotoSans" :weight bold))
+       (code `(:font "FiraCode" :height 1.0))
+       (code-block `(,@code :background "#282C34"))
+       (block-line `(,@code :foreground "#abb2bf" :background "#343843")))
+  (custom-theme-set-faces
+   'user
+   `(org-code ((t (,@code-block))))
+   `(org-block ((t (,@code-block))))
+   `(org-block-begin-line ((t (,@block-line))))
+   `(org-block-end-line ((t (,@block-line))))
+   `(org-level-8 ((t (,@headline :height 1.1 :foreground "#9494E6"))))
+   `(org-level-7 ((t (,@headline :height 1.15 :foreground "#c678dd"))))
+   `(org-level-6 ((t (,@headline :height 1.2 :foreground "#e06c75"))))
+   `(org-level-5 ((t (,@headline :height 1.25 :foreground "#d19a66"))))
+   `(org-level-4 ((t (,@headline :height 1.3 :foreground "#B5AF70"))))
+   `(org-level-3 ((t (,@headline :height 1.35 :foreground "#98c379"))))
+   `(org-level-2 ((t (,@headline :height 1.4 :foreground "#56b6c2"))))
+   `(org-level-1 ((t (,@headline :height 1.45 :foreground "#61afef"))))))
+   
 (defun org-next-heading ()
   (interactive)
   (evil-toggle-fold)
@@ -31,26 +55,6 @@
   "n" 'org-next-heading
   "t" 'evil-toggle-fold
   "r" 'org-mode-restart)
-
-(defun my-adjoin-to-list-or-symbol (element list-or-symbol)
-  (let ((list (if (not (listp list-or-symbol))
-                  (list list-or-symbol)
-                  list-or-symbol)))
-    (require 'cl-lib)
-    (cl-adjoin element list)))
-
-(eval-after-load "org"
-  '(mapc
-    (lambda (face)
-      (set-face-attribute
-       face nil
-       :font "FiraCode"
-       :height 1.0))
-       ;:inherit
-       ;(my-adjoin-to-list-or-symbol
-       ; 'fixed-pitch
-       ; (face-attribute face :inherit)))
-    (list 'org-code 'org-block 'org-table))) ;'org-block-background)))
 
 (provide 'my-org)
  

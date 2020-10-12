@@ -60,6 +60,12 @@
 (add-hook 'lisp-mode-hook 'lisp-programming-modes)
 (add-hook 'common-lisp-mode-hook 'lisp-programming-modes)
 (add-hook 'emacs-lisp-mode-hook 'lisp-programming-modes)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (interactive)
+            ;; For MELPA
+            (setq fill-column 80)
+            (auto-fill-mode 1)))
 (add-hook 'clojure-mode-hook 'lisp-programming-modes)
 (add-hook 'racket-mode-hook 'lisp-programming-modes)
 (add-hook 'scheme-mode-hook 'lisp-programming-modes)

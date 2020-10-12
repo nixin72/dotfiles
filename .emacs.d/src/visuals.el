@@ -1,3 +1,4 @@
+(straight-use-package 'hide-mode-line)
 (straight-use-package 'mini-modeline)
 (progn
   (mini-modeline-mode t)
@@ -26,6 +27,8 @@
   (setq doom-themes-treemacs-theme "doom-colors")
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
+
+(straight-use-package 'emojify)
 
 (defun font-size (size)
   (set-frame-font (format "Fira code %d" size) nil t))

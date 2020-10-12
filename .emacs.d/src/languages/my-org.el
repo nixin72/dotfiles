@@ -1,11 +1,21 @@
 (straight-use-package 'org-bullets)
+(straight-use-package 'htmlize)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((lisp . t)))
 
 (add-hook
  'org-mode-hook
  (lambda ()
    (org-bullets-mode 1)
    (visual-line-mode 1)
-   (setq fill-column 100)
+   (auto-fill-mode 1)
+   (setq fill-column 100
+         line-spacing 0.2
+         left-margin-width 2
+         right-margin-width 2)
+   (set-window-buffer nil (current-buffer))
    (variable-pitch-mode)))
           
 ;; Some nice defaults
@@ -24,9 +34,9 @@
       org-fontify-quote-and-verse-blocks t)
 
 (let* ((headline `(:font "NotoSans" :weight bold))
-       (code `(:font "FiraCode" :height 1.0))
-       (code-block `(,@code :background "#282C34"))
-       (block-line `(,@code :foreground "#abb2bf" :background "#343843")))
+       (code `(:font "FiraCode"))
+       (code-block `(,@code :height 1.05 :background "#282C34"))
+       (block-line `(,@code :height 90 :foreground "#abb2bf" :background "#343843")))
   (custom-theme-set-faces
    'user
    `(org-code ((t (,@code-block))))
@@ -38,9 +48,9 @@
    `(org-level-6 ((t (,@headline :height 1.2 :foreground "#e06c75"))))
    `(org-level-5 ((t (,@headline :height 1.25 :foreground "#d19a66"))))
    `(org-level-4 ((t (,@headline :height 1.3 :foreground "#B5AF70"))))
-   `(org-level-3 ((t (,@headline :height 1.35 :foreground "#98c379"))))
-   `(org-level-2 ((t (,@headline :height 1.4 :foreground "#56b6c2"))))
-   `(org-level-1 ((t (,@headline :height 1.45 :foreground "#61afef"))))))
+   `(org-level-3 ((t (,@headline :height 1.35 :foreground "#B5AF70"))))
+   `(org-level-2 ((t (,@headline :height 1.4 :foreground "#98c379"))))
+   `(org-level-1 ((t (,@headline :height 1.45 :foreground "#56b6c2"))))))
    
 (defun org-next-heading ()
   (interactive)
@@ -54,7 +64,50 @@
   :keymaps 'org-mode-map
   "n" 'org-next-heading
   "t" 'evil-toggle-fold
-  "r" 'org-mode-restart)
+  "e" 'org-html-export-to-html
+  "r" 'org-mode-restart
+  "p" 'org-publish-current-project
+  "i s" (lambda () (interactive) (org-insert-structure-template "src"))
+  "i q" (lambda () (interactive) (org-insert-structure-template "quote"))
+  "i e" (lambda () (interactive) (org-insert-structure-template "example"))
+  "i c" (lambda () (interactive) (org-insert-structure-template "comment"))
+  "i C" (lambda () (interactive) (org-insert-structure-template "center")))
+
+(defvar repos-dir "/run/media/nixin72/s/repos/")
+(defvar my-site-dir (concat repos-dir "nixin72.github.com/"))
+
+(setq org-publish-project-alist
+      `(("nixin72.github.io:root"
+         :base-directory ,my-site-dir
+         :publishing-directory ,(concat my-site-dir "docs")
+         :section-numbers nil
+         :table-of-contents nil
+         :publishing-function org-html-publish-to-html
+         :style "<link rel='stylesheet' href='assets/my-org-css.css' type='text/css'")
+        ("nixin72.github.io:questions"
+         :base-directory ,(concat my-site-dir "questions")
+         :publishing-directory ,(concat my-site-dir "docs/questions")
+         :section-numbers nil
+         :table-of-contents nil
+         :publishing-function org-html-publish-to-html
+         :style "<link rel='stylesheet' href='../assets/my-org-css.css' type='text/css'")
+        ("nixin72.github.io:blog"
+         :base-directory ,(concat my-site-dir "blog")
+         :publishing-directory ,(concat my-site-dir "docs/blog")
+         :section-numbers nil
+         :table-of-contents nil
+         :publishing-function org-html-publish-to-html
+         :style "<link rel='stylesheet' href='../assets/my-org-css.css' type='text/css'")
+        ("nixin72.github.io:assets"
+         :base-directory ,(concat my-site-dir "assets")
+         :base-extension "css\\|el\\|js\\|jpg\\|gif\\|png"
+         :publishing-directory ,(concat my-site-dir "docs/assets")
+         :publishing-function org-publish-attachment
+         :style "<link rel='stylesheet' href='' type='text/css'")
+        ("nixin72.github.io"
+         :components ("nixin72.github.io:root"
+                      "nixin72.github.io:questions"
+                      "nixin72.github.io:blog"
+                      "nixin72.github.io:assets"))))
 
 (provide 'my-org)
- 

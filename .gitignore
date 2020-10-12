@@ -12,6 +12,7 @@
 .emacs.d/transient/
 .emacs.d/session.*
 .emacs.d/straight
+.emacs.d/emojis
 
 # Fish stuff
 fish_prompt.fish

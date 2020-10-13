@@ -29,12 +29,10 @@
  (progn
    (highlight-parentheses-mode t)))
 
-(straight-use-package
- '(block-nav :type git :host github :repo "nixin72/block-nav.el")
- :config
- (progn
-   (setf block-nav-move-skip-shallower t
-        block-nav-center-after-scroll t)))
+(straight-use-package 'block-nav)
+(progn
+  (setf block-nav-move-skip-shallower t
+        block-nav-center-after-scroll t))
 
 (straight-use-package 'expand-region)
 (straight-use-package 'smooth-scroll)

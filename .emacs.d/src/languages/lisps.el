@@ -49,7 +49,9 @@
   "e b" 'eval-buffer
   "e r" 'eval-region
   "c d" 'compile-defun
-  "d" 'describe-symbol)
+  "d" 'describe-symbol
+  "l l" 'package-lint-current-buffer
+  "l d" 'checkdoc)
 
 ;; All lisps
 (defun lisp-programming-modes ()

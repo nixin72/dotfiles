@@ -73,8 +73,15 @@
   "i c" (lambda () (interactive) (org-insert-structure-template "comment"))
   "i C" (lambda () (interactive) (org-insert-structure-template "center")))
 
+(defvar my-css-github
+  "<link rel='stylesheet'
+         href='https://raw.githubusercontent.com/nixin72/dotfiles/master/.emacs.d/src/languages/my-org-css.css'
+         type='text/css' />")
+
 (defvar repos-dir "/run/media/nixin72/s/repos/")
 (defvar my-site-dir (concat repos-dir "nixin72.github.com/"))
+
+(defvar talks-dir (concat repos-dir "talks/"))
 
 (setq org-publish-project-alist
       `(("nixin72.github.io:root"
@@ -108,6 +115,12 @@
          :components ("nixin72.github.io:root"
                       "nixin72.github.io:questions"
                       "nixin72.github.io:blog"
-                      "nixin72.github.io:assets"))))
+                      "nixin72.github.io:assets"))
+        ("talks:metaprogramming"
+         :base-directory ,(concat talks-dir "meta-programming")
+         :publishing-directory ,(concat talks-dir "meta-programming/pub")
+         :section-numbers nil
+         :publishing-function org-html-publish-to-html
+         :style ,my-css-github)))
 
 (provide 'my-org)

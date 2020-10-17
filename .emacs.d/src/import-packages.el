@@ -34,6 +34,11 @@
   (setf block-nav-move-skip-shallower t
         block-nav-center-after-scroll t))
 
+(straight-use-package 'hl-todo)
+(progn
+  (hl-todo-mode 1)
+  (add-hook 'text-mode-hook #'hl-todo-mode))
+
 (straight-use-package 'expand-region)
 (straight-use-package 'smooth-scroll)
 (require 'smooth-scroll)

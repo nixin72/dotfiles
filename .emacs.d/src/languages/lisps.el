@@ -22,6 +22,7 @@
   "'" 'racket-repl
   "d" 'racket-doc
   "e r" 'racket-send-region
+  "c d" 'racket-send-definition
   "e e" 'racket-send-last-sexp))
 ;(straight-use-package ' geiser :ensure t)
 
@@ -32,7 +33,7 @@
  (general-define-key
   :states '(normal visual emacs)
   :prefix ","
-  :keymaps 'common-lisp-mode-map
+  :keymaps 'lisp-mode-map
   "'" 'slime
   "e b" 'slime-eval-buffer
   "e r" 'slime-eval-region
@@ -59,6 +60,12 @@
   (parinfer-mode t)
   (highlight-parentheses-mode t))
 
+(defun scheme/racket-modes ()
+  (interactive)
+  (setq prettify-symbols-alist
+        '(("lambda" . 955)))
+  (prettify-symbols-mode t))
+
 (add-hook 'lisp-mode-hook 'lisp-programming-modes)
 (add-hook 'common-lisp-mode-hook 'lisp-programming-modes)
 (add-hook 'emacs-lisp-mode-hook 'lisp-programming-modes)
@@ -69,7 +76,10 @@
             (setq fill-column 80)
             (auto-fill-mode 1)))
 (add-hook 'clojure-mode-hook 'lisp-programming-modes)
+
 (add-hook 'racket-mode-hook 'lisp-programming-modes)
+(add-hook 'racket-mode-hook 'scheme/racket-modes)
 (add-hook 'scheme-mode-hook 'lisp-programming-modes)
+(add-hook 'scheme-mode-hook 'scheme/racket-modes)
 
 (provide 'lisps)

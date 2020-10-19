@@ -51,18 +51,51 @@
    `(org-level-3 ((t (,@headline :height 1.35 :foreground "#B5AF70"))))
    `(org-level-2 ((t (,@headline :height 1.4 :foreground "#98c379"))))
    `(org-level-1 ((t (,@headline :height 1.45 :foreground "#56b6c2"))))))
-   
+
+(defun org-presentation-start ()
+  (interactive)
+  (evil-close-folds)
+  (evil-goto-first-line)
+  (org-next-visible-heading 1)
+  (evil-open-fold)
+  (forward-line 1)
+  (evil-scroll-line-to-top (line-number-at-pos)))
+
+(defun org-presentation-next-slide ()
+  (interactive)
+  (org-next-heading)
+  (forward-line 1)
+  (evil-scroll-line-to-top (line-number-at-pos)))
+
 (defun org-next-heading ()
   (interactive)
   (evil-toggle-fold)
   (evil-next-line)
   (evil-toggle-fold))
 
+(defun org-presentation-previous-slide ()
+  (interactive)
+  (org-previous-heading)
+  (forward-line 1)
+  (evil-scroll-line-to-top (line-number-at-pos)))
+
+(defun org-previous-heading ()
+  (interactive)
+  (evil-toggle-fold)
+  (evil-previous-line)
+  (evil-toggle-fold))
+   
 (general-define-key
   :states '(normal visual emacs)
   :prefix ","
   :keymaps 'org-mode-map
-  "n" 'org-next-heading
+  "d s" 'org-presentation-start
+  "d j" 'org-presentation-next-slide
+  "d k" 'org-presentation-previous-slide
+  "j" 'org-presentation-next-slide
+  "k" 'org-presentation-previous-slide
+  "n" 'org-presentation-next-slide
+  "m" 'org-presentation-previous-slide
   "t" 'evil-toggle-fold
   "e" 'org-html-export-to-html
   "r" 'org-mode-restart

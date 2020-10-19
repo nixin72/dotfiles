@@ -13,6 +13,7 @@
 .emacs.d/session.*
 .emacs.d/straight
 .emacs.d/emojis
+.emacs.d/racket-mode
 
 # Fish stuff
 fish_prompt.fish

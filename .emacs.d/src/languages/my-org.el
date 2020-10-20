@@ -39,6 +39,7 @@
        (block-line `(,@code :height 90 :foreground "#abb2bf" :background "#343843")))
   (custom-theme-set-faces
    'user
+   `(org-table ((t (,@code-block))))
    `(org-code ((t (,@code-block))))
    `(org-block ((t (,@code-block))))
    `(org-block-begin-line ((t (,@block-line))))
@@ -105,55 +106,5 @@
   "i e" (lambda () (interactive) (org-insert-structure-template "example"))
   "i c" (lambda () (interactive) (org-insert-structure-template "comment"))
   "i C" (lambda () (interactive) (org-insert-structure-template "center")))
-
-(defvar my-css-github
-  "<link rel='stylesheet'
-         href='https://raw.githubusercontent.com/nixin72/dotfiles/master/.emacs.d/src/languages/my-org-css.css'
-         type='text/css' />")
-
-(defvar repos-dir "/run/media/nixin72/s/repos/")
-(defvar my-site-dir (concat repos-dir "nixin72.github.com/"))
-
-(defvar talks-dir (concat repos-dir "talks/"))
-
-(setq org-publish-project-alist
-      `(("nixin72.github.io:root"
-         :base-directory ,my-site-dir
-         :publishing-directory ,(concat my-site-dir "docs")
-         :section-numbers nil
-         :table-of-contents nil
-         :publishing-function org-html-publish-to-html
-         :style "<link rel='stylesheet' href='assets/my-org-css.css' type='text/css'")
-        ("nixin72.github.io:questions"
-         :base-directory ,(concat my-site-dir "questions")
-         :publishing-directory ,(concat my-site-dir "docs/questions")
-         :section-numbers nil
-         :table-of-contents nil
-         :publishing-function org-html-publish-to-html
-         :style "<link rel='stylesheet' href='../assets/my-org-css.css' type='text/css'")
-        ("nixin72.github.io:blog"
-         :base-directory ,(concat my-site-dir "blog")
-         :publishing-directory ,(concat my-site-dir "docs/blog")
-         :section-numbers nil
-         :table-of-contents nil
-         :publishing-function org-html-publish-to-html
-         :style "<link rel='stylesheet' href='../assets/my-org-css.css' type='text/css'")
-        ("nixin72.github.io:assets"
-         :base-directory ,(concat my-site-dir "assets")
-         :base-extension "css\\|el\\|js\\|jpg\\|gif\\|png"
-         :publishing-directory ,(concat my-site-dir "docs/assets")
-         :publishing-function org-publish-attachment
-         :style "<link rel='stylesheet' href='' type='text/css'")
-        ("nixin72.github.io"
-         :components ("nixin72.github.io:root"
-                      "nixin72.github.io:questions"
-                      "nixin72.github.io:blog"
-                      "nixin72.github.io:assets"))
-        ("talks:metaprogramming"
-         :base-directory ,(concat talks-dir "meta-programming")
-         :publishing-directory ,(concat talks-dir "meta-programming/pub")
-         :section-numbers nil
-         :publishing-function org-html-publish-to-html
-         :style ,my-css-github)))
 
 (provide 'my-org)

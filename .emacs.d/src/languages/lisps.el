@@ -58,13 +58,8 @@
 (defun lisp-programming-modes ()
   (interactive)
   (parinfer-mode t)
+  (prettify-symbols-mode t)
   (highlight-parentheses-mode t))
-
-(defun scheme/racket-modes ()
-  (interactive)
-  (setq prettify-symbols-alist
-        '(("lambda" . 955)))
-  (prettify-symbols-mode t))
 
 (add-hook 'lisp-mode-hook 'lisp-programming-modes)
 (add-hook 'common-lisp-mode-hook 'lisp-programming-modes)
@@ -76,10 +71,7 @@
             (setq fill-column 80)
             (auto-fill-mode 1)))
 (add-hook 'clojure-mode-hook 'lisp-programming-modes)
-
 (add-hook 'racket-mode-hook 'lisp-programming-modes)
-(add-hook 'racket-mode-hook 'scheme/racket-modes)
 (add-hook 'scheme-mode-hook 'lisp-programming-modes)
-(add-hook 'scheme-mode-hook 'scheme/racket-modes)
 
 (provide 'lisps)

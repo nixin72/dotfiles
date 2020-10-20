@@ -1,0 +1,2 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/html.org
+#+OPTIONS: toc:nil

@@ -1,0 +1,2 @@
+#+SETUPFILE: ~/.emacs.d/org-templates/main.org
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://nixin72.github.io/assets/org.css" />

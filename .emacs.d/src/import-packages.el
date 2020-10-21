@@ -1,10 +1,11 @@
+(setq straight-vc-git-default-protocol 'ssh)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Editing packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(straight-use-package 'smartparens
- :config
- (progn
-   (smartparens-global-mode t)))
+(straight-use-package 'smartparens)
+(progn
+  (smartparens-global-mode t))
 
 (straight-use-package 'parinfer
  :config
@@ -29,10 +30,14 @@
  (progn
    (highlight-parentheses-mode t)))
 
-(straight-use-package 'block-nav)
-(progn
+(straight-use-package
+ '(block-nav :host github :repo "nixin72/block-nav.el"))
+(progn  
   (setf block-nav-move-skip-shallower t
         block-nav-center-after-scroll t))
+
+(straight-use-package
+ '(fixmee :host github :repo "nixin72/fixmee"))
 
 (straight-use-package 'hl-todo)
 (progn

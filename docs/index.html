@@ -83,23 +83,63 @@
     <script>
 			document.querySelector("#search-bar").focus();
 
+      const defaultEngine = "https://www.startpage.com/sp/search?q=";
+      const subredditEngine = "https://old.reddit.com/r/";
+
+      const mySearchEngines = {
+          github: "https://github.com/search?q=",
+          reddit: "https://old.reddit.com/search/?q=",
+          wiki: "https://en.wikipedia.org/w/index.php?search=",
+          netflix: "https://www.netflix.com/search?q=",
+          racket: "https://docs.racket-lang.org/search/index.html?q="
+      }
+
+      const myWebSites = {
+				github: "https://github.com/nixin72",
+				reddit: "https://old.reddit.com",
+				facebook: "https://facebook.com",
+				wakatime: "https://wakatime.com",
+				waka: "https://wakatime.com",
+				moodle: "https://moodle.concordia.ca",
+				myconcordia: "https://my.concordia.ca/psp/upprpr9/?cmd=login&languageCd=ENG",
+				netflix: "https://netflix.com",
+				gmail: "https://mail.google.com",
+				drive: "https://drive.google.com",
+				maps: "https://maps.google.com",
+				proton: "https://mail.protonmail.com/login",
+      }
+     
+      function websiteSearch(searchTerm) {
+        return myWebSites[searchTerm];
+      }
+
+      function subredditSearch(searchTerm) {
+        let isSubredditSearch = searchTerm.substring(0,1) === "r/";
+        if (isSubredditSearch) {
+            return subredditEnginer + searchTerm.substring(2);
+        }
+          
+        return false;
+      }
+
+      function specificEngineSearch(searchTerm) {
+        let searchEngine = searchTerm.substring(0, searchTerm.indexOf(" "));
+        if (mySearchEngines[searchEngine]) {
+          let search = searchTerm.substring(searchTerm.indexOf(" "));
+          return mySearchEngines[searchEngine] + search;  
+        }
+        else {
+            return false;
+        }
+      }
+
 			document.querySelector("#home-search").onsubmit = e => {
 				e.preventDefault();
 				let search = document.querySelector("#search-bar").value;
-				let url = `https://duckduckgo.com/?q=${search}`
-				switch (search) {
-					case "github": url = "https://github.com"; break;
-					case "reddit": url = "https://old.reddit.com"; break;
-					case "facebook": url = "https://facebook.com"; break;
-					case "wakatime": url = "https://wakatime.com"; break;
-					case "moodle": url = "https://moodle.concordia.ca"; break;
-					case "myconcordia": url = "https://my.concordia.ca/psp/upprpr9/?cmd=login&languageCd=ENG"; break;
-					case "netflix": url = "https://netflix.com"; break;
-					case "gmail": url = "https://mail.google.com"; break;
-					case "drive": url = "https://drive.google.com"; break;
-					case "maps": url = "https://maps.google.com"; break;
-					case "proton": url = "https://mail.protonmail.com/login"; break;
-				}
+				let url = websiteSearch(search) ||
+                  searchEngineSearch(search) ||
+                  subredditSearch(search) ||
+                  defaultEngine + search;
 
 				window.location.href = url;
 			}

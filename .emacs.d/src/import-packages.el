@@ -1,3 +1,33 @@
+(defmacro nixin/import! (&rest packages)
+  `(progn ,@(mapcar (lambda (p)
+                      (if (listp p)
+                          `(progn (straight-use-package ',(car p))
+                                  (progn ,@(cdr p)))
+                        `(straight-use-package ',p)))
+                    packages)))
+
+(nixin/import!
+ expand-region
+ smooth-scroll
+ all-the-icons
+ dash
+ column-enforce-mode
+ flycheck
+ ace-jump-mode
+ (smartparens
+  (smartparens-global-mode t))
+ (parinfer
+  (add-hook 'racket-mode-hook 'parinfer-mode))
+ (highlight-indent-guides
+  (setq highlight-indent-guides-method 'bitmap)
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+ (rainbow-delimiters
+  (rainbow-delimiters-mode t))
+ (highlight-parentheses
+  (highlight-parentheses-mode t))
+ lispy)
+
+
 (setq straight-vc-git-default-protocol 'ssh)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

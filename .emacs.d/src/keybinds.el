@@ -90,6 +90,10 @@
    "w h" 'split-window-vertically
    "w ." 'split-window-horizontally
    "w /" 'split-window-vertically
+   "w m j" 'evil-window-move-very-bottom
+   "w m h" 'evil-window-move-far-left
+   "w m k" 'evil-window-move-very-top
+   "w m l" 'evil-window-move-far-right
    ;; Text
    "t a" 'mark-whole-buffer
    "t w c" 'count-words

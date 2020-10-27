@@ -276,62 +276,61 @@
 
   ;; Clojure
   (map!
-   :localleader :map 'cide-mode-map
-   "'" 'cider-jack-in
-   "\"" 'cider-jack-in-cljs
-   "`" 'cider-jack-in-clj&clj)
+   :localleader :map cider-mode-map
+   "'" #'cider-jack-in
+   "\"" #'cider-jack-in-cljs
+   "`" #'cider-jack-in-clj&clj)
 
   ;; Racket
   (map!
-   :localleader :map 'racket-mode-map
-   "r" 'racket-run
-   "'" 'racket-repl
-   "d" 'racket-doc
-   "e r" 'racket-send-region
-   "c d" 'racket-send-definition
-   "e e" 'racket-send-last-sexp)
+   :localleader :map racket-mode-map
+   "r" #'racket-run
+   "'" #'racket-repl
+   "d" #'racket-doc
+   "e r" #'racket-send-region
+   "c d" #'racket-send-definition
+   "e e" #'racket-send-last-sexp)
 
   ;; Common Lisp
   (map!
-   :n :localleader :map 'lisp-mode-map
-   "'" 'slime
-   "e b" 'slime-eval-buffer
-   "e r" 'slime-eval-region
-   "c d" 'slime-compile-defun
-   "c l" 'slime-compile-and-load-file
-   "d" 'slide-describe-symbol
-   "i" 'slime-interrupt)
+   :localleader :map lisp-mode-map
+   "'" #'slime
+   "e b" #'slime-eval-buffer
+   "e r" #'slime-eval-region
+   "c d" #'slime-compile-defun
+   "c l" #'slime-compile-and-load-file
+   "d" #'slide-describe-symbol
+   "i" #'slime-interrupt)
 
   ;; Emacs Lisp
   (map!
-   :n :localleader :map 'emacs-lisp-mode-map
-   "d" 'describe-symbol
-   (:prefix ("e" . "Eval")
-    :desc "Buffer" "b" 'eval-buffer
-    :desc "Region" "r" 'eval-region)
-   (:prefix ("c" . "Compile")
-    :desc "Defun" "d" 'compile-defun)
-   (:prefix ("l" . "Lint")
-    :desc "Lint buffer" "l" 'package-lint-current-buffer
-    :desc "Lint comments" "d" 'checkdoc))
+   :localleader :map emacs-lisp-mode-map
+   :desc "Describe" "h" #'describe-symbol
+   (:prefix "e"
+    :desc "Buffer" "b" #'eval-buffer
+    :desc "Region" "r" #'eval-region)
+   (:prefix "l"
+    :desc "Lint buffer" "l" #'package-lint-current-buffer
+    :desc "Lint comments" "d" #'checkdoc))
 
   ;; Org-mode
   (map!
-   :localleader :map 'org-mode-map
-   "d s" 'org-presentation-start
-   "d j" 'org-presentation-next-slide
-   "d k" 'org-presentation-previous-slide
-   "j" 'org-presentation-next-slide
-   "k" 'org-presentation-previous-slide
-   "n" 'org-presentation-next-slide
-   "m" 'org-presentation-previous-slide
-   "t" 'evil-toggle-fold
-   "e" 'org-html-export-to-html
-   "r" 'org-mode-restart
-   "p" 'org-publish-current-project
-   "i s" '(lambda () (interactive) (org-insert-structure-template "src"))
-   "i q" '(lambda () (interactive) (org-insert-structure-template "quote"))
-   "i e" '(lambda () (interactive) (org-insert-structure-template "example"))
-   "i c" '(lambda () (interactive) (org-insert-structure-template "comment"))
-   "i C" '(lambda () (interactive) (org-insert-structure-template "center")))
+   :localleader :map org-mode-map
+   "d s" #'org-presentation-start
+   "d j" #'org-presentation-next-slide
+   "d k" #'org-presentation-previous-slide
+   "j" #'org-presentation-next-slide
+   "k" #'org-presentation-previous-slide
+   "n" #'org-presentation-next-slide
+   "m" #'org-presentation-previous-slide
+   "t" #'evil-toggle-fold
+   "e" #'org-html-export-to-html
+   "r" #'org-mode-restart
+   "p" #'org-publish-current-project
+   "i" nil
+   "i s" #'(lambda () (interactive) (org-insert-structure-template "src"))
+   "i q" #'(lambda () (interactive) (org-insert-structure-template "quote"))
+   "i e" #'(lambda () (interactive) (org-insert-structure-template "example"))
+   "i c" #'(lambda () (interactive) (org-insert-structure-template "comment"))
+   "i C" #'(lambda () (interactive) (org-insert-structure-template "center")))
   )

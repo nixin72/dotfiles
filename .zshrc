@@ -50,7 +50,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias ls=$HOME/.gem/ruby/2.7.0/bin/colorls
+function lg () {
+	exa -lha --git
+}
+
+alias ls=exa -lha --git
 alias demacs=emacs --daemon
 alias temacs=emacsclient -t
 alias wemacs=emacsclient -c -F '((width . 1000) (height . 500) (font . "Fira Code-12"))'
@@ -68,6 +72,9 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='emacsclient -t'
 fi
+
+source $HOME/.cargo/env
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"

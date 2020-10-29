@@ -32,7 +32,6 @@
 ;; `nil' to disable it:
 (setq display-line-numbers-type nil)
 
-
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -48,6 +47,54 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Extra packages to install ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(progn
+  (use-package hide-mode-line)
+  (after! mini-modeline
+    (mini-modeline-mode t)
+    (setq mini-modeline-face-attr '(:background "#1c1e24")
+          mini-modeline-r-format
+          '("%e" (:eval (number-to-string (winum-get-number)))
+            " "
+            evil-mode-line-tag
+            " "
+            mode-line-modified
+            mode-line-buffer-identification
+            " "
+            mode-line-position
+            (:eval (symbol-name major-mode))
+            "   "
+            (:eval (magit-get-current-branch))
+            "  "
+            (:eval (format-time-string "%H:%M%P")))
+          mini-modeline-l-format nil))
+  )
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; Web-mode settings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(progn
+  (defun insert-html-form ()
+    (interactive)
+    (save-excursion
+      (insert "<form>\n\n</form>"))
+    (sgml-indent-line)
+    (forward-line 2)
+    (sgml-indent-line)
+    (forward-line -1))
+
+  (defun insert-html-input ()
+    (interactive)
+    (save-excursion
+      (insert "<input type=\"\" name=\"\" />"))
+    (forward-char 12)
+    (sgml-indent-line))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Org-mode settings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -79,7 +126,7 @@
   (setq org-startup-indented t
         org-startup-with-inline-images t
         org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
-        org-ellipsis "  " ;; folding symbol
+        org-ellipsis "  "             ;; folding symbol
         org-pretty-entities t
         org-hide-emphasis-markers t
         ;; show actually italicized text instead of /italicized text/
@@ -333,4 +380,28 @@
    "i e" #'(lambda () (interactive) (org-insert-structure-template "example"))
    "i c" #'(lambda () (interactive) (org-insert-structure-template "comment"))
    "i C" #'(lambda () (interactive) (org-insert-structure-template "center")))
+
+  (map!
+   :localleader :map web-mode-map
+   (:prefix ("i" . "Insert")
+    (:prefix ("h" . "Header")
+     "1" 'html-headline-1
+     "2" 'html-headline-2
+     "3" 'html-headline-3
+     "4" 'html-headline-4
+     "5" 'html-headline-5
+     "6" 'html-headline-6)
+    (:prefix ("l" . "List")
+     "o" 'html-ordered-list
+     "u" 'html-unordered-list
+     "i" 'html-list-item)
+    "d" 'html-div
+    "s" 'html-span
+    "I" 'html-image
+    "a" 'html-href-anchor
+    "p" 'html-paragraph
+    "f" 'insert-html-form
+    "i" 'insert-html-input)
+   "c" 'sgml-close-tag
+   "f" 'format)
   )

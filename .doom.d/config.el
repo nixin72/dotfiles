@@ -362,7 +362,7 @@
 
   ;; Org-mode
   (map!
-   :localleader :map org-mode-map
+   :n :localleader :map org-mode-map
    "d s" #'org-presentation-start
    "d j" #'org-presentation-next-slide
    "d k" #'org-presentation-previous-slide
@@ -374,6 +374,9 @@
    "e" #'org-html-export-to-html
    "r" #'org-mode-restart
    "p" #'org-publish-current-project
+   "a" nil
+   "a d" #'org-time-stamp
+   "a t" #'org-insert-todo-heading
    "i" nil
    "i s" #'(lambda () (interactive) (org-insert-structure-template "src"))
    "i q" #'(lambda () (interactive) (org-insert-structure-template "quote"))

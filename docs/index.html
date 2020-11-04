@@ -116,7 +116,7 @@
       }
 
       function subredditSearch(searchTerm) {
-        let isSubredditSearch = searchTerm.substring(0,1) === "r/";
+        let isSubredditSearch = searchTerm.substring(0,2) == "r/";
         if (isSubredditSearch) {
             return subredditEnginer + searchTerm.substring(2);
         }

@@ -29,4 +29,3 @@ fizzbuzz
 elif
 forall
 nl
-FizzBuzz

@@ -195,7 +195,7 @@
 ;;;;;;;;;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (progn
-  (map! "," nil)
+  (map! :i "," (insert ","))
   (setf doom-localleader-key ",")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -362,7 +362,7 @@
 
   ;; Org-mode
   (map!
-   :n :localleader :map org-mode-map
+   :localleader :map org-mode-map
    "d s" #'org-presentation-start
    "d j" #'org-presentation-next-slide
    "d k" #'org-presentation-previous-slide

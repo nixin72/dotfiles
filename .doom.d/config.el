@@ -58,8 +58,11 @@
 ;;;;;;;;;; Extra packages to install ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (progn
-  (use-package hide-mode-line)
+  (after! block-nav
+    (setq block-nav-center-after-scroll t
+          block-nav-skip-comment t))
   (after! mini-modeline
+    (doom-modeline-mode nil)
     (mini-modeline-mode t)
     (setq mini-modeline-face-attr '(:background "#1c1e24")
           mini-modeline-r-format
@@ -78,8 +81,6 @@
             (:eval (format-time-string "%H:%M%P")))
           mini-modeline-l-format nil))
   )
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Web-mode settings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -207,8 +208,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Treemacs keybinds ;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Navigation
-  (map!
+  (map! ;; Treemacs navigation
    :after treemacs-evil
    :map evil-treemacs-state-map
    "j" 'treemacs-next-line
@@ -220,8 +220,7 @@
    "d" 'treemacs-root-down
    "R" 'treemacs-change-root)
 
-  ;; Opening nodes
-  (map!
+  (map! ;; Treemacs opening nodes
    :after treemacs-evil
    :map evil-treemacs-state-map
    "o" nil
@@ -231,8 +230,7 @@
    "h" 'treemacs-visit-node-vertical-split
    "e" 'treemacs-visit-node-in-external-application)
 
-  ;; Files stuffs
-  (map!
+  (map! ;; Treemacs files stuffs
    :after treemacs-evil
    :map evil-treemacs-state-map
    "f" nil
@@ -244,8 +242,7 @@
    "m" 'treemacs-move-file
    "y" 'treemacs-copy-file)
 
-  ;; Toggles
-  (map!
+  (map! ;; Treemacs toggles
    :after treemacs-evil
    :map evil-treemacs-state-map
    "t" nil
@@ -257,8 +254,7 @@
    "h" 'treemacs-toggle-show-dotfiles
    "r" 'treemacs-toggle-fixed-width)
 
-  ;; Project stuffs
-  (map!
+  (map! ;; Treemacs project stuffs
    :after treemacs-evil
    :map evil-treemacs-state-map
    "p" nil
@@ -268,8 +264,7 @@
    "x" 'treemacs-remove-project-from-workspace
    "c" 'treemacs-collapse-project)
 
-  ;; Workspaces
-  (map!
+  (map! ;; Treemacs workspaces
    :after treemacs-evil
    :map evil-treemacs-state-map
    "w" nil
@@ -281,8 +276,7 @@
    "s" 'treemacs-switch-workspace
    "f" 'treemacs-set-fallback-workspace)
 
-  ;; Misc
-  (map!
+  (map! ;; Treemacs misc
    :after treemacs-evil
    :map evil-treemacs-state-map
    "r" 'treemacs-refresh
@@ -330,18 +324,25 @@
    "<f12>" #'kill-buffer-and-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Some evil modifications ;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (map!
+   :n "H" #'block-nav-previous-indentation-level
+   :n "J" #'block-nav-next-block
+   :n "K" #'block-nav-previous-block
+   :n "L" #'block-nav-next-indentation-level)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Language-specific keybinds ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; Clojure
-  (map!
+  (map! ;; Clojure
    :localleader :map cider-mode-map
    "'" #'cider-jack-in
    "\"" #'cider-jack-in-cljs
    "`" #'cider-jack-in-clj&clj)
 
-  ;; Racket
-  (map!
+  (map! ;; Racket
    :localleader :map racket-mode-map
    "'" #'racket-repl
    "d" #'racket-doc
@@ -349,8 +350,7 @@
    "c d" #'racket-send-definition
    "e e" #'racket-send-last-sexp)
 
-  ;; Common Lisp
-  (map!
+  (map! ;; Common Lisp
    :localleader :map lisp-mode-map
    "'" #'slime
    "e b" #'slime-eval-buffer
@@ -360,16 +360,14 @@
    "d" #'slide-describe-symbol
    "i" #'slime-interrupt)
 
-  ;; Emacs Lisp
-  (map!
+  (map! ;; Emacs Lisp
    :localleader :map emacs-lisp-mode-map
    :desc "Describe" "h" #'describe-symbol
    (:prefix "l"
     :desc "Lint buffer" "l" #'package-lint-current-buffer
     :desc "Lint comments" "d" #'checkdoc))
 
-  ;; Org-mode
-  (map!
+  (map! ;; Org-mode
    :localleader :map org-mode-map
    ":" #'org-babel-execute-src-block
    "B" #'org-babel-execute-buffer
@@ -393,7 +391,7 @@
    :desc "Insert comment" "i c" (cmd! (org-insert-structure-template "comment"))
    :desc "Insert center" "i C" (cmd! (org-insert-structure-template "centre")))
 
-  (map!
+  (map! ;; Web mode
    :localleader :map web-mode-map
    "i" nil
    (:prefix ("i" . "Insert")

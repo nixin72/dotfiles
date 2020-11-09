@@ -31,6 +31,7 @@
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
 (setq display-line-numbers-type nil)
+(setq ispell-dictionary "en_CA")
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -47,6 +48,11 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+
+(org-babel-do-load-languages
+ '((js . t)
+   (scheme . t)
+   (lisp . t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Extra packages to install ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -305,7 +311,13 @@
    "7" #'winum-select-window-7
    "8" #'winum-select-window-8
    "9" #'winum-select-window-9
-   "v" #'er/expand-region)
+   "v" #'er/expand-region
+   "s s" nil
+   (:prefix ("s s" . "Header")
+    "a" #'spell-fu-word-add
+    "x" #'spell-fu-word-remove
+    "n" #'spell-fu-goto-next-error
+    "p" #'spell-fu-goto-next-error))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; when too close to god ;;;;;;;;;;;;;;
@@ -331,7 +343,6 @@
   ;; Racket
   (map!
    :localleader :map racket-mode-map
-   "r" #'racket-run
    "'" #'racket-repl
    "d" #'racket-doc
    "e r" #'racket-send-region
@@ -353,9 +364,6 @@
   (map!
    :localleader :map emacs-lisp-mode-map
    :desc "Describe" "h" #'describe-symbol
-   (:prefix "e"
-    :desc "Buffer" "b" #'eval-buffer
-    :desc "Region" "r" #'eval-region)
    (:prefix "l"
     :desc "Lint buffer" "l" #'package-lint-current-buffer
     :desc "Lint comments" "d" #'checkdoc))
@@ -363,6 +371,8 @@
   ;; Org-mode
   (map!
    :localleader :map org-mode-map
+   ":" #'org-babel-execute-src-block
+   "B" #'org-babel-execute-buffer
    "d s" #'org-presentation-start
    "d j" #'org-presentation-next-slide
    "d k" #'org-presentation-previous-slide
@@ -372,20 +382,20 @@
    "m" #'org-presentation-previous-slide
    "t" #'evil-toggle-fold
    "e" #'org-html-export-to-html
-   "r" #'org-mode-restart
    "p" #'org-publish-current-project
    "a" nil
    "a d" #'org-time-stamp
    "a t" #'org-insert-todo-heading
    "i" nil
-   "i s" #'(lambda () (interactive) (org-insert-structure-template "src"))
-   "i q" #'(lambda () (interactive) (org-insert-structure-template "quote"))
-   "i e" #'(lambda () (interactive) (org-insert-structure-template "example"))
-   "i c" #'(lambda () (interactive) (org-insert-structure-template "comment"))
-   "i C" #'(lambda () (interactive) (org-insert-structure-template "center")))
+   :desc "Insert source block" "i s" (cmd! (org-insert-structure-template "src"))
+   :desc "insert block quote" "i q" (cmd! (org-insert-structure-template "quote"))
+   :desc "Insert example" "i e" (cmd! (org-insert-structure-template "example"))
+   :desc "Insert comment" "i c" (cmd! (org-insert-structure-template "comment"))
+   :desc "Insert center" "i C" (cmd! (org-insert-structure-template "centre")))
 
   (map!
    :localleader :map web-mode-map
+   "i" nil
    (:prefix ("i" . "Insert")
     (:prefix ("h" . "Header")
      "1" 'html-headline-1

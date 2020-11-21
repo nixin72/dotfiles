@@ -59,6 +59,9 @@ alias demacs=emacs --daemon
 alias temacs=emacsclient -t
 alias wemacs=emacsclient -c -F '((width . 1000) (height . 500) (font . "Fira Code-12"))'
 
+function work { cd /s/work/$1 }
+function repos { cd /s/repos/$1 }
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -75,6 +78,7 @@ fi
 
 source $HOME/.cargo/env
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"

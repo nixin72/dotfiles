@@ -54,6 +54,9 @@
 (package! block-nav
   :recipe (:host github :repo "nixin72/block-nav.el"))
 
+(package! ob-racket
+  :recipe (:host github :repo "togakangaroo/ob-racket"))
+
 (package! mini-modeline)
 
 (package! lsp-java)

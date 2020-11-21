@@ -9,28 +9,9 @@
 (setq user-full-name "Philip"
       user-mail-address "phdumaresq@protonmail.com")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 14))
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. These are the defaults.
-(setq doom-theme 'doom-one)
-
 ;; If you intend to use org, it is recommended you change this!
 (setq org-directory "~/org/")
 
-;; If you want to change the style of line numbers, change this to `relative' or
-;; `nil' to disable it:
-(setq display-line-numbers-type nil)
 (setq ispell-dictionary "en_CA")
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -49,10 +30,92 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
-(org-babel-do-load-languages
- '((js . t)
-   (scheme . t)
-   (lisp . t)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;; UI Changes/improvemenets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(progn
+  ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+  ;; are the three important ones:
+  ;;
+  ;; + `doom-font'
+  ;; + `doom-variable-pitch-font'
+  ;; + `doom-big-font' -- used for `doom-big-font-mode'
+  ;;
+  ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+  ;; font string. You generally only need these two:
+  (setq doom-font (font-spec :family "Fira Code" :size 14))
+
+  ;; There are two ways to load a theme. Both assume the theme is installed and
+  ;; available. You can either set `doom-theme' or manually load a theme with the
+  ;; `load-theme' function. These are the defaults.
+  (setq doom-theme 'doom-one)
+
+  ;; If you want to change the style of line numbers, change this to `relative' or
+  ;; `nil' to disable it:
+  (setq display-line-numbers-type nil)
+
+  (defvar dock-side 'right)
+
+  (defun set-dock-side ()
+    (set-popup-rules!
+      (when (featurep! +all)
+        `(("^\\*"  :side ,dock-side :slot 1 :vslot -1 :select t)
+          ("^ \\*" :side ,dock-side :slot 1 :vslot -1 :size +popup-shrink-to-fit)))
+      (when (featurep! +defaults)
+        `(("^\\*Completions" :ignore t)
+          ("^\\*Local variables\\*$"
+           :side ,dock-side :vslot -1 :slot 1 :size +popup-shrink-to-fit)
+          ("^\\*\\(?:[Cc]ompil\\(?:ation\\|e-Log\\)\\|Messages\\)"
+           :side ,dock-side :vslot -2 :size 0.3  :autosave t :quit t :ttl nil)
+          ("^\\*\\(?:doom \\|Pp E\\)" ; transient buffers (no interaction required)
+           :side ,dock-side :vslot -3 :size +popup-shrink-to-fit :autosave t :select ignore :quit t :ttl 0)
+          ("^\\*doom:"                  ; editing buffers (interaction required)
+           :side ,dock-side :vslot -4 :size 0.35 :autosave t :select t :modeline t :quit nil :ttl t)
+          ("^\\*doom:\\(?:v?term\\|e?shell\\)-popup" ; editing buffers (interaction required)
+           :side ,dock-side :vslot -5 :size 0.35 :select t :modeline nil :quit nil :ttl nil)
+          ("^\\*\\(?:Wo\\)?Man "
+           :side ,dock-side :vslot -6 :size 0.45 :select t :quit t :ttl 0)
+          ("^\\*Calc"
+           :side ,dock-side :vslot -7 :side ,side :size 0.4 :select t :quit nil :ttl 0)
+          ("^\\*Customize"
+           :side ,dock-side :slot 2 :size 0.5 :select t :quit nil)
+          ("^ \\*undo-tree\\*"
+           :slot 2 :side left :size 20 :select t :quit t)
+          ;; `help-mode', `helpful-mode'
+          ("^\\*[Hh]elp"
+           :side ,doc,,k-side :slot 2 :vslot -8 :size 0.35 :select t)
+          ("^\\*eww\\*"                 ; `eww' (and used by dash docsets)
+           :side ,dock-side :vslot -11 :size 0.35 :select t)
+          ("^\\*info\\*$"               ; `Info-mode'
+           :side ,dock-side :slot 2 :vslot 2 :size 0.45 :select t)))
+      `(("^\\*Warnings" :side ,dock-side :vslot 99 :size 0.25)
+        ("^\\*Backtrace" :side ,dock-side :vslot 99 :size 0.4 :quit nil)
+        ("^\\*CPU-Profiler-Report "    :side ,dock-side :vslot 100 :slot 1 :height 0.4 :width 0.5 :quit nil)
+        ("^\\*Memory-Profiler-Report " :side ,dock-side :vslot 100 :slot 2 :height 0.4 :width 0.5 :quit nil)
+        ("^\\*Process List\\*" :side ,dock-side :vslot 101 :size 0.25 :select t :quit t)
+        ("^\\*\\(?:Proced\\|timer-list\\|Abbrevs\\|Output\\|Occur\\|unsent mail\\)\\*" :ignore t)))
+    )
+
+  (defun dock-to-side ()
+    (interactive)
+    (setq dock-side 'right)
+    (set-dock-side))
+
+  (defun dock-to-bottom ()
+    (interactive)
+    (setq dock-side 'bottom)
+    (set-dock-side))
+
+  (defun dock-toggle ()
+    (interactive)
+    (setq dock-side (case dock-side
+                      ('bottom 'right)
+                      ('right 'bottom)))
+    (set-dock-side))
+  )
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Extra packages to install ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -62,8 +125,6 @@
     (setq block-nav-center-after-scroll t
           block-nav-skip-comment t))
   (after! mini-modeline
-    (doom-modeline-mode nil)
-    (mini-modeline-mode t)
     (setq mini-modeline-face-attr '(:background "#1c1e24")
           mini-modeline-r-format
           '("%e" (:eval (number-to-string (winum-get-number)))
@@ -111,8 +172,9 @@
   (straight-use-package 'htmlize)
 
   (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((lisp . t)))
+   '((js . t)
+     (scheme . t)
+     (lisp . t)))
 
   (add-hook
    'org-mode-hook
@@ -317,8 +379,8 @@
 ;;; when too close to god ;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   (map!
-   "M-[" #'centaur-tabs-backward
-   "M-]" #'centaur-tabs-forward
+   :envm "M-[" #'centaur-tabs-backward
+   :envm "M-]" #'centaur-tabs-forward
    "<f10>" #'kill-current-buffer
    "<f11>" #'delete-window
    "<f12>" #'kill-buffer-and-window)
@@ -343,12 +405,15 @@
    "`" #'cider-jack-in-clj&clj)
 
   (map! ;; Racket
-   :localleader :map racket-mode-map
-   "'" #'racket-repl
-   "d" #'racket-doc
-   "e r" #'racket-send-region
-   "c d" #'racket-send-definition
-   "e e" #'racket-send-last-sexp)
+   :map racket-mode-map
+   :i "[" #'self-insert-command
+   :i "]" #'self-insert-command
+   (:localleader
+    "'" #'racket-repl
+    "d" #'racket-doc
+    "e r" #'racket-send-region
+    "c d" #'racket-send-definition
+    "e e" #'racket-send-last-sexp))
 
   (map! ;; Common Lisp
    :localleader :map lisp-mode-map
@@ -365,7 +430,11 @@
    :desc "Describe" "h" #'describe-symbol
    (:prefix "l"
     :desc "Lint buffer" "l" #'package-lint-current-buffer
-    :desc "Lint comments" "d" #'checkdoc))
+    :desc "Lint comments" "d" #'checkdoc)
+   :n "[" #'lispy-backward
+   :n "]" #'lispy-forward
+   :i "[" (cmd! (insert "["))
+   :i "]" (cmd! (insert "]")))
 
   (map! ;; Org-mode
    :localleader :map org-mode-map
@@ -414,5 +483,4 @@
     "f" 'insert-html-form
     "i" 'insert-html-input)
    "c" 'sgml-close-tag
-   "f" 'format)
-  )
+   "f" 'format))

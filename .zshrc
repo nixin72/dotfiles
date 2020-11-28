@@ -73,7 +73,7 @@ function repos { cd /s/repos/$1 }
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='emacsclient -t'
+  export EDITOR='vim'
 fi
 
 source $HOME/.cargo/env

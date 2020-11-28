@@ -357,6 +357,8 @@
   (map!
    :leader
    "SPC" #'counsel-M-x
+   "?" #'+default/search-project
+   "/" #'evilnc-comment-or-uncomment-lines
    "0" #'treemacs-select-window
    "1" #'winum-select-window-1
    "2" #'winum-select-window-2

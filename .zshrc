@@ -77,11 +77,14 @@ else
 fi
 
 source $HOME/.cargo/env
+
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
+
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"

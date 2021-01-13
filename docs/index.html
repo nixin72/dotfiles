@@ -96,32 +96,34 @@
       }
 
       const myWebSites = {
-				github: "https://github.com/nixin72",
-				reddit: "https://old.reddit.com",
+        github: "https://github.com/nixin72",
+        reddit: "https://old.reddit.com",
         deepl: "https://www.deepl.com/translator",
-				facebook: "https://facebook.com",
-				wakatime: "https://wakatime.com",
-				waka: "https://wakatime.com",
-				moodle: "https://moodle.concordia.ca",
-				myconcordia: "https://my.concordia.ca/psp/upprpr9/?cmd=login&languageCd=ENG",
-				netflix: "https://netflix.com",
-				gmail: "https://mail.google.com",
-				drive: "https://drive.google.com",
-				maps: "https://maps.google.com",
-				proton: "https://mail.protonmail.com/login",
+        facebook: "https://facebook.com",
+        wakatime: "https://wakatime.com",
+        waka: "https://wakatime.com",
+        moodle: "https://moodle.concordia.ca",
+        myconcordia: "https://my.concordia.ca/psp/upprpr9/?cmd=login&languageCd=ENG",
+        netflix: "https://netflix.com",
+        gmail: "https://mail.google.com",
+        drive: "https://drive.google.com",
+        maps: "https://maps.google.com",
+        proton: "https://mail.protonmail.com/login",
         swish: "https://swish.swi-prolog.org",
         google: "https://google.com",
         "348": "https://comp-348.github.com",
         "disney+": "https://disneyplus.com",
-      }
-     
-      function websiteSearch(searchTerm) {
-        return myWebSites[searchTerm];
-      }
-
-      function subredditSearch(searchTerm) {
-        let isSubredditSearch = searchTerm.substring(0,2) == "r/";
-        if (isSubredditSearch) {
+        oryx: "https://configure.ergodox-ez.com/moonlander/layouts/DaQLb/latest/0",
+        typing: "https://www.keyhero.com/free-typing-test/"
+      }                                                                          				
+                                                                                 				
+      function websiteSearch(searchTerm) {                                       				
+        return myWebSites[searchTerm];                                           				
+      }                                                                          				
+                                                                                 				
+      function subredditSearch(searchTerm) {                                     				
+        let isSubredditSearch = searchTerm.substring(0,2) == "r/";               				
+        if (isSubredditSearch) {                                                 				
             return subredditEngine + searchTerm.substring(2);
         }
           

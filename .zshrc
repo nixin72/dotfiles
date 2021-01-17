@@ -80,6 +80,8 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+export PATH=$HOME/.npm-packages/bin:$PATH
+export NODE_PATH=$HOME/.npm-packages/lib/node_modules
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"

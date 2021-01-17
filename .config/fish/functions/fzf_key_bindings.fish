@@ -1,1 +1,0 @@
-/home/nixin72/.fzf/shell/key-bindings.fish

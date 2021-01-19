@@ -1,47 +1,35 @@
 # Dotfiles
 
-This is where my configs are for my Linux setup. 
+This is where my configs are for my Linux setup. Currently migrating to NixOS, which will hopefully help simplify this whole mess. 
 
 ## Basics:
-- OS: Manjaro Linux
-- DE: KDE Plasma 
-- Shell: Fish
+- OS: NixOS
+- DE: GNOME and i3 separately
+- Shell: Zsh
 - Editor: Emacs
 - Terminal Emulator: Alacritty
 
 ## Development tools:
-- Fish shell
+- Zsh
 - Emacs
 - Alacritty
 
 ## Theme
 - Atom-One Dark theme all around
-- Fish theme: Spaceship|Agnoster
+- Zsh promp - starship
 - Fira Code 
 
-## Installing
-
-**NOTE:** This won't work yet
-
-To install on Linux or MacOS, just run 
-```bash
-curl -fsSL https://raw.githubusercontent.com/nixin72/dotfiles/master/install.sh | sh
-```
-
-To install on Windows: 
-- First install git
-```
-git clone git@github.com:nixin72/dotfiles.git
-```
-And then copy whatever you're looking for. Things that work on Windows:
+Some of these dotfiles will work on Windows or MacOS too.
+Things that work on Windows:
 - Emacs
 - Alacritty
 - VSCode 
-- Fish (when in WSL)
+- Zsh (when in WSL)
 - git configs
 - Custom browser homepage
 
-## TODO
-- Merge the i3 configs since I have no idea what happend, but there's things I want from both
-- Put i3 (i3.conf, polybar and compton) files into the correct subdirectories - need to use i3 again to know where that is
-- Bootstrap `install.sh`
+## Recent Changes
+- Replaced i3 config with a shi~~tt~~ny new one
+- Replaced Fish with Zsh. I never used any of the Fish funtions I wrote anyways.
+- Added new NixOS configs. These replace the install scripts cause they're redundant now.
+- Going to work on making a decent, stable status bar with polybar.

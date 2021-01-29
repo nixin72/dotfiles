@@ -40,6 +40,7 @@
       <div id="home-center">
 	<h1 id="home-title">Welcome, Philip</h1>
 	<p id="home-subtitle">Where to today?</p>
+    <div id="time"></div>
 
 	<form id="home-search" action="https://duckduckgo.com/">
 	  <input id="search-bar" type="textbox" name="q" placeholder="Search" />
@@ -48,9 +49,6 @@
 	</form>
 
 	<nav id="home-nav" class="site-nav">
-	  <!-- <div class="work"> -->
-	  <!--   <h4>Work</h4> -->
-	  <!-- </div> -->
 	  <div id="school">
 	    <h4>School</h4>
 	    <a href="https://moodle.concordia.ca/">Moodle</a>
@@ -81,7 +79,15 @@
     <script src="https://chandlerc.github.io/js/main.min.35ccbf1cdceb91e4c64c06b5d009d6e2977fafe56beda7762febd4e67528d2ac.js"
 	integrity="sha256-Ncy/HNzrkeTGTAa10AnW4pd/r+Vr7ad2L+vU5nUo0qw="></script>
     <script>
-			document.querySelector("#search-bar").focus();
+      setInterval(() => {
+        const time = new Date();
+        const [h,m] = [time.getHours(), time.getMinutes()];
+
+        const timeDisplay = `${h}:${m}`;
+        document.querySelector("#time").innerText = timeDisplay;
+      }, 1000);
+
+      document.querySelector("#search-bar").focus();
 
       const defaultEngine = "https://www.qwant.com/?t=web&q=";
       const subredditEngine = "https://old.reddit.com/r/";

@@ -1322,3 +1322,9 @@ hr.post-end {
 #email {
     border: medium solid #c678dd;
 }
+
+#time {
+  align-self: center;
+  margin-top: 4rem;
+}
+

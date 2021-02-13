@@ -1,9 +1,11 @@
 # Dotfiles
 
-This is where my configs are for my Linux setup. Currently migrating to NixOS, which will hopefully help simplify this whole mess. 
+This is where my configs are for my Linux setup. No longer migrating to NixOS 
+cause NixOS was a pain and there was more to learn than I was willing to put
+time into.
 
 ## Basics:
-- OS: NixOS
+- OS: Manjaro
 - DE: GNOME and i3 separately
 - Shell: Zsh
 - Editor: Emacs

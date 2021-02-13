@@ -4,73 +4,117 @@ if [ ! -d ~/dotfiles ]; then
     git clone git@github.com:nixin72/dotfiles.git ~
 fi
 
-###############################################################################
-####################           SETUP ENVIRONMENT           ####################
-###############################################################################
-sudo mkdir -p ~/.fonts
-sudo mkdir -p /usr/share/fonts
-sudo mkdir -p ~/.local/share/fonts/
-sudo mkdir -p /usr/share/terminology/fonts/
-sudo mkdir -p /usr/share/terminology/fonts/
+#############################################################
+########### SETUP ENVIRONMENT ###############################
+#############################################################
 sudo mkdir -p ~/configs/log/
-sudo mkdir -p ~/.config/polybar/
-sudo mkdir -p ~/.i3
-sudo mkdir -p ~/clones
+mkdir ~/dotfiles.nvim
+sudo pacman -S base-devel yay
 
 ################################################################################
 ####################            INSTALL PACKAGES            ####################
 ################################################################################
+ 
+# Setup GraalVM, which includes my JDK and JRE
+# Not using the GraalVM package from AUR cause that wasn't working for me for
+# some reason.
+cd /opt
+curl https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.0.0.2/graalvm-ce-java8-linux-amd64-21.0.0.2.tar.gz
+tar -xzf graalvm-ce-java8-linux-amd64-21.0.0.2.tar.gz 
 
-ansible install.yaml
+# Install Doom Emacs
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
 
-# Install omf and starship theme
-curl -L https://get.oh-my.fish | fish
-curl -fsSL https://starship.rs/install.sh | bash
+# Install Oh My ZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+packages=(
+  # Editors 
+  emacs
+  neovim-nightly-bin
+  code
+  # Languages and build tools
+  make cmake
+  racket sbcl leiningen
+  nvm python
+  mysql
+  cargo
+  # Utilities
+  zsh starship
+  fzf tree
+  perf hyperfine
+  htop neofetch
+  wakatime
+  flameshot
+  babashka-bin
+  dmenu
+  gzip
+  # Fonts
+  ttf-fira-code
+  ttf-dejavu
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  # Programs
+  okular
+  libreoffice
+  firefox
+  discord
+  spotify
+  gimp
+  # Games
+  minecraft
+  steam
+  dolphin-emu
+)
 
-# Install icons in terminal
-git clone https://github.com/sebastiencs/icons-in-terminal.git ~/clones
-sudo chmod +x ~/clones/icons-in-terminal/install.sh 
-~/clones/icons-in-terminal/install.sh 
+android_shit=(
+    android-emulator
+    android-platform
+    android-sdk
+    android-sdk-build-tools
+    android-sdk-platfrom-tools
+    android-studio
+    android-udev
+    gradle
+)
 
-################################################################################
-####################           SET CONFIGURATIONS           ####################
-################################################################################
+i3_only=(
+    i3-gaps
+    picom
+    nitrogen
+    polybar
+)
 
-sudo xrandr -s 1680x1050
+pacman -S --needed - < $packages
+pacman -S --needed - < $android_shit
+pacman -S --needed - < $i3_only
 
-# Copy my background over to the right place and set it and my colour scheme
-sudo cp -r ~/configs/assets/images/* /usr/share/backgrounds/
-sudo wal -i /usr/share/backgrounds/iconic.jpg
-sudo nitrogen --set-scaled /usr/share/backgrounds/iconic.jpg
+#############################################################
+########### SYMLINK SOME SHIT ###############################
+#############################################################
+ln -s ~/dotfiles/.zshrc ~/
+ln -s ~/dotfiles/.doom.d ~/
+ln -s ~/dotfiles/.vimrc ~/
+ln -s ~/dotfiles/.gitconfig ~/
+ln -s ~/dotfiles/.gitignore_global ~/
+ln -s ~/dotfiles/.racketrc ~/
+ln -s ~/dotfiles/.sbclrc ~/
+ln -s ~/dotfiles/.vimrc ~/dotfiles/nvim/init.vim
+ln -s ~/dotfiles/.config/nvim ~/.config
+ln -s ~/dotfiles/.config/alacritty ~/.config
+ln -s ~/dotfiles/.config/i3 ~/.config
+ln -s ~/dotfiles/compton.conf ~/.config
+ln -s ~/dotfiles/polybar ~/.config
+ln -s ~/dotfiles/compton.conf ~/.config
+ln -s ~/dotfiles/vscode.json ~/.config/Code - OSS/User/settings.json
 
-# Replace default configs
-sudo cp ~/configs/sources/i3.conf.bak ~/.i3/config
-sudo cp ~/configs/sources/omf.fish ~/.config/fish/conf.d/omf.fish
-sudo cp ~/configs/sources/polybar.conf ~/.config/polybar/config
-sudo cp ~/configs/sources/compton.conf ~/.config/compton.conf
-sudo cp ~/configs/sources/vimrc ~/.vimrc
-sudo cp ~/configs/sources/Xresources ~/.Xresources
+############################################################
+########### FINAL SETUP ####################################
+############################################################
 
-# Make sure FiraCode is set as a font
-sudo cp ~/configs/assets/fonts/* ~/.fonts
-sudo cp ~/configs/assets/fonts/* /usr/share/fonts
-sudo cp ~/configs/assets/fonts/* ~/.local/share/fonts/
-sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
-sudo cp ~/configs/assets/fonts/* /usr/share/terminology/fonts/
-
-# Symlink files to here
-sudo ln -s ~/.config/fish ./config/fish
-sudo ln -s ~/.config/alacritty/ ./.config/alacritty/
-sudo ln -s ~/.gitconfig ./.gitconfig 
-sudo ln -s ~/.Xmodmap ./.Xmodmap 
-
-################################################################################
-####################              FINAL PROMPTS             ####################
-################################################################################
-
-git pull
-sudo chsh -s /usr/bin/fish
+nvm install node
+sudo chsh -s /usr/bin/zsh
+source ~/.zshrc
 

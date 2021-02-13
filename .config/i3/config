@@ -1,6 +1,7 @@
 ###########################################################
 ########## Core i3 Settings ###############################
 ###########################################################
+
 # Mod keys (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 set $mod2 Mod4
@@ -13,9 +14,16 @@ default_border none
 default_floating_border none
 hide_edge_borders none
 
+# Gaps 
+gaps inner 10
+gaps outer 10
+gaps vertical 0
+gaps horizontal 0
+
 ###########################################################
 ########## Open Applications ##############################
 ###########################################################
+
 mode "games" {
 	bindsym s exec steam; mode "default"
 	bindsym m exec minecraft; mode "default"
@@ -60,6 +68,7 @@ bindsym $mod+Return exec alacritty
 ###########################################################
 ########## Window Management ##############################
 ###########################################################
+
 # change focus (vim)
 bindsym $mod+y focus left
 bindsym $mod+n focus down
@@ -92,7 +101,7 @@ bindsym $mod+q split toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
-bindsym $mod+slash layout toggle split
+bindsym $mod+slash layout splith
 
 # Misc
 bindsym $mod+Shift+q kill
@@ -137,6 +146,7 @@ bindsym $mod+r mode "resize"
 ###########################################################
 ########## Workspace configuration ########################
 ###########################################################
+
 # Define names for default workspaces.
 # We use variables to avoid repeating the names.
 set $ws1 "1"
@@ -174,9 +184,9 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 ###########################################################
 ########## i3 session commands ############################
 ###########################################################
-# reload 
-bindsym $mod+Shift+c reload # reload config
-bindsym $mod+Shift+r restart # reload i3 inplace
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
 set $mode_system (l)ock, (e)xit, (r)eboot, (o)ff
 mode "$mode_system" {
@@ -193,7 +203,9 @@ bindsym $mod+0 mode "$mode_system"
 ###########################################################
 ########## i3 status bar ##################################
 ###########################################################
+
 bar {
+	mode invisible
 	status_command i3status
 	position top
 
@@ -213,7 +225,23 @@ bar {
 }
 
 # hide/show status bar
-bindsym $mod+m bar mode toggle
+#bindsym $mod+m bar mode toggle
+
+###########################################################
+########## Settings specifically for KDE ##################
+###########################################################
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"] 
 
 ###########################################################
 ########## A couple startup programs ######################
@@ -233,7 +261,7 @@ exec --no-startup-id nm-applet
 ###########################################################
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status; exec notify-send 'Volume Up'
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status; exec notify-send 'Volume Down'
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status; exec notify-send 'Volume Mute'
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status; exec notify-send 'Mic Mute'

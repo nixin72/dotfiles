@@ -49,18 +49,36 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source /usr/share/nvm/init-nvm.sh
 
 function lg () {
 	exa -lha --git
 }
 
-alias ls=exa -lha --git
+alias wifioff=nmcli radio wifi off
+alias wifion=nmcli radio wifi on
+
 alias demacs=emacs --daemon
 alias temacs=emacsclient -t
 alias wemacs=emacsclient -c -F '((width . 1000) (height . 500) (font . "Fira Code-12"))'
 
 function work { cd /s/work/$1 }
 function repos { cd /s/repos/$1 }
+
+alias vim=nvim
+
+alias gra=git rebase --abort
+alias grc=git rebase --continue
+alias gtfo=git fetch origin
+alias gca=git commit --amend
+alias gc=git commit
+alias gaa=git add .
+alias gp=git push
+alias gpf=git push -f
+alias gpl=git pull
+alias gplr=git pull --rebase
+alias gl=git log --oneline
+alias grh=git reset --hard
 
 # User configuration
 
@@ -71,17 +89,27 @@ function repos { cd /s/repos/$1 }
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+export NODE_PATH=$HOME/.npm-packages/lib/node_modules
+export ANDROID_HOME=$HOME/Android/Sdk
+export GRAALVM_HOME=/opt/graalvm
+export JAVA_HOME=$GRAALVM_HOME
+export LLVM_TOOLCHAIN=$($GRAALVM_HOME/bin/lli --print-toolchain-path)
+
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
-export NODE_PATH=$HOME/.npm-packages/lib/node_modules
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$JAVA_HOME/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"

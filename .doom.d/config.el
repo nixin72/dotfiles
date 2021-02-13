@@ -115,8 +115,6 @@
     (set-dock-side))
   )
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Extra packages to install ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -273,11 +271,11 @@
   (map! ;; Treemacs navigation
    :after treemacs-evil
    :map evil-treemacs-state-map
-   "j" 'treemacs-next-line
-   "k" 'treemacs-previous-line
-   "C-j" 'treemacs-next-neighbour
-   "C-k" 'treemacs-previous-neighbour
-   "C-h" 'treemacs-goto-parent-node
+   "n" 'treemacs-next-line
+   "e" 'treemacs-previous-line
+   "C-n" 'treemacs-next-neighbour
+   "C-e" 'treemacs-previous-neighbour
+   "C-p" 'treemacs-goto-parent-node
    "u" 'treemacs-root-up
    "d" 'treemacs-root-down
    "R" 'treemacs-change-root)
@@ -347,7 +345,7 @@
    "C" 'treemacs-copy-project-root
    "s" 'treemacs-resort
    "b" 'treemacs-add-bookmark
-   "?" 'treemacs-helpful-hydra
+   "?" 'treemacs-common-helpful-hydra
    "q" 'treemacs-quit
    "RET" 'treemacs-RET-action)
 
@@ -391,10 +389,20 @@
 ;;; Some evil modifications ;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   (map!
-   :n "H" #'block-nav-previous-indentation-level
-   :n "J" #'block-nav-next-block
-   :n "K" #'block-nav-previous-block
-   :n "L" #'block-nav-next-indentation-level)
+   :nv "y" #'evil-backward-char
+   :nv "Y" #'block-nav-previous-indentation-level
+   :nv "n" #'evil-next-line
+   :nv "N" #'block-nav-next-block
+   :nv "e" #'evil-previous-line
+   :nv "E" #'block-nav-previous-block
+   :nv "o" #'evil-forward-char
+   :nv "O" #'block-nav-next-indentation-level
+
+   :nv "h" #'evil-yank
+   :nv "j" #'evil-next-match
+   :nv "k" #'evil-forward-WORD-end
+   :nv "l" #'evil-open-below
+   :nv "L" #'evil-open-above)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Language-specific keybinds ;;;;;;;;;

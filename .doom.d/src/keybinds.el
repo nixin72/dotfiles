@@ -5,12 +5,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Navigation
 (progn
-  (map! :n :map treemacs-mode-map"j" 'treemacs-next-line)
-  (map! :n :map treemacs-mode-map "j" 'treemacs-next-line)
-  (map! :n :map treemacs-mode-map "k" 'treemacs-previous-line)
-  (map! :n :map treemacs-mode-map "C-j" 'treemacs-next-neighbour)
-  (map! :n :map treemacs-mode-map "C-k" 'treemacs-previous-neighbour)
-  (map! :n :map treemacs-mode-map "C-h" 'treemacs-goto-parent-node)
+  (map! :n :map treemacs-mode-map "n" 'treemacs-next-line)
+  (map! :n :map treemacs-mode-map "e" 'treemacs-previous-line)
+  (map! :n :map treemacs-mode-map "C-n" 'treemacs-next-neighbour)
+  (map! :n :map treemacs-mode-map "C-e" 'treemacs-previous-neighbour)
+  (map! :n :map treemacs-mode-map "C-p" 'treemacs-goto-parent-node)
   (map! :n :map treemacs-mode-map "u" 'treemacs-root-up)
   (map! :n :map treemacs-mode-map "d" 'treemacs-root-down)
   (map! :n :map treemacs-mode-map "R" 'treemacs-change-root)

@@ -12,6 +12,7 @@
 ;;      flags as well (those symbols that start with a plus).
 ;;
 ;;      Alternatively, press 'gd' (or 'C-c g d') on a module to browse its
+
 ;;      directory (for easy access to its source code).
 
 (doom! :input
@@ -183,6 +184,7 @@
 
 (straight-use-package 'wakatime-mode)
 (global-wakatime-mode)
+(setq wakatime-cli-path "/usr/bin/wakatime")
 (straight-use-package 'winum)
 ;;(straight-use-package 'mini-mode-line-mode)
 

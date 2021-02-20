@@ -117,4 +117,5 @@
     "extensions.ignoreRecommendations": true,
     "markdown.extension.print.imgToBase64": true,
     "php.validate.executablePath": "/usr/bin/php",
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }

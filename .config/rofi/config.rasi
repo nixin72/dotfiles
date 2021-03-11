@@ -1,0 +1,111 @@
+/*-*- mode: css; -*-*/
+
+configuration {
+  modi: "drun,run,window,ssh";
+  font: "Fira Code 14";
+  display-drun: "";
+  display-window: "";
+}
+
+
+* {
+  black:      #000000;
+  red:        #eb6e67;
+  green:      #95ee8f;
+  yellow:     #f8c456;
+  blue:       #6eaafb;
+  mangenta:   #d886f3;
+  cyan:       #6cdcf7;
+  emphasis:   #50536b;
+  text:       #dfdfdf;
+  text-alt:   #b2b2b2;
+  fg:         #abb2bf;
+  bg:         #282c34;
+
+  spacing: 0;
+  background-color: transparent;
+
+  text-color: @text;
+}
+
+window {
+  border-radius: 20px;
+  location: west;
+  anchor: west;
+  margin: 0 0 0 -40px;
+  width: 40%; 
+  height: 80%;
+  transparency: "screenshot";
+  background-color: #21252bFF;
+} 
+
+mainbox {
+  padding: 5% 5%;  
+}
+
+inputbar {
+  margin: 0px 0px 20px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  margin: 3px 0 0 0;
+  text-color: @blue;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  text-color: @text-alt;
+}
+
+entry {
+  margin: 0px 10px;
+}
+
+listview {
+  spacing: 5px;
+  dynamic: true;
+  scrollbar: false;
+}
+
+element {
+  padding: 5px;
+  text-color: @text-alt;
+  highlight: bold #95ee8f; /* green */
+  border-radius: 3px;
+}
+
+element-icon {
+  size: 25px;
+  padding: 0 10px 0px 10px;
+}
+
+element selected {
+  background-color: @emphasis;
+  text-color: @text;
+}
+
+element urgent, element selected urgent {
+  text-color: @red;
+}
+
+element active, element selected active {
+  text-color: @purple;
+}
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+  border: 1px;
+  border-color: @cyan;
+}
+
+button selected {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+}
+
+
+/* vim:ft=css

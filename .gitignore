@@ -24,7 +24,12 @@ fish_variables
 # Clojure
 .clojure/.cpcache
 
+# XMonad
 *.hi
 *.o
 *.errors
 .fuse*
+
+# Spicetify
+.config/spicetify/Backup
+.config/spicetify/Extracted

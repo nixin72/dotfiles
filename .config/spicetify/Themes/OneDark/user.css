@@ -1,0 +1,78 @@
+:root {
+    --modspotify_cover_overlay_and_shadow: #000000;
+    --modspotify_rgb_cover_overlay_and_shadow: 0,0,0;
+    --modspotify_scrollbar_fg_and_selected_row_bg: #ebebeb;
+    --modspotify_rgb_scrollbar_fg_and_selected_row_bg: 235,235,235;
+    --modspotify_miscellaneous_hover_bg: #383145;
+    --modspotify_rgb_miscellaneous_hover_bg: 56,49,69;
+    --modspotify_slider_bg: #fafafa;
+    --modspotify_rgb_slider_bg: 250,250,250;
+    --modspotify_pressing_button_fg: #dedede;
+    --modspotify_rgb_pressing_button_fg: 222,222,222;
+    --modspotify_selected_button: #fe6f61;
+    --modspotify_rgb_selected_button: 254,111,97;
+    --modspotify_main_fg: #6EAAFB;
+    --modspotify_rgb_main_fg: 254,111,97;
+    --modspotify_secondary_fg: #ABB2BF;
+    --modspotify_rgb_secondary_fg: 61,61,61;
+    --modspotify_main_bg: #21252B;
+    --modspotify_rgb_main_bg: 250,250,250;
+    --modspotify_preserve_1: #bfbfbf;
+    --modspotify_rgb_preserve_1: 191,191,191;
+    --modspotify_indicator_fg_and_button_bg: #95EE8F;
+    --modspotify_rgb_indicator_fg_and_button_bg: 254,111,97;
+    --modspotify_pressing_button_bg: #383145;
+    --modspotify_rgb_pressing_button_bg: 56,49,69;
+    --modspotify_sidebar_indicator_and_hover_button_bg: #95EE8F;
+    --modspotify_rgb_sidebar_indicator_and_hover_button_bg: 255,111,97;
+    --modspotify_pressing_fg: #ff5c86;
+    --modspotify_rgb_pressing_fg: 255,92,134;
+    --modspotify_miscellaneous_bg: #3f3c45;
+    --modspotify_rgb_miscellaneous_bg: 63,60,69;
+    --modspotify_sidebar_and_player_bg: #282C34;
+    --modspotify_rgb_sidebar_and_player_bg: 250,250,250;
+}
+
+
+#HomeRoot__header {
+    display: none;
+}
+
+section.glue-page-wrapper > div:not(:first-child) {
+    display: none;
+}
+
+.LeftSidebar > div:first-child li:not(:first-child) {
+    display: none;
+}
+
+header#header {
+    display:  none;
+}
+
+.GlueSectionDivider {
+    display: none;
+}
+
+.Carousel__grid-wrapper {
+    margin: 20px;
+}
+
+.main-view.flex-1.flex-col-container {
+    border-radius: 30px;
+}
+
+.main-view-wrapper.flex-col-container.flex-1 {
+    border-radius: 30px;
+    margin: 20px;
+}
+
+div#view-resize-nav {
+    display: none;
+}
+
+.LeftSidebar .LeftSidebar__scroll-section > div:first-child {display: none;}
+
+.cover-image-link-wrapper {
+    display: none;
+}

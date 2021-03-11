@@ -23,3 +23,8 @@ fish_variables
 
 # Clojure
 .clojure/.cpcache
+
+*.hi
+*.o
+*.errors
+.fuse*

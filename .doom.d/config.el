@@ -265,16 +265,31 @@
   (map! :i "," (insert ","))
   (setf doom-localleader-key ",")
 
+  (setf keyboard-layout 'workman)
+
+  (defun qwerty ()
+    (setf keyboard-layout 'qwerty))
+
+  (defun workman ()
+    (setf keyboard-layout 'workman))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Treemacs keybinds ;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   (map! ;; Treemacs navigation
    :after treemacs-evil
    :map evil-treemacs-state-map
+   ;; For workman
    "n" 'treemacs-next-line
    "e" 'treemacs-previous-line
    "C-n" 'treemacs-next-neighbour
    "C-e" 'treemacs-previous-neighbour
+   ;; For qwerty
+   "j" 'treemacs-next-line
+   "k" 'treemacs-previous-line
+   "C-j" 'treemacs-next-neighbour
+   "C-k" 'treemacs-previous-neighbour
+
    "C-p" 'treemacs-goto-parent-node
    "u" 'treemacs-root-up
    "d" 'treemacs-root-down
@@ -388,21 +403,45 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Some evil modifications ;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  (map!
-   :nv "y" #'evil-backward-char
-   :nv "Y" #'block-nav-previous-indentation-level
-   :nv "n" #'evil-next-line
-   :nv "N" #'block-nav-next-block
-   :nv "e" #'evil-previous-line
-   :nv "E" #'block-nav-previous-block
-   :nv "o" #'evil-forward-char
-   :nv "O" #'block-nav-next-indentation-level
+  (defun qwerty ()
+    (interactive)
+    (map!
+     :nv "h" #'evil-backward-char
+     :nv "H" #'block-nav-previous-indentation-level
+     :nv "j" #'evil-next-line
+     :nv "J" #'block-nav-next-block
+     :nv "k" #'evil-previous-line
+     :nv "K" #'block-nav-previous-block
+     :nv "l" #'evil-forward-char
+     :nv "L" #'block-nav-next-indentation-level
 
-   :nv "h" #'evil-yank
-   :nv "j" #'evil-next-match
-   :nv "k" #'evil-forward-WORD-end
-   :nv "l" #'evil-open-below
-   :nv "L" #'evil-open-above)
+     :nv "y" #'evil-yank
+     :nv "n" #'evil-next-match
+     :nv "N" #'evil-previous-match
+     :nv "e" #'evil-forward-WORD-end
+     :nv "o" #'evil-open-below
+     :nv "O" #'evil-open-above))
+
+  (defun workman ()
+    (interactive)
+    (map!
+     :nv "y" #'evil-backward-char
+     :nv "Y" #'block-nav-previous-indentation-level
+     :nv "n" #'evil-next-line
+     :nv "N" #'block-nav-next-block
+     :nv "e" #'evil-previous-line
+     :nv "E" #'block-nav-previous-block
+     :nv "o" #'evil-forward-char
+     :nv "O" #'block-nav-next-indentation-level
+
+     :nv "h" #'evil-yank
+     :nv "j" #'evil-next-match
+     :nv "J" #'evil-previous-match
+     :nv "k" #'evil-forward-WORD-end
+     :nv "l" #'evil-open-below
+     :nv "L" #'evil-open-above))
+
+  (qwerty)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Language-specific keybinds ;;;;;;;;;

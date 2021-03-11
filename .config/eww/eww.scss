@@ -1,0 +1,80 @@
+$bg-dark  : #21252B;
+$bg-light : #282C34;
+$fg-light : #ABB2BF;
+$fg-dark  : #DFDFDF;
+$red      : #EB6E67;
+$orange   : #F8C456;
+$green    : #95EE8F;
+$cyan     : #6CDCF7;
+$blue     : #6EAAFB;
+$purple   : #D886F3;
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+//Global Styles
+window {
+  background-color: $bg-dark;
+  color: $fg-light;
+  font-family: Iosevka;
+  font-size: 1.25rem;
+}
+
+.text {
+  font-family: 'Fira Code';
+}
+
+.workspaces { padding-left: 10px; }
+
+.workspaces box {
+  padding: 10px;
+}
+
+// Styles on classes (see eww.xml for more information)
+
+.sidestuff slider {
+  all: unset;
+  color: #ffd5cd;
+}
+
+.slider-vol scale trough highlight {
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.slider-vol scale trough {
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.slider-ram scale trough highlight {
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.slider-ram scale trough {
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.time {
+  padding-right: 10px;
+}
+.workspaces button:hover {
+  color: #D35D6E;
+}
+.active {
+  background-color: $green;
+  color: $bg-dark;
+}

@@ -29,6 +29,7 @@ fish_variables
 *.o
 *.errors
 .fuse*
+*-x86_64*
 
 # Spicetify
 .config/spicetify/Backup

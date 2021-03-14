@@ -23,6 +23,7 @@ keybindings =
 
    ("M-<Return>", spawn "alacritty"),
    ("M-d", spawn "rofi -show drun -show-icons"),
+   ("M-S-/", spawn "/s/repos/dotfiles/scripts/toggle-sidebar.clj"),
    ("M-<Tab>", spawn "rofi -show window -show-icons")]
 
 

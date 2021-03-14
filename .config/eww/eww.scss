@@ -9,72 +9,110 @@ $cyan     : #6CDCF7;
 $blue     : #6EAAFB;
 $purple   : #D886F3;
 
-* {
-  all: unset; //Unsets everything so you can style everything from scratch
-}
+* { all: unset; }
 
-//Global Styles
+.red { color: $red; }
+.orange { color: $orange; }
+.green { color: $green; }
+.cyan { color: $cyan; }
+.blue { color: $blue; }
+.purple { color: $purple; }
+
 window {
-  background-color: $bg-dark;
   color: $fg-light;
   font-family: Iosevka;
   font-size: 1.25rem;
+  background-color: $bg-dark;
 }
 
 .text {
-  font-family: 'Fira Code';
+  font-family: 'Ubuntu';
 }
 
-.workspaces { padding-left: 10px; }
-
-.workspaces box {
-  padding: 10px;
+.header {
+  font-family: 'Ubuntu';
+  font-size: 1.5rem;
+  color: $blue;
 }
 
-// Styles on classes (see eww.xml for more information)
-
-.sidestuff slider {
-  all: unset;
-  color: #ffd5cd;
+.hr {
+  border: 1px solid $blue;
+  margin: 20px 0;
 }
 
-.slider-vol scale trough highlight {
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
+.workspaces {
+  padding-left: 10px;
+  box {
+    padding: 10px;
+  }
+
+  .active {
+    background-color: $green;
+    color: $bg-dark;
+  }
 }
 
-.slider-vol scale trough {
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
+progressbar {
   margin-left: 10px;
   margin-right: 20px;
+
+  trough {
+    background-color: $bg-light;
+    min-height: 3px;
+    min-width: 50px;
+
+    progress {
+      background-color: $red;
+      border-radius: 10px;
+      min-height: 3px;
+    }
+  }
 }
 
-.slider-ram scale trough highlight {
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
-}
-
-.slider-ram scale trough {
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
+scale {
   margin-left: 10px;
   margin-right: 20px;
+
+  trough {
+    background-color: $bg-light;
+    min-height: 3px;
+    min-width: 50px;
+
+    highlight {
+      background-color: $orange;
+      border-radius: 10px;
+      min-height: 3px;
+    }
+  }
 }
 
-.time {
-  padding-right: 10px;
-}
-.workspaces button:hover {
-  color: #D35D6E;
-}
-.active {
-  background-color: $green;
-  color: $bg-dark;
+.sidebar {
+  font-family: 'Ubuntu';
+  font-size: 1.25rem;
+
+  .section {
+    background-color: $bg-light;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .calendar {
+
+    calendar {
+
+      grid {
+        
+        background-color: $bg-light;
+      }
+    }
+  }
+
+  .session {
+    button {
+      font-family: Iosevka;
+      font-size: 3rem;
+      margin: 20px;
+    }
+  }
 }

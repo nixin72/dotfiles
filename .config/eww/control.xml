@@ -1,0 +1,112 @@
+<eww>
+  <definitions>
+    <def name="monitor">
+      <box class="section" orientation="v" space-evenly="false">
+        <box class="header">System information</box>
+        <box orientation="h">
+          <box>RAM: </box>
+          <slider-ram />
+        </box>
+        <box orientation="h">
+          <box>CPU: </box>
+          <slider-cpu />
+        </box>
+        <box orientation="h">
+          <box>Temp: </box>
+          <slider-temp />
+        </box>
+        <box orientation="h">
+          <box>Battery: </box>
+          <slider-bat />
+        </box>
+        <box orientation="h">
+          <box>/dev/sda4: </box>
+          <slider-sda4 />
+        </box>
+        <box orientation="h">
+          <box>/dev/sda5: </box>
+          <slider-sda5 />
+        </box>
+      </box>
+    </def>
+
+    <def name="control">
+      <box class="section" orientation="v" space-evenly="false">
+        <box class="header">Controls</box>
+        <box orientation="h">
+          <box>Volume: </box>
+          <slider-vol/>
+        </box>
+        <box orientation="h">
+          <box>Brightness: </box>
+          <slider-brightness />
+        </box>
+      </box>
+    </def>
+
+    <def name="music">
+      <box class="section" visible="true" orientation="v" space-evenly="false">
+        <box class="header">Music</box>
+        <box>{{music}}</box>
+        <box class="controls" orientation="h">
+          <box />
+          <button class="green" onclick="playerctl shuffle toggle"></button>
+          <box />
+          <button class="cyan"  onclick="playerctl previous"></button>
+          <button class="green" onclick="playerctl play-pause"></button>
+          <button class="cyan"  onclick="playerctl next"></button>
+          <box />
+          <button class="green" onclick="playerctl loop track"></button>
+          <box />
+        </box>
+      </box>
+    </def>
+
+    <def name="weather">
+      <box class="section weather" orientation="v" space-evenly="false">
+        <box orientation="h" valign="center">
+          <box />
+          <box />
+          <box style="font-size: 4em">{{condition}}</box>
+          <box style="font-size: 2em">{{temp-real}}</box>
+          <box />
+          <box />
+        </box>
+        <box style="font-size: 2em"> {{wind}}</box>
+      </box>
+    </def>
+
+    <def name="cal">
+      <box class="section calendar" orientation="v" space-evenly="false">
+        <box class="header">Calendar</box>
+        <calendar
+            width="200"
+            class="cal"
+            show-week-numbers="false"
+            day="13"
+            month="3"
+            year="2021" />
+      </box>
+    </def>
+
+    <def name="session">
+      <box class="section session" orientation="h" valign="end">
+        <button class="red" onclick="shutdown 0">⏻</button>
+        <button class="orange" onclick="shutdown -r 0">ﰇ</button>
+        <button class="cyan" onclick="/s/repos/dotfiles/scripts/logout.clj"></button>
+        <button class="purple" onclick="i3lock"></button>
+      </box>
+    </def>
+    
+    <def name="sidebar">
+      <box orientation="v" space-evenly="false">
+        <music />
+        <control />
+        <monitor />
+        <weather />
+        <cal />
+        <session />
+      </box>
+    </def>
+  </definitions>
+</eww>

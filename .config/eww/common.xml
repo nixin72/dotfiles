@@ -1,0 +1,67 @@
+<eww>
+  <definitions>
+    <def name="slider-cpu">
+      <box orientation="h" space-evenly="false">
+        <box class="label-ram"></box>
+        <progress valign="center" value="{{cpu-used}}"/>
+      </box>
+    </def>
+
+    <def name="slider-temp">
+      <box orientation="h" class="slider-ram" space-evenly="false">
+        <box class="label-ram"></box>
+        <progress valign="center" value="{{cpu-temp}}"/>
+      </box>
+    </def>
+
+    <def name="slider-bat">
+      <box orientation="h" class="slider-ram" space-evenly="false">
+        <box class="label-bat"></box>
+        <progress valign="center" value="{{battery}}"/>
+      </box>
+    </def>
+
+    <def name="slider-sda4">
+      <box orientation="h" class="slider-ram" space-evenly="false">
+        <box class="label-bat"></box>
+        <progress valign="center" value="{{sda4}}"/>
+      </box>
+    </def>
+
+    <def name="slider-sda5">
+      <box orientation="h" class="slider-ram" space-evenly="false">
+        <box class="label-bat"></box>
+        <progress valign="center" value="{{sda5}}"/>
+      </box>
+    </def>
+
+    <def name="slider-ram">
+      <box orientation="h" class="slider-ram" space-evenly="false">
+        <box class="label-ram"></box>
+        <progress valign="center" active="false" value="{{ram-used}}"/>
+      </box>
+    </def>
+
+    <def name="slider-vol">
+      <box orientation="h" class="slider-vol" space-evenly="false">
+        <box class="label-vol"></box>
+        <scale min="0" max="101" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
+      </box>
+    </def>
+
+    <def name="slider-brightness">
+      <box orientation="h" class="slider-vol" space-evenly="false">
+        <box class="label-vol"></box>
+        <scale min="0" max="101" value="{{brightness}}" onchange="light -S {}%"/>
+      </box>
+    </def>
+
+    <def name="time">
+      <box class="time text">{{hour}}:{{min}} {{month}} {{number_day}}, {{year_full}}</box>
+    </def>
+
+    <def name="hr" width="100" style="border-bottom: 1px solid black">
+      <box />
+    </def>
+  </definitions>
+</eww>

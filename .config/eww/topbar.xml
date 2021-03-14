@@ -1,0 +1,35 @@
+<eww>
+  <definitions>
+    <def name="bar"> <!-- Starts the definition of a widget named main -->
+      <box orientation="h" hexpand="true">
+        <workspaces/>
+        <time/>
+        <sidestuff/>
+      </box>
+    </def>
+
+    <def name="sidestuff">
+      <box class="sidestuff" orientation="h" space-evenly="false" halign="end">
+          <slider-vol />
+          <slider-ram />
+          <slider-bat />
+          <image path="~/Pictures/discord.png" />
+      </box>
+    </def>
+
+    <def name="workspaces">
+        <box orientation="h" class="workspaces" space-evenly="true" halign="start">
+          <box class="{{if workspace == 0 then 'active' else 'inactive' }}"></box>
+          <box class="{{if workspace == 1 then 'active' else 'inactive' }}"></box>
+          <box class="{{if workspace == 2 then 'active' else 'inactive' }}"></box>
+          <box class="{{if workspace == 3 then 'active' else 'inactive' }}">ﭮ</box>
+          <box class="{{if workspace == 4 then 'active' else 'inactive' }}"></box>
+          <box></box>
+          <box class="{{if workspace == 5 then 'active' else 'inactive' }}"></box>
+          <box class="{{if workspace == 6 then 'active' else 'inactive' }}"></box>
+          <box class="{{if workspace == 7 then 'active' else 'inactive' }}"></box>
+          <box class="{{if workspace == 8 then 'active' else 'inactive' }}"></box>
+        </box>
+    </def>
+  </definitions>
+</eww>

@@ -1,2 +1,6 @@
-#!/bin/sh
-amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'
+#!/usr/bin/bb
+
+(->> (:out (shell/sh "amixer" "get" "Master")) 
+     (re-find #"\[\d+%")
+     (#(subs % 1 (dec (count %))))
+     (println))

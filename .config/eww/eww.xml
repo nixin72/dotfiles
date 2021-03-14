@@ -1,109 +1,90 @@
 <eww>
-  <definitions>
-    <!-- This is the place where you structure your widgets, align them and stuff. -->
-
-    <def name="bar"> <!-- Starts the definition of a widget named main -->
-      <box orientation="h" hexpand="true">
-        <workspaces/>
-        <time/>
-        <sidestuff/>
-      </box>
-    </def>
-    <def name="sidestuff">
-      <box class="sidestuff" orientation="h" space-evenly="false" halign="end">
-          <music />
-          <slider-vol/>
-          <slider-ram/>
-      </box>
-    </def>
-
-    <def name="workspaces">
-        <box orientation="h" class="workspaces" space-evenly="true" halign="start">
-          <box class="{{if active_workspace == 0 then 'active' else 'inactive' }}"></box>
-          <box class="{{if active_workspace == 1 then 'active' else 'inactive' }}"></box>
-          <box class="{{if active_workspace == 2 then 'active' else 'inactive' }}"></box>
-          <box class="{{if active_workspace == 3 then 'active' else 'inactive' }}">ﭮ</box>
-          <box class="{{if active_workspace == 4 then 'active' else 'inactive' }}"></box>
-          <box></box>
-          <box class="{{if active_workspace == 5 then 'active' else 'inactive' }}"></box>
-          <box class="{{if active_workspace == 6 then 'active' else 'inactive' }}"></box>
-          <box class="{{if active_workspace == 7 then 'active' else 'inactive' }}"></box>
-          <box class="{{if active_workspace == 8 then 'active' else 'inactive' }}"></box>
-        </box>
-    </def>
-    <def name="music">
-        <box orientation="h" class="music" halign="center" space-evenly="false">
-          <!-- An image. We won't be using it, but it might be handy if you ever need it. -->
-          <!-- <image path="/home/user/.config/eww/icons/music.svg"/> -->
-
-             {{music}} <!--This is how you use variables.-->
-        </box>
-    </def>
-    <def name="slider-vol">
-      <!--A basic volume slider-->
-      <box orientation="h" class="slider-vol" space-evenly="false">
-        <box class="label-vol"></box>
-        <scale min="0" max="101" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
-      </box>
-    </def>
-    <def name="slider-ram">
-      <!--A basic RAM slider-->
-      <box orientation="h" class="slider-ram" space-evenly="false">
-        <box class="label-ram"></box>
-        <scale min="0" active="false" max="101" value="{{ram-used}}"/>
-      </box>
-    </def>
-    <def name="time">
-      <!--Time-->
-      <box class="time text">{{hour}}:{{min}} {{month}} {{number_day}}, {{year_full}}</box>
-    </def>
-  </definitions>
-
   <variables>
-
-	  <!-- Music vars -->
-    <!-- These are your variables. Like they say, they run a script, and then
-         output that to the variable. In the following var, we get music info from playerctl. -->
-
-    <!-- <script-var name="music" interval="5s"> -->
-    <!--   playerctl metadata -\-format '{{ artist }} - {{ title }}' -->
-    <!-- </script-var> -->
-
-    <script-var name="active_workspace" interval="250ms">
-      <!-- /s/repos/dotfiles/scripts/current-workspace.clj -->
-      /s/repos/dotfiles/scripts/wmws.clj
-    </script-var>
-
-
-    <!--Volume var-->
-    <!-- If your vars get too complex to write down here, you can use an external script and paste it's path here as well, as shown below.
-     -->
-
-    <script-var name="volume" interval="100ms">~/.config/eww/scripts/getvol</script-var>
-
-    <!--Date vars-->
+    <script-var name="music" interval="5s">playerctl metadata --format '{{ artist }} - {{ title }}'</script-var>
     <script-var name="number_day" interval="5h">date "+%d"</script-var>
     <script-var name="month" interval="10h">date "+%b"</script-var>
     <script-var name="min" interval="1m">date "+%M"</script-var>
     <script-var name="hour" interval="1m">date "+%H"</script-var>
     <script-var name="year_full" interval="15h">date "+%Y"</script-var>
-
-    <!--RAM var-->
-    <script-var name="ram-used" interval="1s">~/.config/eww/scripts/getram</script-var>
-
-    <!--Battery charge var-->
-    <script-var name="battery-remaining" interval="2m">cat /sys/class/power_supply/BAT0/capacity</script-var>
-
+    <script-var name="brightness" interval="10s">light -G</script-var>
+    <script-var name="playing" interval="10s">~/.config/eww/scripts/getplayer</script-var>
+    <script-var name="workspace" interval="250ms">~/.config/eww/scripts/wmws</script-var>
+    <script-var name="volume" interval="250ms">~/.config/eww/scripts/getvol</script-var>
+    <script-var name="ram-used" interval="5s">~/.config/eww/scripts/getram</script-var>
+    <script-var name="cpu-used" interval="5s">~/.config/eww/scripts/getcpu</script-var>
+    <script-var name="cpu-temp" interval="5s">~/.config/eww/scripts/gettemp</script-var>
+    <script-var name="sda4" interval="1h">~/.config/eww/scripts/getdisk /dev/sda4</script-var>
+    <script-var name="sda5" interval="1h">~/.config/eww/scripts/getdisk /dev/sda5</script-var>
+    <script-var name="battery" interval="2m">cat /sys/class/power_supply/BAT0/capacity</script-var>
+    <script-var name="weather" interval="30m">~/.config/eww/scripts/getweather</script-var>
+    <script-var name="temp-real" interval="30m">cat /tmp/eww/weather/temp-real</script-var>
+    <script-var name="temp-feel" interval="30m">cat /tmp/eww/weather/temp-feel</script-var>
+    <script-var name="condition" interval="30m">cat /tmp/eww/weather/condition</script-var>
+    <script-var name="wind" interval="30m">cat /tmp/eww/weather/wind</script-var>
   </variables>
 
+  <includes>
+    <file path="./common.xml" />
+    <file path="./topbar.xml" />
+    <file path="./control.xml" />
+  </includes>
+
   <windows>
-    <!-- These are the windows -->
     <window name="bar" screen="0">
-      <geometry x="0" y="0" width="100%" height="40"/> <!--Specifies geometry-->
-      <reserve side="top" distance="4%"/>
+      <geometry x="0" y="0" width="100%" height="40" />
+      <reserve side="top" distance="40" />
       <widget>
-        <bar/> <!--This is the def we created earlier-->
+        <bar />
+      </widget>
+    </window>
+    <window name="sidebar" screen="0">
+      <geometry anchor="bottom right" width="25%" height="97%" />
+      <widget>
+        <sidebar />
       </widget>
     </window>
   </windows>
 </eww>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

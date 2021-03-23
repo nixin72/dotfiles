@@ -19,12 +19,12 @@ sudo pacman -S base-devel yay
 # Not using the GraalVM package from AUR cause that wasn't working for me for
 # some reason.
 cd /opt
-curl https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.0.0.2/graalvm-ce-java8-linux-amd64-21.0.0.2.tar.gz
+wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.0.0.2/graalvm-ce-java8-linux-amd64-21.0.0.2.tar.gz
 tar -xzf graalvm-ce-java8-linux-amd64-21.0.0.2.tar.gz 
+mv graalvm-ce-java8-21.0.0.2 graalvm
 
 # Install Doom Emacs
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
 
 # Install Oh My ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -48,7 +48,7 @@ packages=(
   wakatime
   flameshot
   babashka-bin
-  dmenu
+  rofi
   gzip
   # Fonts
   ttf-fira-code

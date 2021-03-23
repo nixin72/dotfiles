@@ -9,7 +9,7 @@ $cyan     : #6CDCF7;
 $blue     : #6EAAFB;
 $purple   : #D886F3;
 
-* { all: unset; }
+* { all:unset; }
 
 .red { color: $red; }
 .orange { color: $orange; }
@@ -35,6 +35,8 @@ window {
   color: $blue;
 }
 
+image { margin-right: 10px; }
+
 .hr {
   border: 1px solid $blue;
   margin: 20px 0;
@@ -42,12 +44,16 @@ window {
 
 .workspaces {
   padding-left: 10px;
-  box {
+  button {
     padding: 10px;
   }
 
-  .active {
+  .ws1 {
     background-color: $green;
+    color: $bg-dark;
+  }
+  .ws2 {
+    background-color: $cyan;
     color: $bg-dark;
   }
 }
@@ -57,7 +63,7 @@ progressbar {
   margin-right: 20px;
 
   trough {
-    background-color: $bg-light;
+    background-color: $bg-dark;
     min-height: 3px;
     min-width: 50px;
 
@@ -74,7 +80,7 @@ scale {
   margin-right: 20px;
 
   trough {
-    background-color: $bg-light;
+    background-color: $bg-dark;
     min-height: 3px;
     min-width: 50px;
 
@@ -83,6 +89,7 @@ scale {
       border-radius: 10px;
       min-height: 3px;
     }
+
   }
 }
 
@@ -90,6 +97,19 @@ scale {
   font-family: 'Ubuntu';
   font-size: 1.25rem;
 
+  .monitor, .control { font-size: 1.5rem; }
+
+  progressbar, scale {
+    trough {
+      min-height: 5px;
+      min-width: 250px;
+
+      progress {
+        min-height: 5px;
+      }
+    }
+  }
+  
   .section {
     background-color: $bg-light;
     margin: 1rem;
@@ -98,11 +118,8 @@ scale {
   }
 
   .calendar {
-
     calendar {
-
       grid {
-        
         background-color: $bg-light;
       }
     }

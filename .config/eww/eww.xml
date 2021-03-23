@@ -1,26 +1,33 @@
 <eww>
   <variables>
     <script-var name="music" interval="5s">playerctl metadata --format '{{ artist }} - {{ title }}'</script-var>
+    <!-- Datetime -->
     <script-var name="number_day" interval="5h">date "+%d"</script-var>
     <script-var name="month" interval="10h">date "+%b"</script-var>
     <script-var name="min" interval="1m">date "+%M"</script-var>
     <script-var name="hour" interval="1m">date "+%H"</script-var>
     <script-var name="year_full" interval="15h">date "+%Y"</script-var>
+    <!-- Controls -->
+    <script-var name="playing" interval="10s">getplayer</script-var>
+    <script-var name="volume" interval="250ms">getvol</script-var>
     <script-var name="brightness" interval="10s">light -G</script-var>
-    <script-var name="playing" interval="10s">~/.config/eww/scripts/getplayer</script-var>
-    <script-var name="workspace" interval="250ms">~/.config/eww/scripts/wmws</script-var>
-    <script-var name="volume" interval="250ms">~/.config/eww/scripts/getvol</script-var>
-    <script-var name="ram-used" interval="5s">~/.config/eww/scripts/getram</script-var>
-    <script-var name="cpu-used" interval="5s">~/.config/eww/scripts/getcpu</script-var>
-    <script-var name="cpu-temp" interval="5s">~/.config/eww/scripts/gettemp</script-var>
-    <script-var name="sda4" interval="1h">~/.config/eww/scripts/getdisk /dev/sda4</script-var>
-    <script-var name="sda5" interval="1h">~/.config/eww/scripts/getdisk /dev/sda5</script-var>
+    <!-- Workspaces -->
+    <script-var name="workspace1" interval="250ms">i3ws 0</script-var>
+    <script-var name="workspace2" interval="250ms">i3ws 1</script-var>
+    <!-- System monitor -->
+    <script-var name="ram-used" interval="5s">getram</script-var>
+    <script-var name="cpu-used" interval="5s">getcpu</script-var>
+    <script-var name="cpu-temp" interval="5s">gettemp</script-var>
     <script-var name="battery" interval="2m">cat /sys/class/power_supply/BAT0/capacity</script-var>
-    <script-var name="weather" interval="30m">~/.config/eww/scripts/getweather</script-var>
+    <!-- DISK -->
+    <script-var name="sda4" interval="1h">getdisk /dev/sda4</script-var>
+    <script-var name="sda5" interval="1h">getdisk /dev/sda5</script-var>
+    <!-- WEATHER -->
+    <script-var name="weather"   interval="30m">getweather</script-var>
     <script-var name="temp-real" interval="30m">cat /tmp/eww/weather/temp-real</script-var>
     <script-var name="temp-feel" interval="30m">cat /tmp/eww/weather/temp-feel</script-var>
     <script-var name="condition" interval="30m">cat /tmp/eww/weather/condition</script-var>
-    <script-var name="wind" interval="30m">cat /tmp/eww/weather/wind</script-var>
+    <script-var name="wind"      interval="30m">cat /tmp/eww/weather/wind</script-var>
   </variables>
 
   <includes>
@@ -37,49 +44,21 @@
         <bar />
       </widget>
     </window>
+    <window name="bar2" screen="1">
+      <geometry x="0" y="0" width="100%" height="40" />
+      <reserve side="top" distance="40" />
+      <widget>
+        <bar2 />
+      </widget>
+    </window>
     <window name="sidebar" screen="0">
-      <geometry anchor="bottom right" width="25%" height="97%" />
+      <geometry anchor="bottom right" width="20%" height="1040"/>
       <widget>
         <sidebar />
       </widget>
     </window>
   </windows>
 </eww>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

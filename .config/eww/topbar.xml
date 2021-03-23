@@ -1,8 +1,16 @@
 <eww>
   <definitions>
-    <def name="bar"> <!-- Starts the definition of a widget named main -->
+    <def name="bar">
       <box orientation="h" hexpand="true">
-        <workspaces/>
+        <workspaces1/>
+        <time/>
+        <sidestuff/>
+      </box>
+    </def>
+
+    <def name="bar2">
+      <box orientation="h" hexpand="true">
+        <workspaces2/>
         <time/>
         <sidestuff/>
       </box>
@@ -13,22 +21,40 @@
           <slider-vol />
           <slider-ram />
           <slider-bat />
-          <image path="~/Pictures/discord.png" />
+          <screenshot />
+          <discord />
       </box>
     </def>
 
-    <def name="workspaces">
+    <def name="workspaces1">
         <box orientation="h" class="workspaces" space-evenly="true" halign="start">
-          <box class="{{if workspace == 0 then 'active' else 'inactive' }}"></box>
-          <box class="{{if workspace == 1 then 'active' else 'inactive' }}"></box>
-          <box class="{{if workspace == 2 then 'active' else 'inactive' }}"></box>
-          <box class="{{if workspace == 3 then 'active' else 'inactive' }}">ﭮ</box>
-          <box class="{{if workspace == 4 then 'active' else 'inactive' }}"></box>
+          <button onclick="rofi -show drun -show-icons"></button>
+          <button class="{{if workspace1 == 0 then 'ws1' else '' }}"></button>
+          <button class="{{if workspace1 == 1 then 'ws1' else '' }}"></button>
+          <button class="{{if workspace1 == 2 then 'ws1' else '' }}"></button>
+          <button class="{{if workspace1 == 3 then 'ws1' else '' }}">ﭮ</button>
+          <button class="{{if workspace1 == 4 then 'ws1' else '' }}"></button>
           <box></box>
-          <box class="{{if workspace == 5 then 'active' else 'inactive' }}"></box>
-          <box class="{{if workspace == 6 then 'active' else 'inactive' }}"></box>
-          <box class="{{if workspace == 7 then 'active' else 'inactive' }}"></box>
-          <box class="{{if workspace == 8 then 'active' else 'inactive' }}"></box>
+          <button class="{{if workspace1 == 5 then 'ws1' else '' }}"></button>
+          <button class="{{if workspace1 == 6 then 'ws1' else '' }}"></button>
+          <button class="{{if workspace1 == 7 then 'ws1' else '' }}"></button>
+          <button class="{{if workspace1 == 8 then 'ws1' else '' }}"></button>
+        </box>
+    </def>
+
+    <def name="workspaces2">
+        <box orientation="h" class="workspaces" space-evenly="true" halign="start">
+          <button onclick="rofi -show drun -show-icons"></button>
+          <button class="{{if workspace2 == 0 then 'ws2' else '' }}"></button>
+          <button class="{{if workspace2 == 1 then 'ws2' else '' }}"></button>
+          <button class="{{if workspace2 == 2 then 'ws2' else '' }}"></button>
+          <button class="{{if workspace2 == 3 then 'ws2' else '' }}">ﭮ</button>
+          <button class="{{if workspace2 == 4 then 'ws2' else '' }}"></button>
+          <box />
+          <button class="{{if workspace2 == 5 then 'ws2' else '' }}"></button>
+          <button class="{{if workspace2 == 6 then 'ws2' else '' }}"></button>
+          <button class="{{if workspace2 == 7 then 'ws2' else '' }}"></button>
+          <button class="{{if workspace2 == 8 then 'ws2' else '' }}"></button>
         </box>
     </def>
   </definitions>

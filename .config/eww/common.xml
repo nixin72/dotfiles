@@ -30,7 +30,7 @@
 
     <def name="slider-sda5">
       <box orientation="h" class="slider-ram" space-evenly="false">
-        <box class="label-bat"></box>
+        <box class="label-bat"></box>
         <progress valign="center" value="{{sda5}}"/>
       </box>
     </def>
@@ -44,7 +44,7 @@
 
     <def name="slider-vol">
       <box orientation="h" class="slider-vol" space-evenly="false">
-        <box class="label-vol"></box>
+        <button class="label-vol" onclick="mixer"></button>
         <scale min="0" max="101" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
       </box>
     </def>
@@ -60,8 +60,16 @@
       <box class="time text">{{hour}}:{{min}} {{month}} {{number_day}}, {{year_full}}</box>
     </def>
 
-    <def name="hr" width="100" style="border-bottom: 1px solid black">
-      <box />
+    <def name="screenshot">
+      <button onclick="flameshot gui">
+        <image path="/mnt/s/repos/dotfiles/.config/eww/images/flameshot.png" width="25" height="25" />
+      </button>
+    </def>
+
+    <def name="discord">
+      <button onclick="discord">
+        <image path="/mnt/s/repos/dotfiles/.config/eww/images/discord.png" width="25" height="25" />
+      </button>
     </def>
   </definitions>
 </eww>

@@ -5,5 +5,6 @@
               json/decode
               (map (fn [x] [(dec (x "num")) (x "visible")]))
               (filter (fn [[i x]] x))
-              first
+              (#(nth % (Integer/parseInt (first *command-line-args*))))
               first))
+            

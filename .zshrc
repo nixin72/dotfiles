@@ -43,7 +43,6 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(
 	git
-	dnf
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 )
@@ -102,6 +101,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export GRAALVM_HOME=/opt/graalvm
 export JAVA_HOME=$GRAALVM_HOME
 export LLVM_TOOLCHAIN=$($GRAALVM_HOME/bin/lli --print-toolchain-path)
+export SCRIPTS=/s/repos/dotfiles/scripts
 
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
@@ -110,6 +110,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:$SCRIPTS
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"

@@ -8,22 +8,22 @@
     <script-var name="hour" interval="1m">date "+%H"</script-var>
     <script-var name="year_full" interval="15h">date "+%Y"</script-var>
     <!-- Controls -->
-    <script-var name="playing" interval="10s">getplayer</script-var>
-    <script-var name="volume" interval="250ms">getvol</script-var>
+    <script-var name="playing" interval="10s">getplayer.clj</script-var>
+    <script-var name="volume" interval="250ms">getvol.clj</script-var>
     <script-var name="brightness" interval="10s">light -G</script-var>
     <!-- Workspaces -->
-    <script-var name="workspace1" interval="250ms">i3ws 0</script-var>
-    <script-var name="workspace2" interval="250ms">i3ws 1</script-var>
+    <script-var name="workspace1" interval="250ms">i3ws.clj 0</script-var>
+    <script-var name="workspace2" interval="250ms">i3ws.clj 1</script-var>
     <!-- System monitor -->
-    <script-var name="ram-used" interval="5s">getram</script-var>
-    <script-var name="cpu-used" interval="5s">getcpu</script-var>
-    <script-var name="cpu-temp" interval="5s">gettemp</script-var>
+    <script-var name="ram-used" interval="5s">getram.clj</script-var>
+    <script-var name="cpu-used" interval="5s">getcpu.clj</script-var>
+    <script-var name="cpu-temp" interval="5s">gettemp.clj</script-var>
     <script-var name="battery" interval="2m">cat /sys/class/power_supply/BAT0/capacity</script-var>
     <!-- DISK -->
-    <script-var name="sda4" interval="1h">getdisk /dev/sda4</script-var>
-    <script-var name="sda5" interval="1h">getdisk /dev/sda5</script-var>
+    <script-var name="sda4" interval="1h">getdisk.clj /dev/sda4</script-var>
+    <script-var name="sda5" interval="1h">getdisk.clj /dev/sda5</script-var>
     <!-- WEATHER -->
-    <script-var name="weather"   interval="30m">getweather</script-var>
+    <script-var name="weather"   interval="30m">getweather.clj</script-var>
     <script-var name="temp-real" interval="30m">cat /tmp/eww/weather/temp-real</script-var>
     <script-var name="temp-feel" interval="30m">cat /tmp/eww/weather/temp-feel</script-var>
     <script-var name="condition" interval="30m">cat /tmp/eww/weather/condition</script-var>
@@ -51,15 +51,14 @@
         <bar2 />
       </widget>
     </window>
-    <window name="sidebar" screen="0">
-      <geometry anchor="bottom right" width="20%" height="1040"/>
+    <window name="sidebar" screen="1">
+      <geometry anchor="bottom right" height="90%" />
       <widget>
         <sidebar />
       </widget>
     </window>
   </windows>
 </eww>
-
 
 
 

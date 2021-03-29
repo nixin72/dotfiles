@@ -186,33 +186,6 @@ mode "$mode_system" {
 bindsym $mod+0 mode "$mode_system"
 
 ###########################################################
-########## i3 status bar ##################################
-###########################################################
-
-bar {
-	mode invisible
-	status_command i3status
-	position top
-
-	font pango:Fira Code 13
-
-	colors {
-		background #282C34
-		statusline #ABB2BF
-		separator #ABB2BF
-
-		#                  border  backgnd text
-		focused_workspace  #56B6C2 #282C34 #ABB2BF 
-		active_workspace   #282C34 #282C34 #ABB2BF
-		inactive_workspace #282C34 #282C34 #ABB2BF
-		urgent_workspace   #56B6c2 #DF6A73 #282C34 
-	}
-}
-
-# hide/show status bar
-#bindsym $mod+m bar mode toggle
-
-###########################################################
 ########## Settings specifically for KDE ##################
 ###########################################################
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
@@ -234,20 +207,7 @@ no_focus [class="plasmashell" window_type="notification"]
 ###########################################################
 ########## A couple startup programs ######################
 ###########################################################
-# xss-lock grabs a logind suspend inhibit lock and will 
-# use i3lock to lock the screen before suspend. 
-# Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id nitrogen --set-zoom-fill ~/Pictures/background.png
-exec --no-startup-id picom --experimental-backends --config ~/.config/compton.conf
-exec --no-startup-id eww daemon
-exec --no-startup-id sleep 1; eww open bar
-exec --no-startup-id nitrogen --restore
-
-# NetworkManager is the most popular way to manage 
-# wireless networks on Linux, and nm-applet is a 
-# desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+exec --no-startup-id /s/repos/dotfiles/scripts/startup.sh
 
 ###########################################################
 ########## Audio Shenanigans - don't touch ################

@@ -20,7 +20,7 @@ $purple   : #D886F3;
 
 window {
   color: $fg-light;
-  font-family: Iosevka;
+  font-family: 'Fira Code Nerd Font Mono';
   font-size: 1.25rem;
   background-color: $bg-dark;
 }
@@ -44,8 +44,10 @@ image { margin-right: 10px; }
 
 .workspaces {
   padding-left: 10px;
+
   button {
-    padding: 10px;
+    padding: 5px 10px;
+    font-size: 1.5rem;
   }
 
   .ws1 {
@@ -112,8 +114,8 @@ scale {
   
   .section {
     background-color: $bg-light;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0.75rem;
+    padding: 1.05rem 1rem;
     border-radius: 10px;
   }
 
@@ -127,9 +129,9 @@ scale {
 
   .session {
     button {
-      font-family: Iosevka;
+      font-family: 'FiraCode Nerd Font';
       font-size: 3rem;
-      margin: 20px;
+      margin: 1rem;
     }
   }
 }

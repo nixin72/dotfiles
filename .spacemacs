@@ -70,6 +70,7 @@ values."
      version-control
 
      (wakatime :variables
+               ;; api-key
                wakatime-cli-path "/usr/bin/wakatime")
      )
    ;; List of additional packages that will be installed without being

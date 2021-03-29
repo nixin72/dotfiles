@@ -2,7 +2,7 @@
     //Window
     "window.newWindowDimensions": "maximized",
     "window.restoreFullscreen": true,
-    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+    "window.title": "${dirty}${activeEditorShort} - vscode",
     "window.titleBarStyle": "native",
     "window.menuBarVisibility": "hidden",
     "window.zoomLevel": 1,

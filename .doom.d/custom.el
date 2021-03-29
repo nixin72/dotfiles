@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(cmake-mode exec-path-from-shell))
+ '(package-selected-packages '(fzf cmake-mode exec-path-from-shell))
  '(safe-local-variable-values '((cider-shadow-cljs-default-options . "app")))
  '(wakatime-cli-path "/usr/bin/wakatime")
  '(wakatime-python-bin nil))

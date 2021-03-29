@@ -119,7 +119,8 @@ colors:
     red: '0xe06c75'
     green: '0x98c379'
     yellow: '0xd19a66'
-    blue: '0x61afef'
+    # Original: 0x61afef
+    blue: '0x3f4451'
     magenta: '0xc678dd'
     cyan: '0x56b6c2'
     white: '0xe6e6e6'

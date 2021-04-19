@@ -13,7 +13,7 @@
   (spit (str eww-data-path "/condition") condition)
   (spit (str eww-data-path "/wind") wind))
 
-(let [data (-> (curl/get "wttr.in?format=%t;%f;%c;%w")
+(let [data (-> (curl/get "wttr.in/montreal?format=%t;%f;%c;%w")
                (:body)
                (str/split #";"))
       weather {:temp-real (nth data 0)

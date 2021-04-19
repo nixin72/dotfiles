@@ -117,10 +117,12 @@
         proton: "https://mail.protonmail.com/login",
         swish: "https://swish.swi-prolog.org",
         google: "https://google.com",
-        "348": "https://comp-348.github.com",
+        "348": "https://comp-348.github.io",
         "disney+": "https://disneyplus.com",
         oryx: "https://configure.ergodox-ez.com/moonlander/layouts/DaQLb/latest/0",
         typing: "https://www.keyhero.com/free-typing-test/"
+        firebase: "https://console.firebase.google.com"
+        discord: "https://discord.com/channels/@me"
       }                                                                          				
                                                                                  				
       function websiteSearch(searchTerm) {                                       				
@@ -142,9 +144,25 @@
           let search = searchTerm.substring(searchTerm.indexOf(" "));
           return mySearchEngines[searchEngine] + search;  
         }
-        else {
-            return false;
+        return false;
+      }
+
+      function literalSearch(searchTerm) {
+        if (searchEngine[0] === "!") {
+            return `https://${searchTerm.substring(1)}.com`;
         }
+        return false;
+      }
+
+      function fullURL(searchTerm) {
+          let file = searchTerm.substring(0,6);
+          let http = searchTerm.substring(0,6);
+          let https = searchTerm.substring(0.7);
+          if (http === "http://" || https === "https://" || file === "file://") {
+              return searchTerm;
+          }
+
+          return false;
       }
 
 			document.querySelector("#home-search").onsubmit = e => {
@@ -153,6 +171,8 @@
 				let url = websiteSearch(search) ||
                   searchEngineSearch(search) ||
                   subredditSearch(search) ||
+                  literalSearch(search) || 
+                  fullURL(search) || 
                   defaultEngine + search;
 
 				window.location.href = url;

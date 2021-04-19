@@ -52,10 +52,10 @@
     <def name="cal">
       <box class="section cal" orientation="v" space-evenly="false">
         <calendar
-            width="200"
+            width="150"
             class="cal"
             show-week-numbers="false"
-            day="13"
+            day="1"
             month="3"
             year="2021" />
       </box>
@@ -66,7 +66,7 @@
         <button class="red" onclick="shutdown 0">⏻</button>
         <button class="orange" onclick="shutdown -r 0">ﰇ</button>
         <button class="cyan" onclick="/s/repos/dotfiles/scripts/logout.clj"></button>
-        <button class="purple" onclick="eww close sidebar; lockscreen"></button>
+        <button class="purple" onclick="eww close sidebar; lockscreen.sh"></button>
       </box>
     </def>
     

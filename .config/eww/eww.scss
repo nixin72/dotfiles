@@ -119,11 +119,9 @@ scale {
     border-radius: 10px;
   }
 
-  .calendar {
-    calendar {
-      grid {
-        background-color: $bg-light;
-      }
+  calendar {
+    label {
+      font-size: 1.5em;
     }
   }
 

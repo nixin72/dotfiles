@@ -51,7 +51,7 @@
         <bar2 />
       </widget>
     </window>
-    <window name="sidebar" screen="1">
+    <window name="sidebar" screen="0">
       <geometry anchor="bottom right" height="90%" />
       <widget>
         <sidebar />
@@ -59,8 +59,6 @@
     </window>
   </windows>
 </eww>
-
-
 
 
 

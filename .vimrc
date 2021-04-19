@@ -1,11 +1,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""" PACKAGE MANAGEMENT """""""""""""""""""""""""""""" 
+"""""""""" PACKAGE MANAGEMENT """"""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs 
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif 
+endif
 
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -21,20 +21,20 @@ call plug#begin('~/.local/share/nvim/plugged')
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""" BASIC CONFIGURATION """"""""""""""""""""""""""""" 
+"""""""""" BASIC CONFIGURATION """""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Add '.' key to be "Add a single character" 
+" Add '.' key to be "Add a single character"
 :nmap <silent> . "=nr2char(getchar())<cr>P
 
-" Set tabwidth and spaces 
-set tabstop=4 
-set softtabstop=0 
-set expandtab 
-set shiftwidth=4 
+" Set tabwidth and spaces
+set tabstop=4
+set softtabstop=0
+set expandtab
+set shiftwidth=4
 set smarttab
 
-" Activate line numbers 
+" Activate line numbers
 set number
 set numberwidth=3
 set relativenumber
@@ -43,16 +43,16 @@ set relativenumber
 set wrap
 set showbreak=\ \ ->\ \  " extra indent
 set linebreak
-set nolist 
+set nolist
 set textwidth=100
 set wrapmargin=0
 
 
 set colorcolumn=80,100
-highlight ColorColumn ctermbg=darkgrey 
+highlight ColorColumn ctermbg=darkgrey
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""" COLOR SCHEME """""""""""""""""""""""""""""""""""" 
+"""""""""" COLOR SCHEME """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if (empty($TMUX))
   if (has("nvim"))
@@ -68,7 +68,7 @@ if (empty($TMUX))
 endif
 
 let g:onedark_termcolors=24
-syntax on 
+syntax on
 colorscheme onedark
 
 let g:lightline = { 'colorscheme': 'onedark' }
@@ -84,25 +84,51 @@ let g:lightline = { 'colorscheme': 'onedark' }
 " (E)nd word -> brea(K) of word [yeah, that one's a push...]
 " (O)pen new line -> (L)ine
 
-noremap l o
-noremap o l
-noremap L O
-noremap O L
-noremap j n
-noremap n j
-noremap J N
-noremap N J
-noremap gn gj
-noremap gj gn
-noremap k e
-noremap e k
-noremap K E
-noremap E <nop>
-noremap gk ge
-noremap ge gk
-noremap h y
-noremap h y
-noremap y h
-noremap H Y
-noremap Y H
+function Workman()
+  noremap l o
+  noremap o l
+  noremap L O
+  noremap O L
+  noremap j n
+  noremap n j
+  noremap J N
+  noremap N J
+  noremap gn gj
+  noremap gj gn
+  noremap k e
+  noremap e k
+  noremap K E
+  noremap E <nop>
+  noremap gk ge
+  noremap ge gk
+  noremap h y
+  noremap h y
+  noremap y h
+  noremap H Y
+  noremap Y H
+endfunction
+
+function Qwerty()
+  noremap o l
+  noremap l o
+  noremap O L
+  noremap L O
+  noremap n j
+  noremap j n
+  noremap N J
+  noremap J N
+  noremap gj gn
+  noremap gn gj
+  noremap e k
+  noremap k e
+  noremap E K
+  noremap K <nop>
+  noremap ge gk
+  noremap gk ge
+  noremap y h
+  noremap y h
+  noremap h y
+  noremap Y H
+  noremap H Y
+endfunction
 

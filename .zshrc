@@ -98,10 +98,16 @@ export ARCHFLAGS="-arch x86_64"
 
 export NODE_PATH=$HOME/.npm-packages/lib/node_modules
 export ANDROID_HOME=$HOME/Android/Sdk
-export GRAALVM_HOME=/opt/graalvm
-export JAVA_HOME=$GRAALVM_HOME
-export LLVM_TOOLCHAIN=$($GRAALVM_HOME/bin/lli --print-toolchain-path)
+export ANDROID_SDK_ROOT=/opt/android-sdk
 export SCRIPTS=/s/repos/dotfiles/scripts
+
+if [[ -f /opt/graalvm ]]; then 
+    export GRAALVM_HOME=/opt/graalvm
+    export JAVA_HOME=$GRAALVM_HOME
+    export LLVM_TOOLCHAIN=$($GRAALVM_HOME/bin/lli --print-toolchain-path)
+else
+    export JAVA_HOME=/usr/lib/jvm/java-8-graalvm/jre
+fi
 
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH

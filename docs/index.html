@@ -148,7 +148,7 @@
       }
 
       function literalSearch(searchTerm) {
-        if (searchEngine[0] === "!") {
+        if (searchTerm[0] === "!") {
             return `https://${searchTerm.substring(1)}.com`;
         }
         return false;

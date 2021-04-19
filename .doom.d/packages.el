@@ -57,6 +57,8 @@
 (package! ob-racket
   :recipe (:host github :repo "togakangaroo/ob-racket"))
 
+(package! company-quickhelp)
+
 (package! exec-path-from-shell)
 
 (package! mini-modeline)

@@ -160,7 +160,15 @@
       (insert "<input type=\"\" name=\"\" />"))
     (forward-char 12)
     (sgml-indent-line))
-  )
+
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1)
+    (company-tide)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; Org-mode settings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -294,6 +302,10 @@
    "u" 'treemacs-root-up
    "d" 'treemacs-root-down
    "R" 'treemacs-change-root)
+
+  (map!
+   :after company
+   "C-c h" #'company-quickhelp-manual-begin)
 
   (map! ;; Treemacs opening nodes
    :after treemacs-evil

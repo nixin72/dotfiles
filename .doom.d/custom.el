@@ -3,6 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" "d6603a129c32b716b3d3541fc0b6bfe83d0e07f1954ee64517aa62c9405a3441" default))
  '(package-selected-packages '(fzf cmake-mode exec-path-from-shell))
  '(safe-local-variable-values '((cider-shadow-cljs-default-options . "app")))
  '(wakatime-cli-path "/usr/bin/wakatime")

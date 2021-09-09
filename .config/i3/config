@@ -17,7 +17,6 @@ hide_edge_borders none
 # Gaps 
 gaps inner 10
 gaps outer 5
-gaps top 42
 gaps horizontal 0
 
 ###########################################################

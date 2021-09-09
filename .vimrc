@@ -12,26 +12,42 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-sensible'
     Plug 'wakatime/vim-wakatime'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) }}
+    Plug 'jimmay5469/vim-spacemacs'
+    Plug 'tpope/vim-commentary'
+    Plug 'dosimple/workspace.vim'
+
+    "" Code help
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    "" Clojure
+    Plug 'guns/vim-clojure-static'
+    Plug 'guns/vim-clojure-highlight'
+    Plug 'guns/vim-sexp' 
+    Plug 'tpope/vim-sexp-mappings-for-regular-people'
+    Plug 'tpope/vim-fireplace'
+    Plug 'kien/rainbow_parentheses.vim'
+
+    "" Theme
     Plug 'joshdick/onedark.vim'
     Plug 'itchyny/lightline.vim'
 
-    " On-demand loading
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    "" File/Buffer management 
+    Plug 'junegunn/fzf.vim'
+    Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" BASIC CONFIGURATION """""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Add '.' key to be "Add a single character"
 :nmap <silent> . "=nr2char(getchar())<cr>P
 
 " Set tabwidth and spaces
-set tabstop=4
+set tabstop=2
 set softtabstop=0
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
 
 " Activate line numbers
@@ -50,6 +66,14 @@ set wrapmargin=0
 
 set colorcolumn=80,100
 highlight ColorColumn ctermbg=darkgrey
+
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif 
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" COLOR SCHEME """"""""""""""""""""""""""""""""""""
@@ -72,6 +96,11 @@ syntax on
 colorscheme onedark
 
 let g:lightline = { 'colorscheme': 'onedark' }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""" Language support """""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" Workman layout """""""""""""""""""""""""""""""""
@@ -102,33 +131,65 @@ function Workman()
   noremap gk ge
   noremap ge gk
   noremap h y
-  noremap h y
   noremap y h
   noremap H Y
   noremap Y H
+  nmap <silent> <C-w>y :wincmd h<CR>
+  nmap <silent> <C-w>n :wincmd j<CR>
+  nmap <silent> <C-w>e :wincmd k<CR>
+  nmap <silent> <C-w>o :wincmd l<CR>
 endfunction
 
 function Qwerty()
-  noremap o l
-  noremap l o
-  noremap O L
-  noremap L O
-  noremap n j
-  noremap j n
-  noremap N J
-  noremap J N
-  noremap gj gn
-  noremap gn gj
-  noremap e k
-  noremap k e
-  noremap E K
+  noremap o o
+  noremap l l
+  noremap O O
+  noremap L L
+  noremap n n
+  noremap j j
+  noremap N N
+  noremap J J
+  noremap gj gj
+  noremap gn gn
+  noremap e e
+  noremap k k
+  noremap E E
   noremap K <nop>
-  noremap ge gk
-  noremap gk ge
-  noremap y h
-  noremap y h
-  noremap h y
-  noremap Y H
-  noremap H Y
+  noremap ge ge
+  noremap gk gk
+  noremap y y
+  noremap h h
+  noremap Y Y
+  noremap H H
 endfunction
 
+call Workman()
+
+nnoremap <space>0 :CocCommand explorer<CR>
+
+nnoremap <space>, <C-^>
+nnoremap <space>b, <C-^>
+nnoremap <space>bd :Sayonara!<CR>
+nnoremap <space>bn :bnext<CR>
+nnoremap <space>bN :enew<CR>
+nnoremap <space>bp :bprevious<CR>
+nnoremap <space>bi :Buffers<CR>
+
+nnoremap <space>ft :CocCommand explorer<CR>
+nnoremap <space>ff :GFiles<CR>
+
+nnoremap <space>w1 :WS 1<CR>
+nnoremap <space>w2 :WS 2<CR>
+nnoremap <space>w3 :WS 3<CR>
+nnoremap <space>w4 :WS 4<CR>
+
+" Use K to show documentation in preview window
+nnoremap <space>h :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction

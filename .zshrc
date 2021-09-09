@@ -41,14 +41,22 @@ COMPLETION_WAITING_DOTS="true"
 #git clone https://github.com/zsh-users/zsh-autosuggestions /home/nixin72/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 #git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 
-plugins=(
-	git
-	zsh-syntax-highlighting
-	zsh-autosuggestions
-)
-
-source $ZSH/oh-my-zsh.sh
-source /usr/share/nvm/init-nvm.sh
+USE_POWERLINE="true"
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+else
+  plugins=(
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+  )
+  source $ZSH/oh-my-zsh.sh
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+fi
 
 function lg () {
 	exa -lha --git
@@ -79,6 +87,10 @@ alias gplr=git pull --rebase
 alias gl=git log --oneline
 alias grh=git reset --hard
 
+alias cbl=cd ~/Documents/work/Character-Based-Leadership
+alias nisdd=cd ~/Documents/work/nisd-dashboard
+alias nisda=cd ~/Documents/work/NISD-Alert-App
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -93,6 +105,8 @@ else
   export EDITOR='nvim'
 fi
 
+export BROWSER='/usr/bin/firefox'
+
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
@@ -101,7 +115,9 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_SDK_ROOT=/opt/android-sdk
 export SCRIPTS=/s/repos/dotfiles/scripts
 
-if [[ -f /opt/graalvm ]]; then 
+if [[ -f /usr/lib/jvm ]]; then 
+  export JAVA_HOME=/usr/lib/jvm/default
+elif [[ -f /opt/graalvm ]]; then 
     export GRAALVM_HOME=/opt/graalvm
     export JAVA_HOME=$GRAALVM_HOME
     export LLVM_TOOLCHAIN=$($GRAALVM_HOME/bin/lli --print-toolchain-path)
@@ -117,6 +133,8 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$JAVA_HOME/bin
 export PATH=$PATH:$SCRIPTS
+
+source /usr/share/nvm/init-nvm.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"

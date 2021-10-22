@@ -98,4 +98,3 @@ source /usr/share/nvm/init-nvm.sh
 export NODE_PATH="$HOME/.nvm/versions/node/$(nvm version)/lib/node_modules"
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-

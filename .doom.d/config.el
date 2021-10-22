@@ -30,7 +30,6 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; UI Changes/improvemenets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -510,6 +509,7 @@
    "m" #'org-presentation-previous-slide
    "t" #'evil-toggle-fold
    "e" #'org-html-export-to-html
+   "x" #'org-toggle-checkbox
    "p" #'org-publish-current-project
    "a" nil
    "a d" #'org-time-stamp

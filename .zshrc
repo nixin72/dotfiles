@@ -1,18 +1,32 @@
 ################################################################################
 ########## aliases #############################################################
 ################################################################################
-alias wifioff=nmcli radio wifi off
-alias wifion=nmcli radio wifi on
+alias wifioff="nmcli radio wifi off"
+alias wifion="nmcli radio wifi on"
 
 alias vim=nvim
 alias yay=paru
 alias ls="exa"
-alias ll="ls -l"
+alias ll="ls -lah"
 alias la="ls -la"
+alias bb="rlwrap bb"
 
 alias cbl="cd $ME/work/Character-Based-Leadership"
 alias nisdd="cd $ME/Documents/work/nisd-dashboard"
 alias nisda="cd $ME/Documents/work/NISD-Alert-App"
+
+alias gra="git rebase --abort"
+alias grc="git rebase --continue"
+alias gtfo="git fetch origin"
+alias gca="git commit --amend"
+alias gc="git commit"
+alias gaa="git add ."
+alias gp="git push"
+alias gpf="git push -f"
+alias gpl="git pull"
+alias gplr="git pull --rebase"
+alias gl="git log --oneline"
+alias grh="git reset --hard"
 
 alias reload="source ~/.zshrc"
 

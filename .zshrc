@@ -1,8 +1,8 @@
 ################################################################################
 ########## aliases #############################################################
 ################################################################################
-alias wifioff=nmcli radio wifi off
-alias wifion=nmcli radio wifi on
+alias wifioff="nmcli radio wifi off"
+alias wifion="nmcli radio wifi on"
 
 alias vim=nvim
 alias yay=paru
@@ -15,6 +15,7 @@ alias nisdd="cd $ME/Documents/work/nisd-dashboard"
 alias nisda="cd $ME/Documents/work/NISD-Alert-App"
 
 alias reload="source ~/.zshrc"
+alias bb="rlwrap bb"
 
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
@@ -26,6 +27,22 @@ setopt AUTO_PUSHD           # Push the current directory visited on the stack.
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
 setopt autocd
+
+zmodload zsh/complist
+bindkey -M vicmd 'y' vi-backward-char
+bindkey -M vicmd 'n' vi-down-line-or-history
+bindkey -M vicmd 'e' vi-up-line-or-history
+bindkey -M vicmd 'o' vi-forward-char
+bindkey -M viins '\e^?' vi-backward-kill-word
+
+bindkey -M vicmd 'h' vi-yank
+bindkey -M vicmd 'k' vi-forward-word 
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+bindkey -M vicmd l edit-command-line
+
 
 ################################################################################
 ########## useful functions ####################################################

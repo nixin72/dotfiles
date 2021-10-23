@@ -43,19 +43,29 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 setopt autocd
 
 zmodload zsh/complist
-bindkey -M vicmd 'y' vi-backward-char
-bindkey -M vicmd 'n' vi-down-line-or-history
-bindkey -M vicmd 'e' vi-up-line-or-history
-bindkey -M vicmd 'o' vi-forward-char
-bindkey -M viins '\e^?' vi-backward-kill-word
+if moonlander; then
+  echo "Using Workman keybinds"
+  bindkey -M vicmd 'y' vi-backward-char
+  bindkey -M vicmd 'n' vi-down-line-or-history
+  bindkey -M vicmd 'e' vi-up-line-or-history
+  bindkey -M vicmd 'o' vi-forward-char
 
-bindkey -M vicmd 'h' vi-yank
-bindkey -M vicmd 'k' vi-forward-word 
+  bindkey -M vicmd 'h' vi-yank
+  bindkey -M vicmd 'k' vi-forward-word 
+  bindkey -M vicmd l edit-command-line
+else
+  echo "Using Qwerty keybinds"
+  bindkey -M vicmd 'h' vi-backward-char
+  bindkey -M vicmd 'j' vi-down-line-or-history
+  bindkey -M vicmd 'k' vi-up-line-or-history
+  bindkey -M vicmd 'l' vi-forward-char
+fi
+
+bindkey -M viins '\e^?' vi-backward-kill-word
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-bindkey -M vicmd l edit-command-line
 
 
 ################################################################################

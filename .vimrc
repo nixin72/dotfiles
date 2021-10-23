@@ -163,7 +163,14 @@ function Qwerty()
   noremap H H
 endfunction
 
-call Workman()
+" Select qwerty or workman depending on if my keyboard is plugged in
+if system("moonlander") != ""
+  :echo "Workman"
+  call Workman()
+else 
+  :echo "Qwerty"
+  call Qwerty()
+endif
 
 nnoremap <space>0 :CocCommand explorer<CR>
 

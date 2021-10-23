@@ -452,7 +452,11 @@
      :nv "l" #'evil-open-below
      :nv "L" #'evil-open-above))
 
-  (qwerty)
+  ;; Determine which keybindings to use depending on if Moonlander is plugged
+  ;; in or not.
+  (if (string-empty-p (shell-command-to-string "moonlander"))
+      (qwerty)
+    (workman))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Language-specific keybinds ;;;;;;;;;

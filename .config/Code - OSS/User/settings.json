@@ -8,7 +8,6 @@
     "window.zoomLevel": 1,
     //Workbench
     "workbench.activityBar.visible": true,
-    "workbench.colorTheme": "Atom One Dark",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.openPositioning": "first",
     "workbench.editor.restoreViewState": false,

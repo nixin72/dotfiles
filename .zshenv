@@ -4,6 +4,8 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export BROWSER='/usr/bin/firefox'
 export ME="$HOME/Documents"
+export DOTFILES="$ME/repos/dotfiles"
+export SCRIPTS="$DOTFILES/scripts"
 export ZSH_PLUGINS="$HOME/.local/share/zsh"
 
 # Compilation flags
@@ -16,8 +18,10 @@ export SCRIPTS=/s/repos/dotfiles/scripts
 
 export JAVA_HOME=/usr/lib/jvm/default
 export GRAALVM_HOME=$JAVA_HOME
+export LLVM_TOOLCHAIN="($GRAALVM_HOME/bin/lli --print-toolchain-path)"
 
 export PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
+export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:$HOME/.npm-packages/bin
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools

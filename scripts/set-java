@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sudo rm default
+sudo rm default-runtime
+
+sudo ln -s "/usr/lib/jvm/$1" /usr/lib/jvm/default
+sudo ln -s "/usr/lib/jvm/$1" /usr/lib/jvm/default-runtime
+

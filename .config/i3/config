@@ -24,7 +24,6 @@ gaps horizontal 0
 ###########################################################
 
 bindsym Mod4+d exec --no-startup-id discord
-bindsym Mod4+r exec --no-startup-id rofi -show drun -show-icons
 bindsym Mod4+w exec --no-startup-id firefox
 bindsym Mod4+b exec --no-startup-id firefox
 
@@ -40,11 +39,15 @@ bindsym Mod4+v exec --no-startup-id nvim
 
 bindsym $mod+Return exec alacritty -e zsh
 
+# rofi launchers
+bindsym Mod4+r exec --no-startup-id rofi -show drun -show-icons
+bindsym $mod+period exec --no-startup-id rofi -show emoji -modi emoji
+bindsym $mod+0      exec --no-startup-id rofi -show p -modi p:rofi-power-menu
+
 bindsym $mod+Tab exec --no-startup-id rofi -show window -show-icons
 bindsym $mod+d   exec --no-startup-id rofi -show drun -show-icons
-bindsym $mod+i   exec --no-startup-id /mnt/s/repos/dotfiles/scripts/toggle-sidebar.clj
 
-bindsym Mod4+e exec --no-startup-id ibus-ui-emojier-plasma
+bindsym $mod+i   exec --no-startup-id /mnt/s/repos/dotfiles/scripts/toggle-sidebar.clj
 
 ###########################################################
 ########## Window Management ##############################
@@ -182,7 +185,10 @@ mode "$mode_system" {
 	bindsym Escape mode "default"
 }
 
-bindsym $mod+0 mode "$mode_system"
+bindsym Mod4+l exec --no-startup-id betterlockscreen -l --off 5
+
+# Use rofi instead
+# bindsym $mod+0 mode "$mode_system"
 
 ###########################################################
 ########## Settings specifically for KDE ##################

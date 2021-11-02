@@ -1,4 +1,12 @@
 {
-  "typescript.format.enabled": true, 
-  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact"]
+  "typescript.format.enabled": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "css",
+    "json",
+    "graphql"
+  ]
 }

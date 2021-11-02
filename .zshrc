@@ -10,6 +10,8 @@ alias ls="exa"
 alias ll="ls -lah"
 alias la="ls -la"
 alias bb="rlwrap bb"
+alias sbcl="rlwrap sbcl"
+alias clojure="rlwrap clojure"
 
 alias cbl="cd $ME/work/Character-Based-Leadership"
 alias nisdd="cd $ME/Documents/work/nisd-dashboard"
@@ -29,7 +31,6 @@ alias gl="git log --oneline"
 alias grh="git reset --hard"
 
 alias reload="source ~/.zshrc"
-alias bb="rlwrap bb"
 
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
@@ -105,6 +106,10 @@ ssh-create() {
 
 repos() {
   cd "$ME/repos/$1"
+}
+
+work() {
+  cd "$ME/work/$1"
 }
 
 cursor_mode

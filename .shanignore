@@ -1,0 +1,13 @@
+.config/spicetify
+.config/polybar
+README.md
+kde-i3.sh
+.emacs.d
+.sbclrc
+docs
+nix
+.spacemacs
+.racketrc
+install.sh
+.shanignore
+.xmonad

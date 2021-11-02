@@ -51,6 +51,8 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
+;;; Code:
+
 (package! block-nav
   :recipe (:host github :repo "nixin72/block-nav.el"))
 
@@ -64,3 +66,14 @@
 (package! mini-modeline)
 
 (package! lsp-java)
+
+(package! map :pin "bb50dba")
+
+(package! gitconfig-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitignore-mode.el")))
+
+;;; packages.el ends here

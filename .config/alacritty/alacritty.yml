@@ -82,7 +82,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 7.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -202,7 +202,7 @@ mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
 
-  url:
+  hints:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.

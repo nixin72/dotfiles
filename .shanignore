@@ -11,3 +11,4 @@ nix
 install.sh
 .shanignore
 .xmonad
+vimium*

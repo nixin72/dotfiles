@@ -1,0 +1,30 @@
+{:default-manager :paru
+ :links {"~/.config/alacritty/" "/s/repos/dotfiles/alacritty"
+         "~/.config/Code - OSS/User/settings.json" "/s/repos/dotfiles/Code - OSS/User/settings.json"
+         "~/.config/i3" "/s/repos/dotfiles/i3"
+         "~/.config/nvim" "/s/repos/dotfiles/nvim"
+         "~/.config/rofi" "/s/repos/dotfiles/rofi"
+         "~/.doom.d" "/s/repos/dotfiles/doom.d"
+         "~/.gitconfig" "/s/repos/dotfiles/.gitconfig"
+         "~/.gitignore" "/s/repos/dotfiles/.gitignore"
+         "~/.gitignore_global" "/s/repos/dotfiles/.gitignore_global"
+         "~/.vimrc" "/s/repos/dotfiles/.vimrc"
+         "~/.zshenv" "/s/repos/dotfiles/.zshenv"
+         "~/.zshrc" "/s/repos/dotfiles/.zshrc"
+         "~/.local/share/shan/shan.edn" "/s/repos/dotfiles/shan.edn"}
+ :default
+ [neovim emacs
+  wakatime
+  flameshot nitrogen
+  alacritty zsh neofetch starship cloc exa screen
+  i3 betterlockscreen dunst
+  rofi rofi-power-menu rofi-emoji
+  jdk8-graalvm-bin jdk16-graalvm-bin
+  clojure leiningen babashka
+  rustup
+  nvm
+  nautilus
+  discord
+  firefox
+  #_[android-platform android-sdk-build-tools android-studio]]
+ :gu [native-image]}

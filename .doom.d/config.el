@@ -30,6 +30,24 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+(global-wakatime-mode)
+
+(setq wakatime-cli-path
+      (string-trim-right
+       (shell-command-to-string "which wakatime-cli")))
+
+(winum-mode)
+
+(setq treemacs-width 30)
+
+(display-line-numbers-mode nil)
+
+(set-frame-font "Fira Code 13" nil t)
+
+(add-hook 'racket-mode-hook #'racket-unicode-input-method-enable)
+
+(add-to-list 'load-path "~/.doom.d/src/")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; UI Changes/improvemenets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

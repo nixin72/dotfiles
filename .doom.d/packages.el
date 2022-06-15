@@ -76,4 +76,8 @@
 	  :recipe (:host github :repo "magit/git-modes"
 			 :files ("gitignore-mode.el")))
 
+(package! wakatime-mode)
+(package! winum)
+
+
 ;;; packages.el ends here

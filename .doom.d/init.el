@@ -113,7 +113,7 @@
        common-lisp         ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       csharp              ; unity, .NET, and mono shenanigans
+       ;;csharp              ; unity, .NET, and mono shenanigans
        data                ; config/data formats
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
@@ -122,8 +122,8 @@
        ;;ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp            ; ML stands for Microsoft's Language
-       go                  ; the hipster dialect
-       (haskell +dante)    ; a language that's lazier than I am
+       ;;go                  ; the hipster dialect
+       ;;(haskell +dante)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        (java +meghanada +lsp)   ; the poster child for carpal tunnel syndrome
@@ -147,15 +147,15 @@
         ;;+pomodoro        ; be fruitful with the tomato technique
         +present)          ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
-       php                 ; perl's insecure younger brother
-       plantuml            ; diagrams for confusing people more
+       ;;php                 ; perl's insecure younger brother
+       ;;plantuml            ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        python              ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        racket              ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
-       (ruby +lsp)         ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;(ruby +lsp)         ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        scheme              ; a fully conniving family of lisps
@@ -180,24 +180,6 @@
        ;;literate
        (default +bindings +smartparens))
 
-
-
-(straight-use-package 'wakatime-mode)
-(global-wakatime-mode)
-(setq wakatime-cli-path "/usr/bin/wakatime")
-(straight-use-package 'winum)
-;;(straight-use-package 'mini-mode-line-mode)
-
-(winum-mode)
-
-(setq treemacs-width 30)
-
-(display-line-numbers-mode nil)
-
-(set-frame-font "Fira Code 13" nil t)
-
-(add-hook 'racket-mode-hook #'racket-unicode-input-method-enable)
-
-(add-to-list 'load-path "~/.doom.d/src/")
-
-
+(setq wakatime-cli-path
+      (string-trim-right
+       (shell-command-to-string "which wakatime-cli")))

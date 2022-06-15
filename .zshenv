@@ -30,9 +30,13 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$JAVA_HOME/bin
 export PATH=$PATH:$SCRIPTS
 export PATH=$PATH:$HOME/.emacs.d/bin
+export PATH=$PATH:$HOME/.nix-profile/bin
+
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
 
 # XDG preferences
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+export NIXPKGS_ALLOW_UNFREE=1

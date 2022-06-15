@@ -29,6 +29,7 @@ alias gpl="git pull"
 alias gplr="git pull --rebase"
 alias gl="git log --oneline"
 alias grh="git reset --hard"
+alias killuser="loginctl kill-user $USER"
 
 alias reload="source ~/.zshrc"
 
@@ -126,6 +127,7 @@ autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 source /usr/share/nvm/init-nvm.sh
 export NODE_PATH="$HOME/.nvm/versions/node/$(nvm version)/lib/node_modules"
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
